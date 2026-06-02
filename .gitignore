@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Secrets (never commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+service-account*.json
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
