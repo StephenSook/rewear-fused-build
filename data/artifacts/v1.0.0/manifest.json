@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-06-12T00:00:00Z",
+  "files": [
+    {
+      "path": "compliance/classifications.json",
+      "sha256": "81c1352cb6082ded4307548b5fe6c3aedc73e7905d15474cfd69ff3f59f5add2",
+      "bytes": 2349,
+      "producedBy": "placeholder"
+    },
+    {
+      "path": "compliance/regulations.json",
+      "sha256": "b39e1851124f36311c22fb20754ddb6b1d609e27b51c335457f880d0417652c7",
+      "bytes": 1483,
+      "producedBy": "placeholder"
+    },
+    {
+      "path": "garments.json",
+      "sha256": "4968684574f98811df952507c2793695a80d96f53ccea3bfee3dcc97108fcf5e",
+      "bytes": 1252,
+      "producedBy": "placeholder"
+    },
+    {
+      "path": "passports/dpp_carters-legging-blend.json",
+      "sha256": "cca94108326b394d065d7ee9d039965f859ae52a456f966812e7c22f92e9ac20",
+      "bytes": 1350,
+      "producedBy": "placeholder"
+    }
+  ],
+  "modelVersions": {
+    "engineC": "placeholder",
+    "engineA": "placeholder",
+    "engineB": "placeholder"
+  }
+}

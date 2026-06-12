@@ -1,0 +1,33 @@
+{
+  "passportId": "01/00845678901234/21/CL12M-0001",
+  "garmentId": "carters-legging-blend",
+  "gs1DigitalLinkUri": "https://id.gs1.org/01/00845678901234/21/CL12M-0001",
+  "qrPayload": "https://id.gs1.org/01/00845678901234/21/CL12M-0001",
+  "classification": {
+    "garmentId": "carters-legging-blend",
+    "decision": "lab-test",
+    "probability": 0.58,
+    "prAuc": 0.86,
+    "auc": 0.91,
+    "triggeredRegulations": [
+      { "regulationId": "CA_AB1817_PFAS", "status": "FLAG", "measuredOrPredicted": "predicted", "detail": "stretch finish, PFAS screen recommended" },
+      { "regulationId": "EU_ESPR_DPP", "status": "FLAG", "measuredOrPredicted": "deterministic", "detail": "elastane blend blocks fiber-to-fiber recycling today" },
+      { "regulationId": "OEKO_TEX_CLASS_I_FORMALDEHYDE", "status": "PASS", "measuredOrPredicted": "predicted", "detail": "within Class I limit" }
+    ],
+    "inSilico": true,
+    "placeholder": true
+  },
+  "aromaticAmineRelease": "NONE",
+  "credential": {
+    "type": ["VerifiableCredential", "DigitalProductPassport"],
+    "issuer": "did:web:rewear-fused.github.io",
+    "proof": {
+      "type": "Ed25519Signature2020",
+      "verificationMethod": "did:web:rewear-fused.github.io#key-1",
+      "signatureValue": "PLACEHOLDER_SIGNATURE"
+    }
+  },
+  "trl": "TRL 2-3",
+  "inSilico": true,
+  "placeholder": true
+}

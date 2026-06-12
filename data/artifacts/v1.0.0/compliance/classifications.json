@@ -1,0 +1,55 @@
+[
+  {
+    "garmentId": "carters-bodysuit-cotton",
+    "decision": "clear",
+    "probability": 0.97,
+    "prAuc": 0.86,
+    "auc": 0.94,
+    "triggeredRegulations": [
+      { "regulationId": "CPSIA_LEAD_SUBSTRATE", "status": "PASS", "measuredOrPredicted": "predicted", "detail": "predicted lead well below 100 ppm" },
+      { "regulationId": "CA_AB1817_PFAS", "status": "PASS", "measuredOrPredicted": "predicted", "detail": "no intentional PFAS, mono-material cotton" },
+      { "regulationId": "OEKO_TEX_CLASS_I_FORMALDEHYDE", "status": "PASS", "measuredOrPredicted": "predicted", "detail": "formaldehyde not detectable" }
+    ],
+    "shapTopFeatures": [
+      { "feature": "mono-material cotton", "weight": 0.41 },
+      { "feature": "supplier OEKO-TEX history", "weight": 0.22 }
+    ],
+    "inSilico": true,
+    "placeholder": true
+  },
+  {
+    "garmentId": "carters-legging-blend",
+    "decision": "lab-test",
+    "probability": 0.58,
+    "prAuc": 0.86,
+    "auc": 0.91,
+    "triggeredRegulations": [
+      { "regulationId": "CA_AB1817_PFAS", "status": "FLAG", "measuredOrPredicted": "predicted", "detail": "stretch finish, PFAS screen recommended" },
+      { "regulationId": "EU_ESPR_DPP", "status": "FLAG", "measuredOrPredicted": "deterministic", "detail": "elastane blend blocks fiber-to-fiber recycling today" },
+      { "regulationId": "OEKO_TEX_CLASS_I_FORMALDEHYDE", "status": "PASS", "measuredOrPredicted": "predicted", "detail": "within Class I limit" }
+    ],
+    "shapTopFeatures": [
+      { "feature": "elastane content", "weight": 0.38 },
+      { "feature": "stretch finish proxy", "weight": 0.19 }
+    ],
+    "inSilico": true,
+    "placeholder": true
+  },
+  {
+    "garmentId": "carters-rashguard-swim",
+    "decision": "divert",
+    "probability": 0.81,
+    "prAuc": 0.86,
+    "auc": 0.9,
+    "triggeredRegulations": [
+      { "regulationId": "CA_AB1817_PFAS", "status": "FAIL", "measuredOrPredicted": "predicted", "detail": "water-repellent finish, high PFAS risk" },
+      { "regulationId": "EU_ESPR_DPP", "status": "FLAG", "measuredOrPredicted": "deterministic", "detail": "high elastane, non-recyclable today" }
+    ],
+    "shapTopFeatures": [
+      { "feature": "water-repellent finish proxy", "weight": 0.44 },
+      { "feature": "elastane content", "weight": 0.27 }
+    ],
+    "inSilico": true,
+    "placeholder": true
+  }
+]
