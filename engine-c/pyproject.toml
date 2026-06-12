@@ -1,0 +1,12 @@
+[project]
+name = "rewear-engine-c"
+version = "0.1.0"
+description = "REWEAR-FUSED Digital Recyclability Passport: compliance classifier + DPP + data ETL (Vinh)"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
