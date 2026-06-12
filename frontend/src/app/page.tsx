@@ -61,9 +61,12 @@ export default function Home() {
         <InSilicoBadge />
       </div>
 
-      <p className="mt-16 font-display text-xl text-fg-muted">
-        Neither the molecule nor the enzyme existed 72 hours ago.
-      </p>
+      <Link href="/loop" className="group mt-16 inline-flex items-center gap-3">
+        <p className="font-display text-xl text-fg-muted transition-colors group-hover:text-fg">
+          Neither the molecule nor the enzyme existed 72 hours ago.
+        </p>
+        <ArrowRight className="h-5 w-5 text-accent-bio transition-transform group-hover:translate-x-1" />
+      </Link>
     </main>
   );
 }
