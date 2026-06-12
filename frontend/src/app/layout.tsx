@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Shell } from "@/components/shell";
 
 // Interim Google stand-ins for Editorial New (display) and General Sans (body)
 // until those are self-hosted via next/font/local. JetBrains Mono is the locked
@@ -27,7 +28,10 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="grain min-h-full flex flex-col">{children}</body>
+      <body className="grain min-h-full flex flex-col">
+        <Shell />
+        {children}
+      </body>
     </html>
   );
 }
