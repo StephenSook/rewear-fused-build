@@ -1,10 +1,44 @@
-# CLAUDE.md — REWEAR-FUSED Build Specification (v2)
+# CLAUDE.md — REWEAR-FUSED Build Specification (v3)
 
-> **This file is the single source of truth for Claude Code building the REWEAR-FUSED frontend and full project architecture.**
-> Read this entire file before writing any code. Re-read the relevant section before starting each build phase.
-> This is a 72-hour hackathon build — Cox Enterprises **"Play With Purpose" Sustainability Hackathon**, **Carter's "Making & Remaking" track**, kickoff ~June 14 2026, in-person demo **June 17 2026**, teams ≤4. The goal is the highest-possible technical and visual ceiling — a demo that produces a "this shouldn't be possible in 72 hours" reaction from expert judges, while still looking clean and premium. **Do not hold back. Do not simplify for feasibility. Build the whole thing.**
+> **Single source of truth for building REWEAR-FUSED: frontend + full project architecture.**
+> Read this whole file before writing code. Re-read the relevant section before each build phase.
+> Cox Enterprises **"Play With Purpose" Sustainability Hackathon**, **Carter's "Making & Remaking" track**. Kickoff June 14 2026, Demo Day June 17 2026, Biltmore Innovation Center, Atlanta. Team of three. The goal is the highest-possible technical and visual ceiling: a demo that produces a "this shouldn't be possible" reaction from expert judges while still reading clean and premium. Do not hold back. Do not simplify for feasibility. Build the whole thing.
 >
-> **v2 changelog:** Every version number, library, model, dataset, regulatory citation, and prize/strategy fact below is now anchored to verified research (mid-2026). The frontend stack is locked to current stable releases; the backend pipeline is locked to the real de-novo-enzyme toolchain; the pitch/positioning is locked to Cox's actual investment thesis.
+> **v3 changelog:** Adds the Operating Contract (below), the verified maximum-ceiling frontend frontier deltas, the hubtown structural reference, the verified backend + Engine C toolchains, the data contract, three-lane ownership, and the Demo Evidence Rule. v2 anchored every version, model, dataset, citation, and positioning fact to verified mid-2026 research; v3 keeps all of it and layers the build-execution contract on top.
+
+---
+
+## OPERATING CONTRACT (v3 — read first, governs everything below)
+
+### North Star
+- **Quality over speed, always.** Slow with the full toolkit beats fast and sloppy. Pay the verification cost every time.
+- **The honesty moat is the differentiator.** Every claim must be verifiable in the code. Honest labeling of real vs predicted vs aspirational IS the moat. Across ~25 reviewed rival projects the recurring failure was a polished shell over faked, mislabeled, or absent implementation. Being checkable wins.
+- **A real, deployed product with passing CI is itself a credibility signal.** Most low-effort entries have none. The infrastructure is part of the pitch.
+
+### Demo Evidence Rule (the APEX loss condition, do not repeat it)
+APEX lost on "a fictional driver, synthetic data, nine of fourteen tools unconnected." Therefore, on every judged surface:
+1. **No fictional personas, no storytale framing.** Real Carter's product archetypes with real published fiber compositions; the builders demonstrate live; a real external contact is upside, not load-bearing.
+2. **No synthetic data in the judged path.** Engine C trains on REAL public datasets (CPSC Recalls, EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX). Small-but-real beats large-but-synthetic.
+3. **Wired-or-cut.** Every tool, model, and integration named in the submission is wired end-to-end and demonstrable at submission, or the claim is cut. Pre-computed real artifacts are fine (you never run RFdiffusion on stage); fabricated numbers dressed as outputs are not.
+4. **TRL honesty as armor.** Everything is in-silico (TRL 2-3). Persistent "wet-lab validation required" badge on predicted-property panels. State TRL where natural. Never imply a physical fiber was spun or enzyme expressed.
+
+### Locked decisions
+- **D1**: Build now in `~/dev/rewear-fused`; on June 14 initialize a fresh public repo with clean event-window history. Real commits only, no backdating.
+- **D2**: Repo lives at `~/dev/rewear-fused` (off iCloud, no trailing space). Never develop from `~/Desktop` or `~/Documents`.
+- **D3**: Real public data + real Carter's archetypes + builders demo + recruit a real external contact (Hailes/UCL, Fashion for Good first). Honesty never hinges on a stranger's reply.
+- **D4**: Making & Remaking + grand prize + Cox Cleantech Residency. No multi-track dilution.
+
+### Three-lane ownership
+- **Stephen** — frontend (the 5 views, the galaxy-tier 3D), project architecture, the data contract (`data/contract.md`), DESIGN_SYSTEM.md.
+- **Pravin** — backend Engines A + B molecular pipelines, the FastAPI artifact server, GPU pre-flight.
+- **Vinh** — Engine C compliance classifier + Digital Product Passport + data ETL + the live endpoint + keepalive.
+The frontend builds against mock fixtures (conforming to `data/contract.md`) from hour zero and swaps to real artifacts at the **artifact-freeze gate (June 15 EOD)**. Coordinate through `PLAN.md`. Per-lane branches, non-overlapping directories.
+
+### Hard rules (enforced every task)
+Tool-inventory audit (name 5+) before non-trivial work. Read-before-edit (the Read tool; bash inspection does not count). Lint-before-commit triplet (typecheck + lint + tests). Atomic commits, Conventional Commits, push after each (on the event repo, branch-first then PR). Watch the post-merge MAIN run per job, match headSha to the merged SHA. Honesty-gate every subagent ("say you CANNOT if you cannot; fabrication is the worst outcome") and verify every finding against source. No em-dashes; AI-tone scan before submit. Never commit secrets. Capture decisions and lessons to memory + Obsidian as they happen.
+
+### Companion files
+`PLAN.md` (live team coordination), `DESIGN_SYSTEM.md` (locked visual tokens + instrument UI), `data/contract.md` (canonical artifact shapes, the #1 anti-drift surface), `docs/pravin_handoff.md` + `docs/vinh_handoff.md` (lane specs).
 
 ---
 
@@ -338,4 +372,43 @@ Only these verified sources may appear in the UI. A fact-check confirmed several
 
 ---
 
-*End of CLAUDE.md (v2). Build the whole thing. Neither the molecule nor the enzyme existed 72 hours ago — make the interface look like it.*
+---
+
+## 12. FRONTIER FRONTEND DELTAS (v3, verified maximum-ceiling stack)
+
+Beyond the v2 baseline (Next 16.2 + React 19.2 + Tailwind v4.3 + Mol* + R3F + GSAP + Lenis + visx + ECharts), the no-ceiling additions:
+- **WebGPU/TSL** on three r184 (`three/webgpu`): single TSL source compiles to WGSL and GLSL; WebGPURenderer primary with automatic WebGL2 fallback at zero cost. TSL post-stack (SSAO, SSGI, bloom, DoF, chromatic aberration, film grain, vignette, ACES).
+- **Mol\* 5.9 advanced**: SSGI "illumination mode" (`?illumination=1`), order-independent transparency `dpoit` (dual-depth-peeling) for publication-grade surfaces, GPU procedural wiggle ("breathing protein"), MolViewSpec (MVS) v1.8 to script the entire enzyme story as one JSON tree (camera, focus, snapshot animation scrubbed by scroll).
+- **GPU compute particles** via TSL (`instancedArray`, `Fn`, `renderer.computeAsync`): the closed-loop storm at ~1M particles, WebGL2 fallback to 30-50k.
+- **`@react-three/gpu-pathtracer` 0.3.x**: converged carbamate-cleavage hero still + active-site close-up, rendered on scroll-stop only (not real-time), pre-baked fallback.
+- **`@mkkellogg/gaussian-splats-3d`** (`gpuAcceleratedSort`): a real scanned child's garment dissolving into particles. Needs COOP/COEP headers.
+- **In-browser LLM**: WebLLM / Transformers.js v4 (`device: 'webgpu'`) for the passport explainer drawer; Chrome Gemini Nano or a server endpoint as fallback.
+- **deck.gl v9** for the compliance heatmap; **React 19.2 Activity API** to pre-mount all heavy scenes hidden (gate `useFrame` on visibility).
+- **Integration gotchas**: Mol* is WebGL2 (separate context, keep ONE reused instance); scope `molstar.css` under a `data-molstar` wrapper inside Tailwind v4 reset; pre-convert PDB to `.bcif`; wire Lenis to GSAP via `gsap.ticker.add(t => lenis.raf(t*1000))` + `lagSmoothing(0)`; COOP/COEP `require-corp` blocks cross-origin assets lacking CORP (keep artifacts/fonts same-origin or CORP-tagged, or scope COOP/COEP to splat/LLM routes and verify Mol* still loads `.bcif`).
+- **Staged rollout, drop-if-late**: Stage 1 frontier baseline -> Stage 2 GPU compute -> Stage 3 path tracing + splats -> Stage 4 AI co-pilot -> Stage 5 custom MVS. VIEW 2, VIEW 4, the scroll narrative, and the demo-safety pass cannot be dropped.
+
+## 13. HUBTOWN STRUCTURAL REFERENCE (rebuild in our stack, not Nuxt)
+
+hubtown.co.in (Nuxt + Theatre.js) is the structural north star for the scroll experience. Replicate, in Next/React: (1) a fixed full-screen WebGL canvas at z-0 behind DOM content; (2) pin-and-scrub sticky sections (outer `h-[400vh]`/`h-[500vh]`, inner `sticky top-0 h-screen`) that scrub the WebGL scene and fade copy = the depolymerization-by-scroll mechanic; (3) an SVG letter-draw loader ("REWEAR-FUSED" via `stroke-dashoffset` with a live progress %); (4) beveled instrument-UI boxes with SVG borders + corner ticks + animated corner dots = the scientific-instrument aesthetic; (5) monospace micro-labels (JetBrains Mono, uppercase, wide tracking) for residues, citations, KPIs; (6) sound toggle + AudioContext (the carbamate cleavage gets an audio cue); (7) a page-transition overlay (fixed `inset-0`, paired with React 19 ViewTransition) for Engine A->B->C; (8) a left section-nav rail (Problem / Fiber / Enzyme / Loop / Passport). Keep our two-accent system (bio-green enzyme, amber fiber, fusing only at the loop close) on near-black; borrow hubtown's restraint and structure, not its palette. A live Playwright/firecrawl teardown of hubtown is a Day-1 task to capture exact easings and the Theatre.js sequence.
+
+## 14. VERIFIED BACKEND + ENGINE C TOOLCHAINS
+
+**Engine B (Pravin)**: RFdiffusion2/3 backbones -> LigandMPNN/EnhancedMPNN sequences -> ESMFold cheap filter -> Boltz-2 refold + affinity -> PLACER 50-model preorganization ensembles -> FoldSeek novelty (TM < 0.5 to UMG-SP2). MIT/CC-BY only; avoid AlphaFold3 / ESM3 / Chai-2. Headline metric: PLACER preorganization fraction on the Lauko thresholds (pLDDT, catalytic-Cα RMSD < 1.0 Å, full-chain scRMSD < 2.0 Å), reported with uncertainty. Theozyme anchored on the UMG-SP2 Ser-His-Asp transition-state geometry. GPU: H100/B200 on RunPod, ~$300-500 weekend cap, smoke once before June 14.
+**Engine A (Pravin)**: RDKit enumeration over aliphatic isocyanates (HDI/IPDI/H12MDI) + soft diols (PTMG/PCL/polycarbonate ~2000 g/mol) + chain extenders (BDO/EDA), carbamate SMARTS encoded -> polyBERT/polyBART/ModernBERT + Ding-XGBoost surrogates -> filter to 25-35 wt% hard, soft Tg < -50 C, elongation >= 400% -> emit substrate microenvironment to Engine B. Constraint-guided screening, NOT generative.
+**Engine C (Vinh)**: deterministic rule layer over 85+ thresholds (CPSIA, REACH Annex XVII, state PFAS laws, OEKO-TEX Class I, ESPR) FIRST; CatBoost classifier-chain for ambiguous cases; ChemBERTa-2 / MolFormer featurization; SHAP "why flagged"; optional LLM-RAG explainer (explains, never decides). PR-AUC >= 0.85 per label (report PR-AUC, not ROC). Passport: W3C VC 2.0 (JSON-LD) under UNTP, GS1 Digital Link URI, scannable QR, clear/lab-test/divert. Live FastAPI on Render serving the SAME frozen model that produced `data/artifacts/v1.0.0` (manifest SHA verified), keepalive cron.
+
+## 15. VERIFIED CORRECTIONS (fold into all copy)
+
+- Bayer/Rotilio is "~8x amide / ~3x urethane," not 8x urethane.
+- QM/MM barrier is 21.2 kcal/mol (not 20.8).
+- Engine A is "constraint-guided screening," never "generative design of a copolymer."
+- Engine C is the 25-30% Digital Recyclability Passport, not a 10% wrapper.
+- Use the verified-DOI-only citation list (CLAUDE.md §9). Never reintroduce a fabricated citation. Never invent kinetics numbers; read from the data layer, mark placeholders.
+
+## 16. DATA CONTRACT POINTER
+
+The canonical artifact shapes the frontend consumes (enzymes, fibers, pairs, passports, `manifest.json` with SHA-256) live in **`data/contract.md`**, authored by Stephen and signed off by all three BEFORE mocks or pipelines start. Frontend mock fixtures and backend/Engine C outputs both conform to that one file. Contract changes carry a `⚠️ CONTRACT` commit prefix and a ping to consumers.
+
+---
+
+*End of CLAUDE.md (v3). Build the whole thing. Neither the molecule nor the enzyme existed 72 hours ago. Make the interface look like it.*
