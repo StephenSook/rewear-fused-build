@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/*
+  REWEAR-FUSED design tokens. Molecular laboratory instrument meets editorial
+  science journal. Two-accent system: bio-green = enzyme, amber = fiber.
+  Fonts are wired to next/font CSS vars set in layout.tsx (interim Google
+  stand-ins for Editorial New / General Sans until self-hosted).
+*/
+@theme {
+  --color-bg: oklch(0.13 0.01 240);
+  --color-bg-elevated: oklch(0.17 0.01 240);
+  --color-fg: oklch(0.96 0.005 240);
+  --color-fg-muted: oklch(0.65 0.01 240);
+  --color-accent-bio: oklch(0.83 0.18 175);
+  --color-accent-fiber: oklch(0.74 0.17 45);
+  --color-rule: oklch(0.3 0.005 240 / 0.55);
+  --color-pass: oklch(0.8 0.16 150);
+  --color-warn: oklch(0.82 0.15 75);
+  --color-fail: oklch(0.65 0.2 25);
+
+  --font-display: var(--font-display-src), Georgia, serif;
+  --font-body: var(--font-body-src), system-ui, sans-serif;
+  --font-mono: var(--font-mono-src), monospace;
+
+  --shadow-bloom: 0 0 80px -8px oklch(0.83 0.18 175 / 0.45);
+}
+
+html {
+  background: var(--color-bg);
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(120% 80% at 50% -10%, oklch(0.18 0.02 200 / 0.5), transparent 60%),
+    var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--color-accent-bio);
+  color: var(--color-bg);
+}
+
+/* Monospace micro-label: section eyebrows, residue tags, citation chips. */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+/* Faint film grain over the whole page for instrument atmosphere. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 50;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
