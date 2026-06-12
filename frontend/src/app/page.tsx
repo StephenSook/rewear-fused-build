@@ -45,10 +45,17 @@ export default function Home() {
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
         <Link
-          href="/enzyme"
+          href="/fiber"
           className="group inline-flex items-center gap-3 border border-accent-fiber/40 px-6 py-3 font-mono text-xs tracking-widest uppercase text-accent-fiber transition-colors hover:bg-accent-fiber/10"
         >
-          See the designed enzyme
+          Design the fiber
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </Link>
+        <Link
+          href="/enzyme"
+          className="group inline-flex items-center gap-3 border border-accent-bio/40 px-6 py-3 font-mono text-xs tracking-widest uppercase text-accent-bio transition-colors hover:bg-accent-bio/10"
+        >
+          See the enzyme
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
         <InSilicoBadge />
