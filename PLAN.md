@@ -23,11 +23,11 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 0.1 | Repo relocate off iCloud | repo root | Stephen | ✅ | - | moved to ~/dev/rewear-fused |
 | 0.2 | Senior-dev hygiene | .gitignore/.env.example/LICENSE/CI | Stephen | ✅ | - | done |
 | 0.3 | CLAUDE.md v3 | CLAUDE.md | Stephen | ✅ | - | Operating Contract + frontier deltas |
-| 0.4 | Data contract (anti-drift) | data/contract.md | Stephen | 🟡 | - | all three sign off before lanes diverge |
-| 0.5 | Design system | DESIGN_SYSTEM.md | Stephen | 🟡 | - | tokens + instrument UI |
-| 1.1 | Frontend scaffold | frontend/ | Stephen | ⬜ | 0.4 | Next 16 + R3F + Mol* + GSAP |
-| 1.2 | Typed data layer + ALL mock fixtures | frontend/src/lib, data/ | Stephen | ⬜ | 0.4 | same shapes as contract |
-| 1.3 | VIEW 2 Passport (demo floor) | frontend/src/app | Stephen | ⬜ | 1.2 | ships first |
+| 0.4 | Data contract (anti-drift) | data/contract.md | Stephen | ✅ | - | authored; Pravin + Vinh to sign off |
+| 0.5 | Design system | DESIGN_SYSTEM.md | Stephen | ✅ | - | tokens + instrument UI |
+| 1.1 | Frontend scaffold | frontend/ | Stephen | ✅ | 0.4 | Next 16.2 + Tailwind v4 + tokens; 3D stack (Mol*/R3F/GSAP) next |
+| 1.2 | Typed data layer + ALL mock fixtures | frontend/src/lib, data/ | Stephen | ✅ | 0.4 | conforms to contract; real archetypes + regs, numbers placeholdered |
+| 1.3 | VIEW 2 Passport (demo floor) | frontend/src/app | Stephen | ✅ | 1.2 | G1 met: builds + runtime smoke green |
 | 1.4 | VIEW 4 Enzyme (Mol*) | frontend/src/scenes | Stephen | ⬜ | 1.2 | grand-prize moment |
 | 1.5 | VIEW 3 Fiber + trade-off curve | frontend/src | Stephen | ⬜ | 1.2 | constraint-guided funnel |
 | 1.6 | VIEW 5 Closed loop (GPU particles) | frontend/src/scenes | Stephen | ⬜ | 1.4,1.5 | emotional peak |
