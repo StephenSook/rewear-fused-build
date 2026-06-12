@@ -47,12 +47,28 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 4.3 | Playwright golden-path (deployed) | frontend/e2e | Stephen | ⬜ | 4.2 | incognito smoke |
 | 4.4 | Demo video | docs | all | ⬜ | 4.3 | June 16, captioned, <5min |
 
+## Timeline (UPDATED 2026-06-12 from the Cox "Know Before You Go" email)
+
+- **Kickoff Sun June 14, 2pm-6pm** at **TSQATL Clubhouse, 848 Spring St NW** (NOT the Biltmore). Team Formation submission on DevPost by **June 14 11:59pm**.
+- **Build Mon June 15 - Tue June 16** at the **Biltmore Innovation Center, 817 W Peachtree St NW** (7am-7pm, in-person optional; may work remote).
+- **FINAL SUBMISSION DEADLINE: Tue June 16, 11:59pm** (submit the final project to DevPost). The schedule PDF makes this the hard deadline; the older Devpost rules text said June 17, so confirm with organizers, but PLAN for June 16 11:59pm.
+- **Demo Day Wed June 17** at the Biltmore: judging 10:30-3, present in person (at least one member required). No new submission on the 17th. Winners reception 4:30-7.
+- Net build window is ~58 hours (June 14 2pm to June 16 11:59pm), not 72. Front-load accordingly.
+
+## Logistics (every team member, before/at kickoff)
+- [ ] Register on the Cox form (all three: Stephen, Pravin, Vinh) with a .edu email.
+- [ ] Agree to the Terms & Conditions via the **DocuSign** email (NEW requirement, each member).
+- [ ] DevPost: create account, join the hackathon, confirm all members on the team, select the **Making & Remaking (Carter's)** track AND the prize categories (must opt in to be eligible).
+- [ ] Join the Discord (appears as Render ATL; the Play with Purpose channels are inside).
+- [ ] Pull the Google Drive files. Credits available: Cursor, Anthropic, Google.
+- Judges now include Mercedes-Benz, Chick-fil-a, Inspire Brands, TedXAtlanta, plus Southern Company, Cox Farms, City of Atlanta, Delta, Carter's, gener8tor, Cox Cleantech Residency.
+
 ## Gates
 
 - **G1 (demo floor)**: VIEW 2 passport renders end-to-end against mocks on localhost. A working demo exists.
 - **G2 (mid-build, non-negotiable)**: VIEW 2 + one molecular view (VIEW 4) + a deployed URL are green. No frontier layer proceeds until G2 is green.
-- **G3 (artifact-freeze, June 15 EOD, hard)**: real Engine A/B/C outputs replace mocks; manifest SHA verified; if the enzyme pipeline is not on track, the LigandMPNN-redesign fallback triggers.
-- **G4 (video-freeze, June 16 midday)**: deployed golden-path green in incognito; capture the demo video.
+- **G3 (artifact-freeze, June 15 EOD, hard)**: real Engine A/B/C outputs replace mocks; manifest SHA verified; if the enzyme pipeline is not on track, the LigandMPNN-redesign fallback triggers. Deploy (fresh repo + Vercel + Render + keepalive) done by June 15 EOD too, so June 16 is integration + video + submit only.
+- **G4 (submit, June 16 11:59pm, HARD)**: deployed golden-path green in incognito; demo video recorded (under 5 min, captioned); abstract + video + final project submitted to DevPost. Everything done by this deadline. June 17 is present-only.
 
 ## Shared Contracts
 
