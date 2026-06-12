@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/cn";
 import {
@@ -46,6 +47,15 @@ export function PassportExplorer() {
                     active ? "bg-bg-elevated" : "bg-bg-elevated/30 hover:bg-bg-elevated/60",
                   )}
                 >
+                  <div className="relative mb-3 aspect-square w-full overflow-hidden">
+                    <Image
+                      src={g.imageUrl}
+                      alt={g.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 200px"
+                      className="object-cover"
+                    />
+                  </div>
                   <div className="font-display text-base leading-tight">{g.name}</div>
                   <div className="mt-2 font-mono text-[0.65rem] text-fg-muted">
                     {g.fiberComposition.map((c) => `${c.percent}% ${c.fiber}`).join(" · ")}

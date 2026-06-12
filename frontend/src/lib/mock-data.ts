@@ -27,7 +27,7 @@ export const garments: Garment[] = [
     id: "carters-bodysuit-cotton",
     name: "Carter's 5-Pack Cotton Bodysuit, 0-3M",
     archetype: "bodysuit",
-    imageUrl: "/archetypes/bodysuit.svg",
+    imageUrl: "/archetypes/bodysuit.jpg",
     fiberComposition: [{ fiber: "Cotton", percent: 100, source: "category-typical" }],
     simulatedChemicalHistory: "Better Cotton sourced, OEKO-TEX context",
     inSilico: true,
@@ -36,7 +36,7 @@ export const garments: Garment[] = [
     id: "carters-legging-blend",
     name: "Carter's Cotton-Blend Legging, 12M",
     archetype: "legging",
-    imageUrl: "/archetypes/legging.svg",
+    imageUrl: "/archetypes/legging.jpg",
     fiberComposition: [
       { fiber: "Cotton", percent: 95, source: "category-typical" },
       { fiber: "Elastane", percent: 5, source: "category-typical" },
@@ -48,7 +48,7 @@ export const garments: Garment[] = [
     id: "carters-rashguard-swim",
     name: "Carter's UPF Rashguard, 24M",
     archetype: "swim",
-    imageUrl: "/archetypes/swim.svg",
+    imageUrl: "/archetypes/swim.jpg",
     fiberComposition: [
       { fiber: "Recycled Polyester", percent: 82, source: "category-typical" },
       { fiber: "Elastane", percent: 18, source: "category-typical" },
