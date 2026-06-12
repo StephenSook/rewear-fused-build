@@ -30,7 +30,7 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 1.3 | VIEW 2 Passport (demo floor) | frontend/src/app | Stephen | ✅ | 1.2 | G1 met: builds + runtime smoke green |
 | 1.4 | VIEW 4 Enzyme (Mol*) | frontend/src/components, app/enzyme | Stephen | ✅ | 1.2 | live Mol* render verified (Playwright, 0 errors); placeholder scaffold until Engine B |
 | 1.5 | VIEW 3 Fiber + trade-off curve | frontend/src/components, app/fiber | Stephen | ✅ | 1.2 | funnel + candidate + R3F architecture + trade-off curve + handoff; Playwright-verified, 0 errors |
-| 1.6 | VIEW 5 Closed loop (GPU particles) | frontend/src/scenes | Stephen | ⬜ | 1.4,1.5 | emotional peak |
+| 1.6 | VIEW 5 Closed loop (GPU particles) | frontend/src/components, app/loop | Stephen | ✅ | 1.4,1.5 | 90k-particle scroll-scrubbed storm; onesie->cleavage->monomers->new onesie; Playwright-verified across 3 states, 0 errors |
 | 1.7 | VIEW 1 Story cold-open | frontend/src/app | Stephen | ⬜ | 1.6 | two walls |
 | 2.1 | Engine B pipeline | backend/engine_b | Pravin | ⬜ | 0.4 | RFdiffusion->...->FoldSeek |
 | 2.2 | Engine A screening | backend/engine_a | Pravin | ⬜ | 0.4 | RDKit + surrogates |
