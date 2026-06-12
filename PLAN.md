@@ -28,7 +28,7 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 1.1 | Frontend scaffold | frontend/ | Stephen | ✅ | 0.4 | Next 16.2 + Tailwind v4 + tokens; 3D stack (Mol*/R3F/GSAP) next |
 | 1.2 | Typed data layer + ALL mock fixtures | frontend/src/lib, data/ | Stephen | ✅ | 0.4 | conforms to contract; real archetypes + regs, numbers placeholdered |
 | 1.3 | VIEW 2 Passport (demo floor) | frontend/src/app | Stephen | ✅ | 1.2 | G1 met: builds + runtime smoke green |
-| 1.4 | VIEW 4 Enzyme (Mol*) | frontend/src/scenes | Stephen | ⬜ | 1.2 | grand-prize moment |
+| 1.4 | VIEW 4 Enzyme (Mol*) | frontend/src/components, app/enzyme | Stephen | ✅ | 1.2 | live Mol* render verified (Playwright, 0 errors); placeholder scaffold until Engine B |
 | 1.5 | VIEW 3 Fiber + trade-off curve | frontend/src | Stephen | ⬜ | 1.2 | constraint-guided funnel |
 | 1.6 | VIEW 5 Closed loop (GPU particles) | frontend/src/scenes | Stephen | ⬜ | 1.4,1.5 | emotional peak |
 | 1.7 | VIEW 1 Story cold-open | frontend/src/app | Stephen | ⬜ | 1.6 | two walls |
@@ -76,11 +76,20 @@ Real public datasets + real Carter's product archetypes + builders demo live + r
 ### D4 — Track strategy
 Making & Remaking (Carter's) + grand prize + Cox Cleantech Residency. No multi-track dilution. **Locked 2026-06-12 by Stephen.**
 
+### D5 — Webpack bundler (not Turbopack)
+Mol*'s module graph crashes the Turbopack production build at runtime ("module factory not available"). dev and build run `--webpack`; Mol* bundles cleanly there. Revisit Turbopack when the molstar chunking bug is fixed. **Locked 2026-06-12.**
+
+### D6 — RunPod ownership
+Pravin owns the RunPod account and the ~$300-500 weekend budget cap. **Locked 2026-06-12 by Stephen.**
+
+### D7 — Artifact hosting
+For the demo, artifacts live in `data/artifacts/` (repo-tracked) and ship as Vercel static; Cloudflare R2 is the scale path when bundles grow. **Locked 2026-06-12 by Stephen.**
+
 ## Open Questions
 
-- [ ] **Q1:** Who holds the RunPod account and the budget cap? — needs Pravin
-- [ ] **Q2:** Do we host the artifact bundle on Cloudflare R2 or Vercel static? — needs Vinh + Stephen
-- [ ] **Q3:** Private GitHub backup of the prototype before June 14? — needs Stephen
+- [x] **Q1:** RunPod account + budget — Pravin (see D6).
+- [x] **Q2:** Artifact hosting — Vercel static + repo-tracked for the demo, R2 for scale (see D7).
+- [x] **Q3:** Private backup — done: github.com/StephenSook/rewear-fused-build (private), pushed; `main` tracks it.
 
 ## Secrets ownership (real values never committed; see `.env.example`)
 
