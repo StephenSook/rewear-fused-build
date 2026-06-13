@@ -47,10 +47,23 @@ export function PassportCard({
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <div className="bg-white p-2">
-            <QRCodeSVG value={passport.qrPayload} size={104} level="M" />
+          {/* scan reticle: a pulsing frame + corner ticks sit OUTSIDE the QR's
+              quiet zone, never over the code modules, so it stays scannable on
+              stage. The pulse freezes static under prefers-reduced-motion. */}
+          <div className="relative p-2">
+            <span
+              aria-hidden
+              className="qr-scan-pulse pointer-events-none absolute inset-0 border border-accent-bio/60"
+            />
+            <span aria-hidden className="pointer-events-none absolute -top-px -left-px h-2.5 w-2.5 border-t border-l border-accent-bio" />
+            <span aria-hidden className="pointer-events-none absolute -top-px -right-px h-2.5 w-2.5 border-t border-r border-accent-bio" />
+            <span aria-hidden className="pointer-events-none absolute -bottom-px -left-px h-2.5 w-2.5 border-b border-l border-accent-bio" />
+            <span aria-hidden className="pointer-events-none absolute -bottom-px -right-px h-2.5 w-2.5 border-b border-r border-accent-bio" />
+            <div className="bg-white p-2">
+              <QRCodeSVG value={passport.qrPayload} size={104} level="M" />
+            </div>
           </div>
-          <MonoLabel className="text-[0.6rem]">GS1 Digital Link</MonoLabel>
+          <MonoLabel className="text-[0.6rem]">GS1 Digital Link · scan it</MonoLabel>
         </div>
       </div>
 

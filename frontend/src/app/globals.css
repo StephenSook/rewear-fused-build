@@ -76,6 +76,23 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Scan reticle around the passport QR. Draws the eye to the on-stage scan
+   without ever covering the code modules. Freezes static under reduced-motion. */
+.qr-scan-pulse {
+  animation: qr-pulse 2.4s ease-in-out infinite;
+}
+@keyframes qr-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.9;
+  }
+}
+
 /* Route transition veil: the new chapter emerges from the background. */
 .page-wipe {
   animation: page-reveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;

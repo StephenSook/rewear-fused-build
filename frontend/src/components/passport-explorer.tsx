@@ -1,8 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
 import { cn } from "@/lib/cn";
 import {
   getGarments,
@@ -12,7 +17,12 @@ import {
 } from "@/lib/data";
 import { BeveledBox, MonoLabel } from "./instrument";
 import { PassportCard } from "./passport-card";
-import type { RegStatus } from "@/lib/types";
+import { Reveal } from "./reveal";
+import { CountUp, fmtPct } from "./count-up";
+import { audioEngine } from "@/lib/audio-engine";
+import type { RegStatus, Decision } from "@/lib/types";
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const STATUS_COLOR: Record<RegStatus, string> = {
   PASS: "text-pass",
@@ -20,124 +30,224 @@ const STATUS_COLOR: Record<RegStatus, string> = {
   FAIL: "text-fail",
 };
 
+const DECISION: Record<Decision, { label: string; text: string; route: string }> = {
+  clear: { label: "CLEAR", text: "text-pass", route: "fiber-to-fiber loop" },
+  "lab-test": { label: "LAB-TEST", text: "text-warn", route: "targeted lab test, then route" },
+  divert: { label: "DIVERT", text: "text-fail", route: "divert from the loop" },
+};
+
+/** The router classifying its way to a verdict, then revealing it. Presentation
+ *  only: it always settles on the real data-layer decision. */
+function RegulatoryRouter({ selectedId }: { selectedId: string }) {
+  const reduce = useReducedMotion();
+  const [settledId, setSettledId] = useState<string | null>(null);
+  const classification = getClassification(selectedId);
+  // Derived, not imperative: a selection is "routing" until its settle timer
+  // fires. Reduced-motion skips the classifying beat entirely.
+  const routing = !reduce && settledId !== selectedId;
+
+  useEffect(() => {
+    if (reduce) return;
+    const t = setTimeout(() => setSettledId(selectedId), 460);
+    return () => clearTimeout(t);
+  }, [selectedId, reduce]);
+
+  if (!classification) return null;
+  const d = DECISION[classification.decision];
+
+  const container: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.07, delayChildren: 0.04 } },
+  };
+  const item: Variants = {
+    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 10 },
+    show: reduce
+      ? { opacity: 1 }
+      : { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+  };
+
+  return (
+    <BeveledBox className="p-5">
+      <AnimatePresence mode="wait">
+        {routing ? (
+          <motion.div
+            key="classifying"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="py-6"
+          >
+            <MonoLabel>classifying against 85+ thresholds</MonoLabel>
+            <div className="mt-3 h-1 w-full overflow-hidden bg-fg/10">
+              <motion.div
+                className="h-full w-1/3 bg-accent-bio"
+                animate={{ x: ["-110%", "320%"] }}
+                transition={{ duration: 0.55, ease: "easeInOut", repeat: Infinity }}
+              />
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div key={`v-${selectedId}`} variants={container} initial="hidden" animate="show">
+            <motion.div variants={item} className="flex items-end justify-between gap-4">
+              <div>
+                <MonoLabel>router decision</MonoLabel>
+                <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className={cn("font-display text-3xl leading-none", d.text)}>
+                    {d.label}
+                  </span>
+                  <span className="font-mono text-[0.65rem] text-fg-muted">→ {d.route}</span>
+                </div>
+              </div>
+              <div className="text-right">
+                <MonoLabel>confidence</MonoLabel>
+                <CountUp
+                  to={classification.probability * 100}
+                  format={fmtPct}
+                  duration={0.7}
+                  replayKey={selectedId}
+                  immediate
+                  className="block font-mono text-2xl leading-none tabular-nums"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div variants={item} className="mt-3 h-1 w-full bg-fg/10">
+              <motion.div
+                className="h-full origin-left bg-accent-bio"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: classification.probability }}
+                transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+              />
+            </motion.div>
+
+            <ul className="mt-5 space-y-3">
+              {classification.triggeredRegulations.map((t) => {
+                const reg = getRegulation(t.regulationId);
+                return (
+                  <motion.li
+                    key={t.regulationId}
+                    variants={item}
+                    className="border-b border-rule/50 pb-3 last:border-0"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-sm">{reg?.name ?? t.regulationId}</span>
+                      <span
+                        className={cn(
+                          "font-mono text-[0.65rem] tracking-widest uppercase",
+                          STATUS_COLOR[t.status],
+                        )}
+                      >
+                        {t.status}
+                      </span>
+                    </div>
+                    <div className="mt-1 font-mono text-[0.65rem] text-fg-muted">
+                      {reg?.citation} · {reg?.limit}
+                    </div>
+                    <div className="mt-1 text-xs text-fg-muted">{t.detail}</div>
+                  </motion.li>
+                );
+              })}
+            </ul>
+
+            <motion.div variants={item} className="mt-4 font-mono text-[0.65rem] text-fg-muted">
+              PR-AUC {classification.prAuc.toFixed(2)} · AUC {classification.auc.toFixed(2)}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </BeveledBox>
+  );
+}
+
 export function PassportExplorer() {
   const garments = getGarments();
   const [selectedId, setSelectedId] = useState(garments[1].id); // legging: the elastane story
   const garment = garments.find((g) => g.id === selectedId)!;
-  const classification = getClassification(selectedId);
   const passport = getPassport(selectedId);
+
+  const select = (id: string) => {
+    if (id === selectedId) return;
+    audioEngine.tick();
+    setSelectedId(id);
+  };
 
   return (
     <div className="space-y-8">
-      <div>
-        <MonoLabel>01 — Garment intake</MonoLabel>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {garments.map((g) => {
-            const active = g.id === selectedId;
-            return (
-              <button
-                key={g.id}
-                onClick={() => setSelectedId(g.id)}
-                className="text-left"
-              >
-                <BeveledBox
-                  accent={active ? "bio" : "none"}
-                  className={cn(
-                    "p-4 transition-colors",
-                    active ? "bg-bg-elevated" : "bg-bg-elevated/30 hover:bg-bg-elevated/60",
-                  )}
-                >
-                  <div className="relative mb-3 aspect-square w-full overflow-hidden">
-                    <Image
-                      src={g.imageUrl}
-                      alt={g.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 200px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="font-display text-base leading-tight">{g.name}</div>
-                  <div className="mt-2 font-mono text-[0.65rem] text-fg-muted">
-                    {g.fiberComposition.map((c) => `${c.percent}% ${c.fiber}`).join(" · ")}
-                  </div>
-                </BeveledBox>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-2">
+      <Reveal>
         <div>
-          <MonoLabel>02 — Recyclability passport</MonoLabel>
-          <div className="mt-3">
-            <AnimatePresence mode="wait">
-              {passport && (
-                <motion.div
-                  key={selectedId}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
+          <MonoLabel>01 — Garment intake</MonoLabel>
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            {garments.map((g) => {
+              const active = g.id === selectedId;
+              return (
+                <button
+                  key={g.id}
+                  onClick={() => select(g.id)}
+                  aria-pressed={active}
+                  className="text-left"
                 >
-                  <PassportCard garment={garment} passport={passport} />
-                </motion.div>
-              )}
-              {!passport && (
-                <BeveledBox className="p-6 text-sm text-fg-muted">
-                  No pre-computed passport for this garment yet. The router still
-                  classifies it below; the passport renders once Engine C emits it.
-                </BeveledBox>
-              )}
-            </AnimatePresence>
+                  <BeveledBox
+                    accent={active ? "bio" : "none"}
+                    className={cn(
+                      "p-4 transition-colors",
+                      active ? "bg-bg-elevated" : "bg-bg-elevated/30 hover:bg-bg-elevated/60",
+                    )}
+                  >
+                    <div className="relative mb-3 aspect-square w-full overflow-hidden">
+                      <Image
+                        src={g.imageUrl}
+                        alt={g.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 200px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="font-display text-base leading-tight">{g.name}</div>
+                    <div className="mt-2 font-mono text-[0.65rem] text-fg-muted">
+                      {g.fiberComposition.map((c) => `${c.percent}% ${c.fiber}`).join(" · ")}
+                    </div>
+                  </BeveledBox>
+                </button>
+              );
+            })}
           </div>
         </div>
+      </Reveal>
 
-        <div>
-          <MonoLabel>03 — Regulatory router</MonoLabel>
-          <div className="mt-3">
-            {classification && (
-              <BeveledBox className="p-5">
-                <div className="mb-4 flex items-baseline justify-between">
-                  <span className="font-mono text-xs text-fg-muted">
-                    decision confidence
-                  </span>
-                  <span className="font-mono text-lg tabular-nums">
-                    {Math.round(classification.probability * 100)}%
-                  </span>
-                </div>
-                <ul className="space-y-3">
-                  {classification.triggeredRegulations.map((t) => {
-                    const reg = getRegulation(t.regulationId);
-                    return (
-                      <li key={t.regulationId} className="border-b border-rule/50 pb-3 last:border-0">
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-sm">{reg?.name ?? t.regulationId}</span>
-                          <span
-                            className={cn(
-                              "font-mono text-[0.65rem] tracking-widest uppercase",
-                              STATUS_COLOR[t.status],
-                            )}
-                          >
-                            {t.status}
-                          </span>
-                        </div>
-                        <div className="mt-1 font-mono text-[0.65rem] text-fg-muted">
-                          {reg?.citation} · {reg?.limit}
-                        </div>
-                        <div className="mt-1 text-xs text-fg-muted">{t.detail}</div>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="mt-4 font-mono text-[0.65rem] text-fg-muted">
-                  PR-AUC {classification.prAuc.toFixed(2)} · AUC {classification.auc.toFixed(2)}
-                </div>
-              </BeveledBox>
-            )}
+      <Reveal delay={0.05}>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div>
+            <MonoLabel>02 — Recyclability passport</MonoLabel>
+            <div className="mt-3">
+              <AnimatePresence mode="wait">
+                {passport ? (
+                  <motion.div
+                    key={selectedId}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <PassportCard garment={garment} passport={passport} />
+                  </motion.div>
+                ) : (
+                  <BeveledBox className="p-6 text-sm text-fg-muted">
+                    No pre-computed passport for this garment yet. The router still
+                    classifies it; the passport renders once Engine C emits it.
+                  </BeveledBox>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div>
+            <MonoLabel>03 — Regulatory router</MonoLabel>
+            <div className="mt-3">
+              <RegulatoryRouter selectedId={selectedId} />
+            </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }
