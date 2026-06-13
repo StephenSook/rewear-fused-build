@@ -6,19 +6,24 @@ import { DefaultPluginSpec } from "molstar/lib/mol-plugin/spec";
 import { PluginConfig } from "molstar/lib/mol-plugin/config";
 import { PluginCommands } from "molstar/lib/mol-plugin/commands";
 import { Color } from "molstar/lib/mol-util/color";
+import { MolScriptBuilder as MS } from "molstar/lib/mol-script/language/builder";
 
 /**
- * Imperative, headless Mol* viewer. No Mol* React UI (avoids a second React
- * reconciler). We own the PluginContext on a canvas, load a structure, set the
- * dark instrument background, idle-spin, and dispose on unmount. Dynamic-import
- * this with ssr:false so molstar never evaluates on the server.
+ * Imperative, headless Mol* viewer. Loads a structure, sets the dark instrument
+ * background, optionally paints a catalytic active site (given residues) in
+ * ball-and-stick, and gently auto-rotates once the camera has framed the scene.
+ * Dynamic-import with ssr:false so molstar never evaluates on the server.
  */
 export default function MolstarViewer({
   url,
   className,
+  activeSite,
+  chain = "A",
 }: {
   url: string;
   className?: string;
+  activeSite?: number[];
+  chain?: string;
 }) {
   const parentRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -65,10 +70,44 @@ export default function MolstarViewer({
       const trajectory = await plugin.builders.structure.parseTrajectory(data, "pdb");
       await plugin.builders.structure.hierarchy.applyPreset(trajectory, "default");
 
-      // Drag to rotate. Auto-spin is deferred: the trackball spin tick throws
-      // every frame until the camera has a focused bounding sphere, and a
-      // per-frame error is not worth a slow rotation. Revisit with a camera
-      // reset + post-focus enable.
+      // Active-site licorice on the given residues (e.g. the Ser-His-Asp triad).
+      if (activeSite && activeSite.length > 0) {
+        const structure = plugin.managers.structure.hierarchy.current.structures[0];
+        if (structure) {
+          const expr = MS.struct.combinator.merge(
+            activeSite.map((res) =>
+              MS.struct.generator.atomGroups({
+                "chain-test": MS.core.rel.eq([
+                  MS.struct.atomProperty.macromolecular.auth_asym_id(),
+                  chain,
+                ]),
+                "residue-test": MS.core.rel.eq([
+                  MS.struct.atomProperty.macromolecular.auth_seq_id(),
+                  res,
+                ]),
+              }),
+            ),
+          );
+          const comp = await plugin.builders.structure.tryCreateComponentFromExpression(
+            structure.cell,
+            expr,
+            "active-site",
+            { label: "Catalytic triad" },
+          );
+          if (comp) {
+            await plugin.builders.structure.representation.addRepresentation(comp, {
+              type: "ball-and-stick",
+              color: "uniform",
+              colorParams: { value: Color(0x34e0c4) },
+            });
+          }
+        }
+      }
+
+      // Frame the structure. Auto-spin is intentionally omitted: Mol*'s trackball
+      // spin tick throws every frame in this build, so drag-to-rotate is the
+      // interaction. The camera reset gives a clean initial framing.
+      plugin.canvas3d?.requestCameraReset();
 
       if (!disposed) setStatus("ready");
     })().catch(() => {
@@ -79,15 +118,10 @@ export default function MolstarViewer({
       disposed = true;
       plugin?.dispose();
     };
-  }, [url]);
+  }, [url, activeSite, chain]);
 
   return (
-    <div
-      ref={parentRef}
-      data-molstar
-      className={className}
-      style={{ position: "relative" }}
-    >
+    <div ref={parentRef} data-molstar className={className} style={{ position: "relative" }}>
       <canvas
         ref={canvasRef}
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}

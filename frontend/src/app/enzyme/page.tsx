@@ -62,11 +62,12 @@ export default function EnzymePage() {
 
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
-          <EnzymeStage url={REFERENCE_PDB} />
+          <EnzymeStage url={REFERENCE_PDB} activeSite={[105, 187, 224]} chain="A" />
           <p className="mt-3 font-mono text-[0.65rem] text-fg-muted">
-            Reference serine-hydrolase scaffold (CALB, PDB 1TCA) shown as a
-            placeholder. The designed structure replaces it at the artifact-freeze
-            gate. Drag to rotate.
+            Reference serine-hydrolase scaffold (CALB, PDB 1TCA); the Ser-His-Asp
+            catalytic triad (Ser105 / His224 / Asp187) is highlighted in green.
+            The designed structure replaces it at the artifact-freeze gate. Drag to
+            rotate.
           </p>
         </div>
 

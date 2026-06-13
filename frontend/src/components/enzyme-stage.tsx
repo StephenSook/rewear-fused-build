@@ -11,13 +11,21 @@ const MolstarViewer = dynamic(() => import("./molstar-viewer"), {
   ),
 });
 
-export function EnzymeStage({ url }: { url: string }) {
+export function EnzymeStage({
+  url,
+  activeSite,
+  chain,
+}: {
+  url: string;
+  activeSite?: number[];
+  chain?: string;
+}) {
   return (
     <BeveledBox
       accent="bio"
       className="h-[60vh] min-h-[420px] w-full overflow-hidden shadow-[var(--shadow-bloom)]"
     >
-      <MolstarViewer url={url} className="h-full w-full" />
+      <MolstarViewer url={url} className="h-full w-full" activeSite={activeSite} chain={chain} />
     </BeveledBox>
   );
 }
