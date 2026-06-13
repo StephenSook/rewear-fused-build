@@ -113,7 +113,7 @@ For the demo, artifacts live in `data/artifacts/` (repo-tracked) and ship as Ver
 
 - [x] **Q1:** RunPod account + budget — Pravin (see D6).
 - [x] **Q2:** Artifact hosting — Vercel static + repo-tracked for the demo, R2 for scale (see D7).
-- [x] **Q3:** Private backup — done: github.com/StephenSook/rewear-fused-build (private), pushed; `main` tracks it.
+- [x] **Q3:** Single dev remote (CONSOLIDATED 2026-06-13) — `origin` → github.com/StephenSook/rewear-fused-build (private); `main` tracks `origin/main`. A second private mirror `rewear-fused` was being pushed to in parallel by mistake; removed as a local remote and all commits synced into the one canonical repo. The clean `rewear-fused` name is reserved for the **June-14 fresh public repo** (D1) — do not develop against it before then. Until June 14: one repo, `rewear-fused-build`. Just `git push`.
 
 ## Secrets ownership (real values never committed; see `.env.example`)
 

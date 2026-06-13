@@ -7,6 +7,22 @@
 
 ---
 
+## 0a. What Stephen pre-built as a REFERENCE (your running start) vs what is YOURS to own
+
+Stephen built a working Engine C skeleton pre-kickoff (commits 5509c74 backend, 9f5c7d2 frontend wiring) so the demo floor is never at zero and the contract shapes are proven against real data. **It is a reference, not your finished lane.** It covers maybe a fifth of this doc. The depth below is yours.
+
+**Done (reference, in `engine-c/`):**
+- `ingest/cpsc.py`: live CPSC Recalls API only (631 real recalls, labeled). *Not yet:* EU Safety Gate, PFAS (Toxic-Free Future/Peaslee), OEKO-TEX negatives, EPA CompTox/PubChem (§3.2–§3.5).
+- `classifier/model.py`: per-label CatBoost over recall text, honest CV PR-AUC. *Not yet:* `ClassifierChain` for label dependencies, ChemBERTa-2/MolFormer featurization, isotonic calibration, the imbalance handling (§1.2–§1.3, §5).
+- `classifier/rules.py`: a STARTER deterministic layer (ESPR/elastane, PFAS-finish, aromatic-amine). *Not yet:* the full **85+ threshold corpus** (§2 — CPSIA sub-limits, all REACH Entry 72/77 sub-limits, every state PFAS law, full OEKO-TEX Class I table, SB 707).
+- `classifier/build.py` + passports: real W3C VC 2.0 with **Ed25519 `did:key`** signatures + GS1 Digital Link. *Not yet:* `did:web` on the team domain, SHAP "why-flagged" (§1.4, currently a stub), the UNTP `renderMethod` HTML render, optional EBSI/Merkle tamper-evidence (§4).
+- `api/main.py`: serves the real bundle locally. *Not yet:* **Render deploy + keepalive cron + frozen-model SHA verification on startup (§6 / task 3.4)** — that whole task is yours.
+- **Entirely yours, untouched:** the pitch-support pack (§7 — techno-economic numbers, SB 707/EPR fee angle, IP/FTO talking points). That is the residency-judge half of the pitch.
+
+**How to take it over:** the contract shapes and the honest-metric discipline are locked in; extend the ETL to the other datasets, expand the rule corpus, add the ML depth, then deploy. Re-run `python -m classifier.build` + `python scripts/sync_artifacts_to_frontend.py` and the frontend picks up your real numbers with zero changes. Claim each task in `PLAN.md` (set 🟡, your name, timestamp) before you start.
+
+---
+
 ## 0. The one honesty conflict to resolve first (read this before you write any ETL)
 
 The Engine C source PDF repeatedly recommends a **synthetic ~10,000-SKU Carter's-style garment population with ~3% non-compliance injected** as the negative population for the ML layer (PDF Part 2.J and Part 3, Recommendation 2). **Do not put that synthetic population in the judged path.** It directly violates the Demo Evidence Rule (`CLAUDE.md` Operating Contract) and Decision D3 in `PLAN.md`: "No synthetic data in the judged path." This is the exact failure mode (APEX: "synthetic data") that we are explicitly avoiding.
