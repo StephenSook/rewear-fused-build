@@ -46,6 +46,14 @@ body {
   color: var(--color-bg);
 }
 
+/* Keyboard focus ring on every interactive element, in the bio accent. Pointer
+   focus stays clean via :focus-visible. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-bio);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
 /* Monospace micro-label: section eyebrows, residue tags, citation chips. */
 .mono-label {
   font-family: var(--font-mono);

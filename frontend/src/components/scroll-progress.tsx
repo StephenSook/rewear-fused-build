@@ -28,8 +28,12 @@ export function ScrollProgress() {
     <div className="pointer-events-none fixed bottom-0 left-0 z-40 h-0.5 w-full bg-fg/10">
       <div
         ref={fillRef}
-        className="h-full w-full origin-left bg-accent-bio shadow-[0_0_8px_rgba(45,224,196,0.5)]"
-        style={{ transform: "scaleX(0)" }}
+        className="h-full w-full origin-left bg-accent-bio"
+        style={{
+          transform: "scaleX(0)",
+          boxShadow:
+            "0 0 10px color-mix(in oklch, var(--color-accent-bio) 70%, transparent)",
+        }}
       />
     </div>
   );

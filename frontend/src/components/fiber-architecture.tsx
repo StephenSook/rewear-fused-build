@@ -3,11 +3,16 @@
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const HARD = "#e0934f"; // fiber amber: crystalline hard segment
 const SOFT = "#5a6472"; // muted: amorphous soft segment
 const BOND = "#34e0c4"; // bio: the cleavable carbamate bond
+
+const prefersReduced = () =>
+  typeof window !== "undefined" &&
+  !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 type P = [number, number, number];
 
@@ -21,10 +26,18 @@ function softCoil(x0: number, x1: number, n: number): P[] {
   return pts;
 }
 
-function Chain() {
-  const g = useRef<THREE.Group>(null);
-  useFrame((_, dt) => {
-    if (g.current) g.current.rotation.y += dt * 0.18;
+function Chain({ reduced }: { reduced: boolean }) {
+  const bondRef = useRef<THREE.MeshStandardMaterial>(null);
+
+  // The cleavable bond breathes: a slow emissive pulse lifts it into the HDR
+  // range so the selective Bloom catches it, pulling the eye to the one spot
+  // the enzyme attacks. No group rotation here, OrbitControls.autoRotate orbits
+  // the camera instead, so dragging and the idle spin share one transform and
+  // never fight.
+  useFrame((state) => {
+    if (reduced || !bondRef.current) return;
+    bondRef.current.emissiveIntensity =
+      2.3 + Math.sin(state.clock.elapsedTime * 1.6) * 0.8;
   });
 
   const hardX = [-2.4, 0, 2.4];
@@ -33,15 +46,15 @@ function Chain() {
   const bondPos = coilA[7];
 
   return (
-    <group ref={g}>
+    <group>
       {hardX.map((x) => (
         <mesh key={x} position={[x, 0, 0]}>
           <boxGeometry args={[0.8, 0.8, 0.8]} />
           <meshStandardMaterial
             color={HARD}
             emissive={HARD}
-            emissiveIntensity={0.35}
-            metalness={0.2}
+            emissiveIntensity={0.7}
+            metalness={0.25}
             roughness={0.4}
           />
         </mesh>
@@ -56,20 +69,42 @@ function Chain() {
 
       <mesh position={bondPos}>
         <sphereGeometry args={[0.22, 24, 24]} />
-        <meshStandardMaterial color={BOND} emissive={BOND} emissiveIntensity={0.9} />
+        <meshStandardMaterial
+          ref={bondRef}
+          color={BOND}
+          emissive={BOND}
+          emissiveIntensity={2.3}
+          toneMapped={false}
+        />
       </mesh>
     </group>
   );
 }
 
 export default function FiberArchitecture() {
+  const reduced = prefersReduced();
   return (
-    <Canvas camera={{ position: [0, 1.2, 7], fov: 42 }} dpr={[1, 2]}>
+    <Canvas camera={{ position: [0, 1.2, 7], fov: 42 }} dpr={[1, 2]} gl={{ antialias: true }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 6, 6]} intensity={110} />
       <pointLight position={[-6, -3, 2]} intensity={40} color={BOND} />
-      <Chain />
-      <OrbitControls enablePan={false} enableZoom={false} />
+      <Chain reduced={reduced} />
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false}
+        enableDamping
+        dampingFactor={0.08}
+        autoRotate={!reduced}
+        autoRotateSpeed={0.7}
+      />
+      <EffectComposer>
+        <Bloom
+          mipmapBlur
+          intensity={0.85}
+          luminanceThreshold={0.6}
+          luminanceSmoothing={0.3}
+        />
+      </EffectComposer>
     </Canvas>
   );
 }
