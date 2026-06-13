@@ -7,8 +7,9 @@ import { SoundToggle } from "./sound-toggle";
 import { ScrollProgress } from "./scroll-progress";
 import { PageTransition } from "./page-transition";
 import { SkipLink } from "./skip-link";
+import { DemoMode } from "./demo-mode";
 
-/** Global scroll shell: skip link, smooth scroll, loader, nav rail, sound, progress, route veil. */
+/** Global scroll shell: skip link, smooth scroll, loader, nav rail, sound, progress, route veil, demo mode. */
 export function Shell() {
   return (
     <>
@@ -19,6 +20,7 @@ export function Shell() {
       <SoundToggle />
       <ScrollProgress />
       <PageTransition />
+      <DemoMode />
     </>
   );
 }

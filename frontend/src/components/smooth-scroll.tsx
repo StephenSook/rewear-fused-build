@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "lenis/dist/lenis.css";
+import { lenisRef } from "@/lib/lenis";
 
 /**
  * Global smooth scroll. Lenis drives native window scroll (smoothed), wired to
@@ -15,6 +16,7 @@ export function SmoothScroll() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const lenis = new Lenis({ autoRaf: false });
+    lenisRef.current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const update = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(update);
@@ -22,6 +24,7 @@ export function SmoothScroll() {
     return () => {
       gsap.ticker.remove(update);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
   return null;
