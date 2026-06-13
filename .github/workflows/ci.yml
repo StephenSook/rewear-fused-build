@@ -82,3 +82,17 @@ jobs:
       - run: pip install pytest ruff fastapi httpx
       - run: ruff check .
       - run: pytest -q -m "not slow"
+
+  contract:
+    name: Artifact contract conformance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: ruff check scripts/validate_artifacts.py
+      # validates the data/artifacts bundle against data/contract.md + the locked
+      # scientific constraints (aliphatic iso, Ser-His-Asp, 25-35 wt%, cross-refs,
+      # manifest SHA parity). Catches drift the moment any lane's artifacts land.
+      - run: python scripts/validate_artifacts.py

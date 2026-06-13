@@ -158,12 +158,25 @@ def _write(path: Path, obj) -> dict:
     }
 
 
+def _sign_existing(rel: str) -> dict:
+    """Hash an input artifact (garments, regulations) so the manifest covers the
+    FULL bundle, not just Engine-C-produced files."""
+    raw = (ARTIFACTS / rel).read_bytes()
+    return {
+        "path": rel,
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "bytes": len(raw),
+        "producedBy": "input",
+    }
+
+
 def main() -> int:
     cm = M.train()
     garments = json.loads((ARTIFACTS / "garments.json").read_text())
 
     classifications = [_decide(g, cm) for g in garments]
-    files = [_write(ARTIFACTS / "compliance" / "classifications.json", classifications)]
+    files = [_sign_existing("garments.json"), _sign_existing("compliance/regulations.json")]
+    files.append(_write(ARTIFACTS / "compliance" / "classifications.json", classifications))
     for g, c in zip(garments, classifications):
         files.append(_write(ARTIFACTS / "passports" / f"dpp_{g['id']}.json", _passport(g, c)))
 

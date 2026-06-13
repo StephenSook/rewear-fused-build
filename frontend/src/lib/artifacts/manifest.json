@@ -3,6 +3,18 @@
   "generatedAt": "2026-06-12T00:00:00Z",
   "files": [
     {
+      "path": "garments.json",
+      "sha256": "4968684574f98811df952507c2793695a80d96f53ccea3bfee3dcc97108fcf5e",
+      "bytes": 1252,
+      "producedBy": "input"
+    },
+    {
+      "path": "compliance/regulations.json",
+      "sha256": "b39e1851124f36311c22fb20754ddb6b1d609e27b51c335457f880d0417652c7",
+      "bytes": 1483,
+      "producedBy": "input"
+    },
+    {
       "path": "compliance/classifications.json",
       "sha256": "28c6320eadb1c3c9c67a3357b9c5f583f6a6a845ac63c69923fd483a94a5c33d",
       "bytes": 3140,
