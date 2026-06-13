@@ -47,7 +47,7 @@ export interface Classification {
   prAuc: number;
   auc: number;
   triggeredRegulations: TriggeredRegulation[];
-  shapTopFeatures?: { feature: string; weight: number }[];
+  compositionDrivers?: { feature: string; weight: number }[];
   inSilico: true;
   placeholder?: boolean;
 }
@@ -137,4 +137,5 @@ export interface Manifest {
   generatedAt: string;
   files: { path: string; sha256: string; bytes: number; producedBy: string }[];
   modelVersions: Record<string, string>;
+  issuer?: string;
 }

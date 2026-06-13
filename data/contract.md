@@ -63,7 +63,7 @@ export interface Classification {
     measuredOrPredicted: "deterministic" | "predicted";
     detail: string;                 // e.g. "lead 12 ppm < 100 ppm"
   }[];
-  shapTopFeatures?: { feature: string; weight: number }[]; // "why flagged"
+  compositionDrivers?: { feature: string; weight: number }[]; // composition ratios behind the decision (NOT SHAP; Engine C may add real SHAP later)
   inSilico: true;
 }
 
@@ -138,7 +138,7 @@ export interface DigitalProductPassport {
   aromaticAmineRelease: "NONE";     // Constraint 1 green check (aliphatic design)
   credential: {                     // W3C VC 2.0 under UNTP context
     type: ["VerifiableCredential", "DigitalProductPassport"];
-    issuer: string;                 // did:web:...
+    issuer: string;                 // did:key:... (self-issued; Engine C emits a real Ed25519 did:key)
     proof: { type: string; verificationMethod: string; signatureValue: string };
   };
   trl: "TRL 2-3";
@@ -151,6 +151,7 @@ export interface Manifest {
   generatedAt: string;              // ISO; stamped by the pipeline, not the frontend
   files: { path: string; sha256: string; bytes: number; producedBy: string }[];
   modelVersions: Record<string, string>; // e.g. { "engineC": "catboost-v1.0", "rfdiffusion": "3" }
+  issuer?: string;                  // did:key of the bundle signer (Engine C)
 }
 ```
 
