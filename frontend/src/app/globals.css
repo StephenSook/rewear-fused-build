@@ -53,6 +53,8 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-fg-muted);
+  /* hairline shadow so labels stay legible over the live particle scene */
+  text-shadow: 0 1px 3px var(--color-bg);
 }
 
 /* Faint film grain over the whole page for instrument atmosphere. */

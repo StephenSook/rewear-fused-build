@@ -21,7 +21,7 @@ function Beat({ children, className }: { children: ReactNode; className?: string
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 56% 54% at 50% 50%, rgba(15,19,25,0.82), rgba(15,19,25,0.3) 48%, transparent 74%)",
+              "radial-gradient(ellipse 80% 62% at 50% 50%, color-mix(in oklch, var(--color-bg) 86%, transparent), color-mix(in oklch, var(--color-bg) 45%, transparent) 58%, transparent 88%)",
           }}
         />
         <div className={`relative z-10 flex w-full flex-col items-center ${className ?? ""}`}>
@@ -103,7 +103,9 @@ export function StoryExperience() {
       <div ref={trackRef} className="relative z-10">
         {/* 01 — hero */}
         <Beat>
-          <MonoLabel>Cox Play With Purpose · Carter&apos;s Making &amp; Remaking</MonoLabel>
+          <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-fg/70">
+            Cox Play With Purpose · Carter&apos;s Making &amp; Remaking
+          </span>
           <h1 className="mt-6 font-display text-6xl leading-[0.95] sm:text-8xl">
             Safe to wear,
             <br />
@@ -136,7 +138,7 @@ export function StoryExperience() {
           <div className="w-full max-w-5xl">
             <MonoLabel>02 — The two walls</MonoLabel>
             <div className="mt-6 grid gap-6 text-left md:grid-cols-2">
-              <BeveledBox accent="fiber" className="h-full p-8">
+              <BeveledBox accent="fiber" className="h-full p-8 bg-bg-elevated/85 backdrop-blur-md">
                 <MonoLabel>Wall 1</MonoLabel>
                 <p className="mt-4 font-display text-2xl">Chemical safety</p>
                 <p className="mt-3 text-fg-muted">
@@ -144,7 +146,7 @@ export function StoryExperience() {
                   infant skin.
                 </p>
               </BeveledBox>
-              <BeveledBox accent="bio" className="h-full p-8">
+              <BeveledBox accent="bio" className="h-full p-8 bg-bg-elevated/85 backdrop-blur-md">
                 <MonoLabel>Wall 2</MonoLabel>
                 <p className="mt-4 font-display text-2xl">Elastane</p>
                 <p className="mt-3 text-fg-muted">
@@ -158,7 +160,7 @@ export function StoryExperience() {
 
         {/* 04 — the stats */}
         <Beat>
-          <BeveledBox className="w-full max-w-5xl p-10">
+          <BeveledBox className="w-full max-w-5xl p-10 bg-bg-elevated/85 backdrop-blur-md">
             <MonoLabel>03 — The scale</MonoLabel>
             <div className="mt-8 grid gap-12 text-left sm:grid-cols-2 lg:grid-cols-4">
               <Stat value={92} suffix="M" label="tonnes of textile waste per year" source="UNEP 2025" />

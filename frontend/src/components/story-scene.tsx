@@ -36,11 +36,11 @@ const VERT = /* glsl */ `
     // breathing hero braid
     vec3 hero = home * (1.0 + 0.04 * sin(uTime * 0.6 + s * 6.2831));
 
-    // shred: strands unravel and rain downward (the downcycle)
+    // shred: strands fan outward and rain downward (the downcycle, falling debris)
     vec3 shred = vec3(
-      home.x * 1.7 + (s - 0.5) * 2.2,
-      home.y * 1.3 - s * 3.2,
-      home.z * 1.7
+      home.x * 1.9 + sign(home.x) * s * 1.3,
+      home.y * 1.2 - (0.6 + s) * 2.6,
+      home.z * 1.9
     );
 
     // walls: two columns, amber left, bio right, a dark gap between them
@@ -51,11 +51,11 @@ const VERT = /* glsl */ `
       (s - 0.5) * 0.9
     );
 
-    // field: a wide shimmering particle field (the scale of the problem)
+    // field: a wide low horizon band, reads as the scale of the problem, not noise
     vec3 field = vec3(
-      (s - 0.5) * 11.0,
-      (fract(s * 57.0) - 0.5) * 5.2,
-      (fract(s * 131.0) - 0.5) * 2.4
+      (s - 0.5) * 12.0,
+      (fract(s * 57.0) - 0.5) * 2.0,
+      (fract(s * 131.0) - 0.5) * 2.4 - 1.0
     );
 
     // core: collapse to a tight glowing seed (the fused new molecule)
@@ -63,9 +63,9 @@ const VERT = /* glsl */ `
 
     // chain the beats with smoothstep windows (same technique as the loop storm)
     vec3 pos = hero;
-    pos = mix(pos, shred, smoothstep(0.18, 0.36, p));
-    pos = mix(pos, walls, smoothstep(0.36, 0.56, p));
-    pos = mix(pos, field, smoothstep(0.56, 0.74, p));
+    pos = mix(pos, shred, smoothstep(0.22, 0.40, p));
+    pos = mix(pos, walls, smoothstep(0.40, 0.58, p));
+    pos = mix(pos, field, smoothstep(0.58, 0.74, p));
     pos = mix(pos, core,  smoothstep(0.80, 0.96, p));
 
     // slow living rotation + cursor-driven swirl
@@ -73,19 +73,22 @@ const VERT = /* glsl */ `
 
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = (4.2 * uPixelRatio) * (3.0 / -mv.z);
+    // points swell as the cloud collapses, so the fused seed reads as a point of light
+    float coreAmt = smoothstep(0.80, 0.96, p);
+    gl_PointSize = (4.2 * uPixelRatio) * (3.0 / -mv.z) * (1.0 + coreAmt * 1.6);
 
     // --- color: amber fiber vs bio enzyme, fusing to white at the close ---
     vec3 amber = vec3(0.90, 0.60, 0.33);
     vec3 bio   = vec3(0.22, 0.88, 0.78);
     vec3 white = vec3(1.0);
     vec3 base = mix(amber, bio, aGroup);
-    float flash = exp(-pow((p - 0.95) / 0.045, 2.0)); // fuse-to-light at the very end
+    // a held fuse-to-light through the closing beat, not a single-frame blink
+    float flash = exp(-pow((p - 0.94) / 0.085, 2.0));
     vColor = mix(base, white, flash) * (0.82 + 0.18 * sin(uTime + s * 6.2831));
 
-    // fade the rained-out shred + the wide field slightly so the hero reads cleaner
-    float thin = smoothstep(0.56, 0.72, p) * 0.35;
-    vAlpha = 0.82 - thin + flash * 0.4;
+    // ease the wide field down slightly so the headline reads cleaner
+    float thin = smoothstep(0.58, 0.74, p) * 0.28;
+    vAlpha = 0.82 - thin + flash * 0.5;
   }
 `;
 
@@ -122,8 +125,10 @@ function Cloud({ reduced }: { reduced: boolean }) {
     // ease progress toward the scroll signal so the morph never snaps
     const cur = m.uniforms.uProgress.value;
     m.uniforms.uProgress.value = cur + (storyProgress.value - cur) * Math.min(1, dt * 3.5);
-    m.uniforms.uPointerX.value +=
-      (storyPointer.x - m.uniforms.uPointerX.value) * Math.min(1, dt * 3);
+    if (!reduced) {
+      m.uniforms.uPointerX.value +=
+        (storyPointer.x - m.uniforms.uPointerX.value) * Math.min(1, dt * 3);
+    }
 
     // cursor-reactive camera parallax, damped for the smooth hubtown feel
     const cam = state.camera;
