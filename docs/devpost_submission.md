@@ -12,7 +12,7 @@ REWEAR-FUSED
 ```
 
 ### Elevator pitch / tagline (200 chars max)
-Use this (193 chars; verify the counter, trim "deployable" if it complains):
+Use this (196 chars, under the 200 cap; trim "deployable" if the counter disagrees):
 ```
 Elastane makes kids' stretch apparel non-recyclable. REWEAR-FUSED co-designs a new cleavable elastane and the matched de novo enzyme that closes the loop, plus a deployable recyclability passport.
 ```
