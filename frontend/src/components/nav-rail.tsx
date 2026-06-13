@@ -10,6 +10,7 @@ const CHAPTERS = [
   { href: "/enzyme", label: "Enzyme" },
   { href: "/loop", label: "Loop" },
   { href: "/passport", label: "Passport" },
+  { href: "/judges", label: "Judges" },
 ];
 
 export function NavRail() {
