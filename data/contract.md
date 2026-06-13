@@ -15,7 +15,7 @@ data/artifacts/v1.0.0/
   fibers/screening.json
   fibers/tradeoffCurve.json
   pairs/topPairs.json
-  garments/garments.json
+  garments.json
   compliance/classifications.json
   compliance/regulations.json
   passports/dpp_<garmentId>.json
@@ -32,7 +32,7 @@ All `inSilico: true`. All numeric predictions carry a confidence or interval. `n
 export interface Garment {
   id: string;                       // "carters-onesie-0-3m"
   name: string;                     // "Carter's Cotton-Blend Onesie, 0-3M"
-  archetype: "onesie" | "legging" | "sleeper" | "bodysuit";
+  archetype: "onesie" | "legging" | "sleeper" | "bodysuit" | "swim";
   imageUrl: string;                 // real product archetype still
   fiberComposition: { fiber: string; percent: number; source: string }[]; // real published %
   simulatedChemicalHistory?: string; // optional context label, never presented as measured
