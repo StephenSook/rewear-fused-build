@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { animate, useInView } from "motion/react";
+import { EASE } from "@/lib/motion";
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const fmtInt = (v: number) => Math.round(v).toLocaleString();
 export const fmtPct = (v: number) => `${Math.round(v)}%`;

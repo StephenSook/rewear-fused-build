@@ -8,7 +8,7 @@ import { Reveal } from "@/components/reveal";
 import { engineA, pair } from "@/lib/data";
 
 export const metadata = {
-  title: "Cleavable Elastane Design — REWEAR-FUSED",
+  title: "Cleavable Elastane Design · REWEAR-FUSED",
 };
 
 function Spec({
@@ -64,13 +64,13 @@ export default function FiberPage() {
       <Reveal delay={0.05}>
         <div className="grid gap-6 lg:grid-cols-2">
           <div>
-            <MonoLabel>01 — Screening funnel</MonoLabel>
+            <MonoLabel>01 · Screening funnel</MonoLabel>
             <div className="mt-3">
               <ScreeningFunnel />
             </div>
           </div>
           <div>
-            <MonoLabel>02 — Top candidate {c.id}</MonoLabel>
+            <MonoLabel>02 · Top candidate {c.id}</MonoLabel>
             <BeveledBox accent="fiber" className="mt-3 p-5">
               <div className="space-y-2">
                 <Spec label="isocyanate" value={`${c.isocyanate.name} (aliphatic)`} ok />
@@ -95,7 +95,7 @@ export default function FiberPage() {
       {/* the 3D moment, its own viewport */}
       <Reveal delay={0.05}>
         <section className="mt-16">
-          <MonoLabel>03 — Fiber architecture</MonoLabel>
+          <MonoLabel>03 · Fiber architecture</MonoLabel>
           <div className="mt-3">
             <FiberStage />
           </div>
@@ -110,7 +110,7 @@ export default function FiberPage() {
       {/* the honesty centerpiece, its own viewport */}
       <Reveal delay={0.05}>
         <section className="mt-16">
-          <MonoLabel>04 — Mechanics vs cleavability</MonoLabel>
+          <MonoLabel>04 · Mechanics vs cleavability</MonoLabel>
           <div className="mt-3 flex flex-wrap gap-5">
             <span className="flex items-center gap-2 font-mono text-xs">
               <span className="h-2 w-4 bg-accent-bio" /> degradability

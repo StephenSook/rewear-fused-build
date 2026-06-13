@@ -4,8 +4,8 @@ import { Component, type ReactNode } from "react";
 
 /**
  * Per-scene error boundary for the heavy 3D mounts (Mol*, R3F, the particle
- * storm). If a WebGL scene throws — a lost context, a driver quirk on the demo
- * laptop — only that scene degrades to a quiet label; the surrounding claims,
+ * storm). If a WebGL scene throws (a lost context, a driver quirk on the demo
+ * laptop), only that scene degrades to a quiet label; the surrounding claims,
  * metrics, and data stay on screen. Demo-safety: a 3D crash never blanks a view.
  */
 export class SceneBoundary extends Component<

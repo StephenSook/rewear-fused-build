@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "REWEAR-FUSED — safe to wear, able to be remade";
+export const alt = "REWEAR-FUSED · safe to wear, able to be remade";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Programmatic Open Graph card for the shared/deployed link — on-brand and
+ * Programmatic Open Graph card for the shared/deployed link. On-brand and
  * code-drawn, so there is no binary asset to ship or keep in sync.
  */
 export default function OpengraphImage() {

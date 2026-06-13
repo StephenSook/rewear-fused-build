@@ -1,12 +1,12 @@
 /**
  * Shared Web Audio engine. Two layers, both demo-safe and offline:
  *
- *  1. A fully-synthesized fallback that ALWAYS works with no assets — a rich,
+ *  1. A fully-synthesized fallback that ALWAYS works with no assets: a rich,
  *     reverb-fed Am(add9) pad (the "molecular lab instrument" bed), a carbamate
  *     cleavage cue, and a UI tick.
- *  2. If `/audio/ambient.mp3` and `/audio/cleavage.mp3` are present (the kie.ai
- *     Suno bed + ElevenLabs snap), they are decoded and used instead, swapping
- *     in the moment they finish loading. Same-origin, so still offline-safe.
+ *  2. If `/audio/ambient.mp3` (the kie.ai Suno bed) is present it is decoded and
+ *     swapped in for the pad the moment it finishes loading. Same-origin, so
+ *     still offline-safe. The cleavage cue and tick stay synthesized.
  *
  * The AudioContext is created lazily on the first user gesture (the sound toggle)
  * to satisfy autoplay policy. Cues no-op while sound is off.
@@ -35,7 +35,7 @@ class AudioEngine {
   private wet: ConvolverNode | null = null;
   private ambientNodes: AudioNode[] = [];
   private ambientGain: GainNode | null = null;
-  private buffers: { ambient?: AudioBuffer; cleavage?: AudioBuffer } = {};
+  private buffers: { ambient?: AudioBuffer } = {};
   private prep: Promise<void> | null = null;
   private usingSampleBed = false;
   private _on = false;
@@ -192,7 +192,7 @@ class AudioEngine {
     sub.start();
     created.push(sub, subG);
 
-    // pad voices: Am(add9) spread — A2, E3, C4 — each a detuned unison pair
+    // pad voices: Am(add9) spread (A2, E3, C4), each a detuned unison pair
     // panned for width, through an LFO-swept lowpass.
     const voices: [number, number][] = [
       [110.0, -0.35], // A2
@@ -259,18 +259,6 @@ class AudioEngine {
     const ctx = this.ensure();
     if (!ctx || !this.master) return;
     const now = ctx.currentTime;
-
-    if (this.buffers.cleavage) {
-      const src = ctx.createBufferSource();
-      src.buffer = this.buffers.cleavage;
-      const g = ctx.createGain();
-      g.gain.value = Math.min(1, 0.7 * intensity);
-      src.connect(g);
-      g.connect(this.master);
-      if (this.wet) g.connect(this.wet);
-      src.start(now);
-      return;
-    }
 
     const dur = 1.2;
     const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);

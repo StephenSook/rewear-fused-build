@@ -60,7 +60,8 @@ export function usePointerTilt(
         rotationY: 0,
         x: 0,
         y: 0,
-        scale: 1,
+        // only reset scale if this hook owns it (press > 0)
+        ...(press ? { scale: 1 } : null),
         duration: 0.7,
         ease: "elastic.out(1, 0.3)",
       });
@@ -80,6 +81,8 @@ export function usePointerTilt(
       node.addEventListener("pointercancel", onUp);
     }
     return () => {
+      // stop any in-flight spring so GSAP's ticker drops the unmounted node
+      gsap.killTweensOf(node);
       node.removeEventListener("pointermove", onMove);
       node.removeEventListener("pointerleave", onLeave);
       if (onDown) node.removeEventListener("pointerdown", onDown);

@@ -2,7 +2,7 @@
 
 /**
  * Route-level error boundary. If any view throws at runtime, the demo shows this
- * on-brand fault panel with a one-click reload instead of a white screen — the
+ * on-brand fault panel with a one-click reload instead of a white screen, the
  * whole point of demo-safety. (Per-3D-scene crashes degrade even more gracefully
  * via SceneBoundary; this catches anything that escapes.)
  */

@@ -4,12 +4,11 @@ import { MonoLabel } from "@/components/instrument";
 import { EnzymeStage } from "@/components/enzyme-stage";
 import { EnzymeDetail } from "@/components/enzyme-detail";
 import { Reveal } from "@/components/reveal";
+import { REFERENCE_PDB } from "@/lib/data";
 
 export const metadata = {
-  title: "De Novo Carbamate Hydrolase — REWEAR-FUSED",
+  title: "De Novo Carbamate Hydrolase · REWEAR-FUSED",
 };
-
-const REFERENCE_PDB = "/pdb/reference-hydrolase-1tca.pdb";
 
 export default function EnzymePage() {
   return (

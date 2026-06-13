@@ -5,7 +5,7 @@ import { PassportExplorer } from "@/components/passport-explorer";
 import { Reveal } from "@/components/reveal";
 
 export const metadata = {
-  title: "Digital Recyclability Passport — REWEAR-FUSED",
+  title: "Digital Recyclability Passport · REWEAR-FUSED",
 };
 
 export default function PassportPage() {

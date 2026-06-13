@@ -3,7 +3,7 @@ import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { JudgesLedger } from "@/components/judges-ledger";
 
 export const metadata = {
-  title: "For the judges — REWEAR-FUSED",
+  title: "For the judges · REWEAR-FUSED",
 };
 
 export default function JudgesPage() {

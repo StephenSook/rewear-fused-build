@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { usePointerTilt } from "@/lib/use-pointer-tilt";
 
 /**
- * Per-element 3D tilt + magnetic pull + glare on hover — the premium instrument
+ * Per-element 3D tilt + magnetic pull + glare on hover: the premium instrument
  * feel. The element rotates toward the cursor in perspective, drifts magnetically
  * after it, and a soft accent glare tracks the pointer; on leave it springs back
  * with an elastic ease. Shares the tilt math with the instrument boxes via

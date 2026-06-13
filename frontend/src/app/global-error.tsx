@@ -2,7 +2,7 @@
 
 /**
  * Root error boundary. Replaces the whole document if the root layout itself
- * throws, so it cannot rely on the app's CSS — styles are inlined to guarantee a
+ * throws, so it cannot rely on the app's CSS, so styles are inlined to guarantee a
  * dark, on-brand fallback rather than an unstyled white page.
  */
 export default function GlobalError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {

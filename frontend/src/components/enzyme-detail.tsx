@@ -4,9 +4,7 @@ import { DownloadSimple, Check } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
 import { InstrumentButton } from "./instrument-button";
 import { RevealGroup, RevealItem } from "./reveal";
-import { engineB, pair } from "@/lib/data";
-
-const REFERENCE_PDB = "/pdb/reference-hydrolase-1tca.pdb";
+import { engineB, pair, REFERENCE_PDB } from "@/lib/data";
 
 function Metric({
   label,
@@ -61,7 +59,7 @@ export function EnzymeDetail() {
             </span>
           </div>
           <p className="mt-2 font-mono text-[0.6rem] leading-relaxed text-warn">
-            illustrative target values on the Lauko thresholds — the live PLACER /
+            illustrative target values on the Lauko thresholds. The live PLACER /
             FoldSeek numbers replace these when the GPU design run lands at the
             artifact-freeze gate.
           </p>
@@ -115,7 +113,7 @@ export function EnzymeDetail() {
       <RevealItem>
         <div className="flex flex-wrap items-center gap-3">
           <InstrumentButton href={REFERENCE_PDB} accent="bio" download stream>
-            <DownloadSimple className="h-4 w-4" /> Structure .pdb
+            <DownloadSimple className="h-4 w-4" /> Reference scaffold .pdb
           </InstrumentButton>
           <InSilicoBadge />
         </div>

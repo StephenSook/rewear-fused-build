@@ -51,3 +51,7 @@ export const engineA = {
 
 export const engineB = { design: mock.enzymeDesign };
 export const pair = mock.matchedPair;
+
+// The labeled reference serine-hydrolase scaffold (CALB, PDB 1TCA) the viewer
+// renders until Engine B's designed structure lands at the artifact-freeze gate.
+export const REFERENCE_PDB = "/pdb/reference-hydrolase-1tca.pdb";

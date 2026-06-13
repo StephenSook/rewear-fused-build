@@ -5,7 +5,7 @@
  * shapes, no UI change). Pipeline-derived numbers carry placeholder:true and are
  * surfaced as in-silico in the UI.
  *
- * Engine C compliance data is NO LONGER mocked — the frontend reads the real,
+ * Engine C compliance data is NO LONGER mocked: the frontend reads the real,
  * signed artifact bundle (lib/artifacts/) through lib/data.ts.
  */
 import type {
@@ -45,6 +45,8 @@ export const enzymeDesign: EnzymeDesign = {
   foldseekBestTM: 0.41,
   foldseekBestHitPdb: null,
   noveltyVerdict: "no close structural match in PDB (TM-score < 0.5), de novo fold",
+  // forward-looking: the viewer renders the labeled reference scaffold today;
+  // this path is populated + consumed once Engine B's real .bcif lands at freeze
   pdbPath: "pdb/enzyme-001.bcif",
   inSilico: true,
   placeholder: true,

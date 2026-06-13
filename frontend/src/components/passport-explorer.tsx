@@ -22,8 +22,8 @@ import { Reveal } from "./reveal";
 import { CountUp, fmtPct } from "./count-up";
 import { audioEngine } from "@/lib/audio-engine";
 import type { RegStatus, Decision, Classification, DigitalProductPassport } from "@/lib/types";
+import { EASE } from "@/lib/motion";
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const STATUS_COLOR: Record<RegStatus, string> = {
   PASS: "text-pass",
@@ -44,7 +44,7 @@ function useEngineC(selectedId: string) {
   const staticC = getClassification(selectedId);
   const staticP = getPassport(selectedId);
   // Resolved result tagged with the id it belongs to (so a stale result can never
-  // show under a new selection) and with PER-ARTIFACT source — a live classify is
+  // show under a new selection) and with PER-ARTIFACT source: a live classify is
   // shown + labelled live even if the passport endpoint lagged, and vice versa.
   const [resolved, setResolved] = useState<{
     id: string;
@@ -89,7 +89,7 @@ function SourceBadge({ source }: { source: Source }) {
       title={
         live
           ? "Classified by the live Engine C endpoint just now."
-          : "Served from the signed, SHA-verified offline bundle (byte-identical to the live model)."
+          : "Served from the signed offline bundle (the frozen Engine C model output)."
       }
       className={cn(
         "inline-flex items-center gap-1.5 border px-2 py-1 font-mono text-[0.6rem] tracking-widest uppercase",
@@ -247,7 +247,7 @@ export function PassportExplorer() {
     <div className="space-y-8">
       <Reveal>
         <div>
-          <MonoLabel>01 — Garment intake</MonoLabel>
+          <MonoLabel>01 · Garment intake</MonoLabel>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
             {garments.map((g) => {
               const active = g.id === selectedId;
@@ -290,7 +290,7 @@ export function PassportExplorer() {
       <Reveal delay={0.05}>
         <div className="grid gap-6 lg:grid-cols-2">
           <div>
-            <MonoLabel>02 — Recyclability passport</MonoLabel>
+            <MonoLabel>02 · Recyclability passport</MonoLabel>
             <div className="mt-3">
               <AnimatePresence mode="wait">
                 {passport && garment ? (
@@ -315,7 +315,7 @@ export function PassportExplorer() {
 
           <div>
             <div className="flex items-center justify-between gap-3">
-              <MonoLabel>03 — Regulatory router</MonoLabel>
+              <MonoLabel>03 · Regulatory router</MonoLabel>
               <SourceBadge source={source} />
             </div>
             <div className="mt-3">

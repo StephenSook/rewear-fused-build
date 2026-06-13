@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const metadata = { title: "Off the loop — REWEAR-FUSED" };
+export const metadata = { title: "Off the loop · REWEAR-FUSED" };
 
 export default function NotFound() {
   return (

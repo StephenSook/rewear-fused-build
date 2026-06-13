@@ -1,7 +1,7 @@
 /**
  * Live Engine C client with a demo-safe fallback. When NEXT_PUBLIC_ENGINE_C_API_URL
  * is set (Vinh's deployed FastAPI on Render), the passport classifies against the
- * LIVE endpoint so a judge sees a real server respond — not hardcoded JSON. If the
+ * LIVE endpoint so a judge sees a real server respond, not hardcoded JSON. If the
  * endpoint is unset, slow, down, or returns an unexpected shape, the call falls
  * back to the signed static bundle within a hard timeout, so the demo never hangs
  * or breaks (the artifact is byte-identical to the live model under frozen-model

@@ -141,7 +141,7 @@ export function StoryExperience() {
       </SceneBoundary>
 
       <div ref={trackRef} className="relative z-10">
-        {/* 01 — hero */}
+        {/* 01 · hero */}
         <Beat>
           <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-fg/70">
             Cox Play With Purpose · Carter&apos;s Making &amp; Remaking
@@ -161,9 +161,9 @@ export function StoryExperience() {
           </div>
         </Beat>
 
-        {/* 02 — the downcycle reality */}
+        {/* 02 · the downcycle reality */}
         <Beat>
-          <MonoLabel>01 — The reality</MonoLabel>
+          <MonoLabel>01 · The reality</MonoLabel>
           <p className="mt-6 max-w-3xl font-display text-3xl leading-snug sm:text-5xl">
             Carter&apos;s already collects worn baby clothes, then shreds them into
             insulation and pet bedding.
@@ -173,10 +173,10 @@ export function StoryExperience() {
           </p>
         </Beat>
 
-        {/* 03 — the two walls */}
+        {/* 03 · the two walls */}
         <Beat>
           <div className="w-full max-w-5xl">
-            <MonoLabel>02 — The two walls</MonoLabel>
+            <MonoLabel>02 · The two walls</MonoLabel>
             <div className="mt-6 grid gap-6 text-left md:grid-cols-2">
               <BeveledBox accent="fiber" className="h-full p-8 bg-bg-elevated/85 backdrop-blur-md">
                 <MonoLabel>Wall 1</MonoLabel>
@@ -198,10 +198,10 @@ export function StoryExperience() {
           </div>
         </Beat>
 
-        {/* 04 — the stats */}
+        {/* 04 · the stats */}
         <Beat>
           <BeveledBox className="w-full max-w-5xl p-10 bg-bg-elevated/85 backdrop-blur-md">
-            <MonoLabel>03 — The scale</MonoLabel>
+            <MonoLabel>03 · The scale</MonoLabel>
             <div className="mt-8 grid gap-12 text-left sm:grid-cols-2 lg:grid-cols-4">
               <Stat value={92} suffix="M" label="tonnes of textile waste per year" source="UNEP 2025" />
               <Stat value={80} suffix="%" label="of all clothing contains elastane" source="Fashion for Good" />
@@ -211,9 +211,9 @@ export function StoryExperience() {
           </BeveledBox>
         </Beat>
 
-        {/* 05 — the thesis */}
+        {/* 05 · the thesis */}
         <Beat>
-          <MonoLabel>04 — The thesis</MonoLabel>
+          <MonoLabel>04 · The thesis</MonoLabel>
           <p className="mt-6 max-w-3xl font-display text-3xl leading-snug sm:text-5xl">
             Do not attack today&apos;s elastane. Co-design a new{" "}
             <Link href="/fiber" className="text-accent-fiber underline-offset-4 hover:underline">
@@ -230,7 +230,7 @@ export function StoryExperience() {
           </div>
         </Beat>
 
-        {/* 06 — closing */}
+        {/* 06 · closing */}
         <Beat
           bloom={
             <>

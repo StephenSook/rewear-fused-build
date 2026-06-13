@@ -2,8 +2,8 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
+import { EASE } from "@/lib/motion";
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
  * Shared entrance choreography. One vocabulary for every surface so the whole

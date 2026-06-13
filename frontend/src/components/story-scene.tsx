@@ -89,7 +89,7 @@ const VERT = /* glsl */ `
 
     // ease the wide field down slightly so the headline reads cleaner
     float thin = smoothstep(0.58, 0.74, p) * 0.28;
-    vAlpha = 0.82 - thin + flash * 0.5;
+    vAlpha = clamp(0.82 - thin + flash * 0.5, 0.0, 1.0);
   }
 `;
 

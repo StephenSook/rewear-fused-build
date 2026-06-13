@@ -9,7 +9,7 @@ import { lenisRef } from "@/lib/lenis";
  * Deterministic demo mode (CLAUDE.md §7.14, a cannot-be-dropped demo-safety item).
  * Auto-walks the five views in pitch order, driving each scroll-narrative scene
  * with a controlled-duration Lenis scroll so the 3D animates at a known pace. No
- * real-time dependency — pure timers + the static/fallback data. It loops, so if
+ * real-time dependency: pure timers + the static/fallback data. It loops, so if
  * the presenter freezes it keeps running; it is also the source for the 4K OBS
  * fallback capture.
  *

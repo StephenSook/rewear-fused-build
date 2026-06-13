@@ -32,7 +32,7 @@ type Item = { name: string; tier: Tier; trl?: string; detail: string; proof?: { 
 
 const ITEMS: Item[] = [
   {
-    name: "Engine C — Digital Recyclability Passport",
+    name: "Engine C: Digital Recyclability Passport",
     tier: "WIRED LIVE",
     trl: "TRL 6",
     detail:
@@ -50,21 +50,21 @@ const ITEMS: Item[] = [
     name: "Training + reference data",
     tier: "REAL DATA",
     detail:
-      "631 real CPSC product recalls (saferproducts.gov), pulled live and labeled — the wired training source today. The extension sources (EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX negatives) are Engine C's roadmap, not yet ingested. Garment archetypes use real published compositions; the garment images are illustrative, not specific product photos.",
+      "631 real CPSC product recalls (saferproducts.gov), pulled live and labeled: the wired training source today. The extension sources (EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX negatives) are Engine C's roadmap, not yet ingested. Garment archetypes use real published compositions; the garment images are illustrative, not specific product photos.",
   },
   {
-    name: "Engine A — Cleavable elastane",
+    name: "Engine A: Cleavable elastane",
     tier: "IN-SILICO",
     trl: "TRL 3",
     detail:
       "Constraint-guided virtual screening over published monomers (aliphatic isocyanates only; cleavable bond in the amorphous soft segment; 25-35 wt% hard). Property predictions carry benchmark-referenced confidence. This is a designed candidate, not a spun fiber.",
   },
   {
-    name: "Engine B — De novo carbamate hydrolase",
+    name: "Engine B: De novo carbamate hydrolase",
     tier: "IN-SILICO",
     trl: "TRL 2",
     detail:
-      "RFdiffusion to LigandMPNN to Boltz-2 to PLACER to FoldSeek. The rendered structure is a reference serine-hydrolase scaffold, and the PLACER preorganization / FoldSeek numbers shown are illustrative expected-range values on the Lauko thresholds — both stand in until the designed PDB lands from the GPU run. This is a design target, not an expressed protein.",
+      "RFdiffusion to LigandMPNN to Boltz-2 to PLACER to FoldSeek. The rendered structure is a reference serine-hydrolase scaffold, and the PLACER preorganization / FoldSeek numbers shown are illustrative expected-range values on the Lauko thresholds. Both stand in until the designed PDB lands from the GPU run. This is a design target, not an expressed protein.",
   },
   {
     name: "Wet-lab validation",

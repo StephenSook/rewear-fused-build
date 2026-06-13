@@ -53,21 +53,28 @@ export default function MolstarViewer({
       }
 
       const ok = await plugin.initViewerAsync(canvas, parent);
-      if (!ok || disposed) {
+      if (!ok) {
         setStatus("error");
         return;
       }
+      if (disposed) return; // clean unmount mid-init, not a failure
 
       const renderer = plugin.canvas3d!.props.renderer;
       await PluginCommands.Canvas3D.SetSettings(plugin, {
         settings: { renderer: { ...renderer, backgroundColor: Color(0x0e1116) } },
       });
 
+      // infer format from the url so a pre-converted BinaryCIF (.bcif) at the
+      // artifact-freeze gate loads correctly instead of being fetched as text
+      const isBinary = url.endsWith(".bcif");
       const data = await plugin.builders.data.download(
-        { url, isBinary: false },
+        { url, isBinary },
         { state: { isGhost: true } },
       );
-      const trajectory = await plugin.builders.structure.parseTrajectory(data, "pdb");
+      const trajectory = await plugin.builders.structure.parseTrajectory(
+        data,
+        isBinary ? "mmcif" : "pdb",
+      );
       await plugin.builders.structure.hierarchy.applyPreset(trajectory, "default");
 
       // Active-site licorice on the given residues (e.g. the Ser-His-Asp triad).

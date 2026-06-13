@@ -3,8 +3,8 @@
 import { motion } from "motion/react";
 import { engineA } from "@/lib/data";
 import { CountUp } from "./count-up";
+import { EASE } from "@/lib/motion";
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /** Constraint-guided screening funnel: enumerated to scored to filtered to top. */
 export function ScreeningFunnel() {
