@@ -146,7 +146,7 @@ function RegulatoryRouter({
             exit={{ opacity: 0 }}
             className="py-6"
           >
-            <MonoLabel>classifying against 85+ thresholds</MonoLabel>
+            <MonoLabel>classifying against real US/EU regulation</MonoLabel>
             <div className="mt-3 h-1 w-full overflow-hidden bg-fg/10">
               <motion.div
                 className="h-full w-1/3 bg-accent-bio"
@@ -230,8 +230,11 @@ function RegulatoryRouter({
 
 export function PassportExplorer() {
   const garments = getGarments();
-  const [selectedId, setSelectedId] = useState(garments[1].id); // legging: the elastane story
-  const garment = garments.find((g) => g.id === selectedId)!;
+  // open on the legging (the elastane story), falling back safely if the bundle changes
+  const [selectedId, setSelectedId] = useState(
+    () => garments.find((g) => g.archetype === "legging")?.id ?? garments[0]?.id ?? "",
+  );
+  const garment = garments.find((g) => g.id === selectedId);
   const { classification, passport, source } = useEngineC(selectedId);
 
   const select = (id: string) => {
@@ -289,7 +292,7 @@ export function PassportExplorer() {
             <MonoLabel>02 — Recyclability passport</MonoLabel>
             <div className="mt-3">
               <AnimatePresence mode="wait">
-                {passport ? (
+                {passport && garment ? (
                   <motion.div
                     key={selectedId}
                     initial={{ opacity: 0, y: 8 }}

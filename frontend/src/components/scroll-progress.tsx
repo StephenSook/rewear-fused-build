@@ -4,24 +4,27 @@ import { useEffect, useRef } from "react";
 
 /**
  * Faded bottom progress bar that fills as the page scrolls, hubtown's footer
- * indicator. Global (mounted in the Shell). Drives the fill via a ref transform
- * in a rAF loop, so it never triggers a React re-render, and stays in sync with
- * the Lenis-smoothed native scroll.
+ * indicator. Global (mounted in the Shell). Driven off the (Lenis-smoothed) native
+ * scroll event, not a free-running rAF, so it does no idle main-thread work and no
+ * per-frame layout read; it writes the fill via a ref transform, never re-rendering.
  */
 export function ScrollProgress() {
   const fillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let raf = 0;
-    const tick = () => {
+    const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
       const el = fillRef.current;
       if (el) el.style.transform = `scaleX(${p})`;
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   return (

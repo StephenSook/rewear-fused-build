@@ -62,7 +62,7 @@ export function DemoMode() {
       let i = 0;
       while (!cancelled) {
         setStep(i);
-        const s = STEPS[i];
+        const s = STEPS[i]!; // i is always 0..STEPS.length-1
         router.push(s.path);
         await sleep(850); // route mount + page-transition veil
         if (cancelled) break;
@@ -129,7 +129,7 @@ export function DemoMode() {
                 Esc to exit
               </button>
             </div>
-            <div className="mt-2 font-display text-lg leading-tight">{STEPS[step].label}</div>
+            <div className="mt-2 font-display text-lg leading-tight">{STEPS[step]!.label}</div>
             <div className="mt-2 h-0.5 w-full bg-fg/10">
               <motion.div
                 key={step}
@@ -138,7 +138,7 @@ export function DemoMode() {
                 animate={{ scaleX: 1 }}
                 // ~1.4s of route-mount + height-settle precedes the hold; track the
                 // true step dwell so the bar doesn't finish early
-                transition={{ duration: (1400 + STEPS[step].holdMs) / 1000, ease: "linear" }}
+                transition={{ duration: (1400 + STEPS[step]!.holdMs) / 1000, ease: "linear" }}
               />
             </div>
           </div>

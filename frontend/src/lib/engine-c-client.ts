@@ -17,7 +17,6 @@ const TIMEOUT_MS = 2500;
 
 export type Source = "live" | "cached";
 
-export const engineCConfigured = BASE.length > 0;
 export const engineCModelVersion =
   (manifest as { modelVersions?: Record<string, string> }).modelVersions?.engineC ?? "v1.0";
 
@@ -77,14 +76,4 @@ export async function fetchPassport(
     warnDev(`[engine-c] live passport failed for ${id}; using bundle`, err);
   }
   return { data: getPassport(id), source: "cached" };
-}
-
-export async function fetchHealth(): Promise<boolean> {
-  if (!BASE) return false;
-  try {
-    const h = (await getJSON("/healthz")) as { status?: string };
-    return h?.status === "ok";
-  } catch {
-    return false;
-  }
 }

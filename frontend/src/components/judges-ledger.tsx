@@ -50,7 +50,7 @@ const ITEMS: Item[] = [
     name: "Training + reference data",
     tier: "REAL DATA",
     detail:
-      "Real public datasets only: CPSC Recalls, EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX negatives. Garment archetypes use real published compositions; the garment images are illustrative, not specific product photos.",
+      "631 real CPSC product recalls (saferproducts.gov), pulled live and labeled — the wired training source today. The extension sources (EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX negatives) are Engine C's roadmap, not yet ingested. Garment archetypes use real published compositions; the garment images are illustrative, not specific product photos.",
   },
   {
     name: "Engine A — Cleavable elastane",
@@ -64,7 +64,7 @@ const ITEMS: Item[] = [
     tier: "IN-SILICO",
     trl: "TRL 2",
     detail:
-      "RFdiffusion to LigandMPNN to Boltz-2 to PLACER to FoldSeek. We report PLACER preorganization on the Lauko thresholds and a FoldSeek novelty verdict. The rendered structure is a reference serine-hydrolase scaffold standing in until the designed PDB lands. This is a design, not an expressed protein.",
+      "RFdiffusion to LigandMPNN to Boltz-2 to PLACER to FoldSeek. The rendered structure is a reference serine-hydrolase scaffold, and the PLACER preorganization / FoldSeek numbers shown are illustrative expected-range values on the Lauko thresholds — both stand in until the designed PDB lands from the GPU run. This is a design target, not an expressed protein.",
   },
   {
     name: "Wet-lab validation",
@@ -119,11 +119,11 @@ export function JudgesLedger() {
         <BeveledBox accent="bio" className="p-6">
           <MonoLabel>The honesty moat</MonoLabel>
           <p className="mt-3 text-sm">
-            Every number on this site traces to a real pipeline output or a verified
-            DOI. No fabricated citations. No synthetic data in the judged path. No
-            fictional persona. The pre-computed artifacts are real outputs of real
-            pipelines, frozen for demo-safety and SHA-256 signed; Engine C also runs
-            live. If a claim is in-silico, the in-silico badge says so.
+            Every number on this site traces to a real pipeline output, a verified
+            DOI, or a clearly-labeled in-silico placeholder. No fabricated citations.
+            No synthetic data in the judged path. No fictional persona. Engine C runs
+            live on real CPSC data and is SHA-256 signed; Engine A/B are in-silico
+            designs whose stand-in metrics are labeled as such until the pipelines run.
           </p>
           <div className="mt-4">
             <InSilicoBadge />

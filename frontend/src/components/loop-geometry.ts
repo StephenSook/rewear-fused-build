@@ -21,7 +21,7 @@ const SCALE = 1.7;
 
 function sampleOnesie(): [number, number, number] {
   let pick = Math.random() * TOTAL_W;
-  let region = REGIONS[0];
+  let region = REGIONS[0]!;
   for (const r of REGIONS) {
     if (pick <= r.w) {
       region = r;

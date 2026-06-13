@@ -29,10 +29,14 @@ function LoopStepper({ phase }: { phase: number }) {
 
   useEffect(() => {
     let raf = 0;
+    let last = -1;
     const tick = () => {
-      const el = fillRef.current;
-      if (el) el.style.transform = `scaleX(${loopProgress.value})`;
       raf = requestAnimationFrame(tick);
+      const v = loopProgress.value;
+      if (v === last) return; // only write when the scroll-driven value changed
+      last = v;
+      const el = fillRef.current;
+      if (el) el.style.transform = `scaleX(${v})`;
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);

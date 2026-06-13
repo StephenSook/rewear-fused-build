@@ -23,13 +23,13 @@ function Chart({ width, height }: { width: number; height: number }) {
   const ih = Math.max(0, height - margin.top - margin.bottom);
 
   const xScale = scaleLinear<number>({
-    domain: [t.x[0], t.x[t.x.length - 1]],
+    domain: [t.x[0]!, t.x[t.x.length - 1]!],
     range: [0, iw],
   });
   const yScale = scaleLinear<number>({ domain: [0, 1], range: [ih, 0] });
 
-  const degr: Pt[] = t.x.map((x, i) => ({ x, y: t.degradability[i] }));
-  const mech: Pt[] = t.x.map((x, i) => ({ x, y: t.mechanicalRetention[i] }));
+  const degr: Pt[] = t.x.map((x, i) => ({ x, y: t.degradability[i]! }));
+  const mech: Pt[] = t.x.map((x, i) => ({ x, y: t.mechanicalRetention[i]! }));
 
   const wx0 = xScale(t.designWindow[0]);
   const wx1 = xScale(t.designWindow[1]);

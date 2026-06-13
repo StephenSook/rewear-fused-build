@@ -59,6 +59,11 @@ export function EnzymeDetail() {
               <span className="text-sm text-fg-muted"> ± {d.placer.uncertainty.toFixed(2)}</span>
             </span>
           </div>
+          <p className="mt-2 font-mono text-[0.6rem] leading-relaxed text-warn">
+            illustrative target values on the Lauko thresholds — the live PLACER /
+            FoldSeek numbers replace these when the GPU design run lands at the
+            artifact-freeze gate.
+          </p>
           <div className="mt-4 space-y-2">
             <Metric
               label="pLDDT (protein)"

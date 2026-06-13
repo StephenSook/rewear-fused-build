@@ -15,7 +15,7 @@ export function ScreeningFunnel() {
     { label: "Filtered", count: s.filteredCount },
     { label: "Top candidate", count: s.topCandidateIds.length },
   ];
-  const max = stages[0].count;
+  const max = stages[0]!.count;
   const width = (c: number) => Math.max(0.08, Math.log(c + 1) / Math.log(max + 1));
 
   return (

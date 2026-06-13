@@ -121,13 +121,13 @@ function Cloud({ reduced }: { reduced: boolean }) {
   useFrame((state, dt) => {
     const m = matRef.current;
     if (!m) return;
-    if (!reduced) m.uniforms.uTime.value += dt;
+    if (!reduced) m.uniforms.uTime!.value += dt;
     // ease progress toward the scroll signal so the morph never snaps
-    const cur = m.uniforms.uProgress.value;
-    m.uniforms.uProgress.value = cur + (storyProgress.value - cur) * Math.min(1, dt * 3.5);
+    const cur = m.uniforms.uProgress!.value;
+    m.uniforms.uProgress!.value = cur + (storyProgress.value - cur) * Math.min(1, dt * 3.5);
     if (!reduced) {
-      m.uniforms.uPointerX.value +=
-        (storyPointer.x - m.uniforms.uPointerX.value) * Math.min(1, dt * 3);
+      m.uniforms.uPointerX!.value +=
+        (storyPointer.x - m.uniforms.uPointerX!.value) * Math.min(1, dt * 3);
     }
 
     // cursor-reactive camera parallax, damped for the smooth hubtown feel

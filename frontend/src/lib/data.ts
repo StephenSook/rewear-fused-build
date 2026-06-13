@@ -31,14 +31,6 @@ export function getGarments(): Garment[] {
   return garments;
 }
 
-export function getGarment(id: string): Garment | undefined {
-  return garments.find((g) => g.id === id);
-}
-
-export function getRegulations(): Regulation[] {
-  return regulations;
-}
-
 export function getRegulation(id: string): Regulation | undefined {
   return regulations.find((r) => r.id === id);
 }
@@ -59,9 +51,3 @@ export const engineA = {
 
 export const engineB = { design: mock.enzymeDesign };
 export const pair = mock.matchedPair;
-
-/** True while any rendered artifact is still a pre-pipeline placeholder. Engine C
- *  is now real, so this is false for compliance; Engine A/B remain in-silico. */
-export function isPlaceholder(garmentId: string): boolean {
-  return (getClassification(garmentId) as { placeholder?: boolean } | undefined)?.placeholder ?? false;
-}

@@ -73,9 +73,9 @@ function Storm({ reduced }: { reduced: boolean }) {
     if (!m) return;
     // scroll-driven morph always tracks; idle shimmer + camera sway freeze under
     // prefers-reduced-motion (the loop still reads, just without ambient motion).
-    if (!reduced) m.uniforms.uTime.value += dt;
-    const cur = m.uniforms.uProgress.value;
-    m.uniforms.uProgress.value = cur + (loopProgress.value - cur) * Math.min(1, dt * 4);
+    if (!reduced) m.uniforms.uTime!.value += dt;
+    const cur = m.uniforms.uProgress!.value;
+    m.uniforms.uProgress!.value = cur + (loopProgress.value - cur) * Math.min(1, dt * 4);
     state.camera.position.x = reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.1) * 0.35;
     state.camera.lookAt(0, 0, 0);
   });
