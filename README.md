@@ -92,7 +92,7 @@ We would rather you check than take our word. The full tiering is the in-app [`/
 |---|---|---|---|
 | Engine C, the Passport | **WIRED LIVE** | 6 | a real FastAPI endpoint + the deployed UI; the Year-1 deployable product |
 | The application (5 views) | **WIRED LIVE** | - | deployed on Vercel, reading the signed artifact bundle through real code |
-| Training + reference data | **REAL DATA** | - | CPSC Recalls, EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX |
+| Training + reference data | **REAL DATA** | - | 631 real CPSC recalls (saferproducts.gov), wired today; EU Safety Gate, Peaslee PFAS, OEKO-TEX are the roadmap |
 | Engine A, the fiber | **IN-SILICO** | 3 | constraint-guided screening; predicted properties with benchmark-referenced confidence |
 | Engine B, the enzyme | **IN-SILICO** | 2 | de novo design; PLACER preorganization + FoldSeek novelty on the Lauko thresholds |
 | Wet-lab validation | **FORWARD** | - | not done in 72 hours; the Cox Cleantech Residency ask |
@@ -124,7 +124,7 @@ uvicorn api.main:app --port 8000               # GET /healthz, /classify/{id}, /
 python scripts/build_manifest.py
 ```
 
-Engines A and B run on a rented GPU (RunPod); see [`docs/pravin_handoff.md`](docs/pravin_handoff.md). Deploy and the June-14 plan are in [`docs/deploy.md`](docs/deploy.md) and [`docs/event_runbook.md`](docs/event_runbook.md).
+Engines A and B run on a rented GPU (RunPod). Deploy is to Vercel (frontend) + Render (Engine C); see [`docs/deploy.md`](docs/deploy.md).
 
 ## Project layout
 
@@ -133,10 +133,8 @@ frontend/      Next.js 16 + React 19 + Mol* + R3F. The five views + the scroll s
 backend/       Engines A + B molecular pipelines (Pravin) + the artifact server.
 engine-c/      Engine C: the compliance classifier, the passport, the live FastAPI endpoint (Vinh).
 data/          The versioned, SHA-256-signed artifact bundle the frontend reads. The data contract.
-scripts/       build_manifest.py, init_event_repo.sh.
-docs/          Architecture, lane handoffs, the demo script, the DevPost text, the gallery, the runbook.
-CLAUDE.md      The full build specification + the operating contract.
-PLAN.md        The team coordination system.
+scripts/       build_manifest.py (re-sign the bundle), validate_artifacts.py (contract gate), sync, init.
+docs/          The deploy guide and the screenshot gallery.
 ```
 
 ## Built with

@@ -28,9 +28,20 @@ rsync -a \
   --exclude '.next' \
   --exclude '.venv' \
   --exclude '__pycache__' \
-  --exclude 'research-reports' \
   --exclude '.DS_Store' \
+  --exclude 'research-reports' \
+  --exclude 'CLAUDE.md' \
+  --exclude 'PLAN.md' \
+  --exclude 'docs/devpost_submission.md' \
+  --exclude 'docs/demo_script.md' \
+  --exclude 'docs/event_runbook.md' \
+  --exclude 'docs/pravin_handoff.md' \
+  --exclude 'docs/vinh_handoff.md' \
   "$SRC/" "$DEST/"
+
+# Excluded files stay PRIVATE (internal strategy / coordination / lane handoffs:
+# win conditions, judge-defense, IP-FTO, pitch numbers, secrets ownership). The
+# public repo is the README + code + shareable docs (deploy, gallery, contract).
 
 cd "$DEST"
 git init -q

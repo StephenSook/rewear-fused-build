@@ -89,7 +89,7 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | Artifact JSON shapes | Stephen | Pravin, Vinh, frontend | `data/contract.md` — enzymes/fibers/pairs/passports field names |
 | Artifact folder + manifest | Stephen | all | `data/artifacts/v1.0.0/{enzymes,fibers,pairs,passports,pdb}/` + `manifest.json` (SHA-256 per file) |
 | Fiber↔enzyme match | Pravin | frontend | `pairs/topPairs.json` cross-references `fiberId` + `enzymeId` + `enzyme_match` |
-| Engine C endpoint shape | Vinh | frontend | `POST /classify` returns the passport JSON in `data/contract.md` |
+| Engine C endpoint shape | Vinh | frontend | `GET /classify/{id}` returns a `Classification`; `GET /passport/{id}` returns the `DigitalProductPassport` JSON in `data/contract.md`; `/healthz` liveness |
 | Frozen model parity | Vinh | frontend | deployed endpoint serves the exact model that produced `v1.0.0` (manifest SHA) |
 
 ## Decisions
