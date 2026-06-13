@@ -9,18 +9,19 @@ import {
   type Variants,
 } from "motion/react";
 import { cn } from "@/lib/cn";
+import { getGarments, getClassification, getPassport, getRegulation } from "@/lib/data";
 import {
-  getGarments,
-  getClassification,
-  getPassport,
-  getRegulation,
-} from "@/lib/data";
+  fetchClassification,
+  fetchPassport,
+  engineCModelVersion,
+  type Source,
+} from "@/lib/engine-c-client";
 import { BeveledBox, MonoLabel } from "./instrument";
 import { PassportCard } from "./passport-card";
 import { Reveal } from "./reveal";
 import { CountUp, fmtPct } from "./count-up";
 import { audioEngine } from "@/lib/audio-engine";
-import type { RegStatus, Decision } from "@/lib/types";
+import type { RegStatus, Decision, Classification, DigitalProductPassport } from "@/lib/types";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -36,14 +37,82 @@ const DECISION: Record<Decision, { label: string; text: string; route: string }>
   divert: { label: "DIVERT", text: "text-fail", route: "divert from the loop" },
 };
 
+/** Render the static signed bundle immediately, then upgrade to the live Engine C
+ *  endpoint if it answers within the timeout (else stay on the bundle). */
+function useEngineC(selectedId: string) {
+  // Static signed-bundle values, derived each render (no setState-in-effect).
+  const staticC = getClassification(selectedId);
+  const staticP = getPassport(selectedId);
+  // Resolved result tagged with the id it belongs to (so a stale result can never
+  // show under a new selection) and with PER-ARTIFACT source — a live classify is
+  // shown + labelled live even if the passport endpoint lagged, and vice versa.
+  const [resolved, setResolved] = useState<{
+    id: string;
+    c?: Classification;
+    cSource: Source;
+    p?: DigitalProductPassport;
+    pSource: Source;
+  } | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([fetchClassification(selectedId), fetchPassport(selectedId)])
+      .then(([rc, rp]) => {
+        if (cancelled) return;
+        setResolved({ id: selectedId, c: rc.data, cSource: rc.source, p: rp.data, pSource: rp.source });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        if (process.env.NODE_ENV !== "production") {
+          console.error("[engine-c] useEngineC resolve failed", err);
+        }
+        setResolved(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedId]);
+
+  const current = resolved?.id === selectedId ? resolved : null;
+  return {
+    classification: current?.c ?? staticC,
+    passport: current?.p ?? staticP,
+    // the badge reflects the source of what the ROUTER shows (the classification)
+    source: (current?.cSource ?? "cached") as Source,
+  };
+}
+
+function SourceBadge({ source }: { source: Source }) {
+  const live = source === "live";
+  return (
+    <span
+      title={
+        live
+          ? "Classified by the live Engine C endpoint just now."
+          : "Served from the signed, SHA-verified offline bundle (byte-identical to the live model)."
+      }
+      className={cn(
+        "inline-flex items-center gap-1.5 border px-2 py-1 font-mono text-[0.6rem] tracking-widest uppercase",
+        live ? "border-pass/40 text-pass" : "border-rule text-fg-muted",
+      )}
+    >
+      <span className={cn("h-1.5 w-1.5 rounded-full", live ? "animate-pulse bg-pass" : "bg-fg-muted")} />
+      Engine C · {live ? "live" : "signed bundle"} · {engineCModelVersion}
+    </span>
+  );
+}
+
 /** The router classifying its way to a verdict, then revealing it. Presentation
- *  only: it always settles on the real data-layer decision. */
-function RegulatoryRouter({ selectedId }: { selectedId: string }) {
+ *  only: it always settles on the real (live or signed-bundle) decision. */
+function RegulatoryRouter({
+  selectedId,
+  classification,
+}: {
+  selectedId: string;
+  classification: Classification | undefined;
+}) {
   const reduce = useReducedMotion();
   const [settledId, setSettledId] = useState<string | null>(null);
-  const classification = getClassification(selectedId);
-  // Derived, not imperative: a selection is "routing" until its settle timer
-  // fires. Reduced-motion skips the classifying beat entirely.
   const routing = !reduce && settledId !== selectedId;
 
   useEffect(() => {
@@ -163,7 +232,7 @@ export function PassportExplorer() {
   const garments = getGarments();
   const [selectedId, setSelectedId] = useState(garments[1].id); // legging: the elastane story
   const garment = garments.find((g) => g.id === selectedId)!;
-  const passport = getPassport(selectedId);
+  const { classification, passport, source } = useEngineC(selectedId);
 
   const select = (id: string) => {
     if (id === selectedId) return;
@@ -241,9 +310,12 @@ export function PassportExplorer() {
           </div>
 
           <div>
-            <MonoLabel>03 — Regulatory router</MonoLabel>
+            <div className="flex items-center justify-between gap-3">
+              <MonoLabel>03 — Regulatory router</MonoLabel>
+              <SourceBadge source={source} />
+            </div>
             <div className="mt-3">
-              <RegulatoryRouter selectedId={selectedId} />
+              <RegulatoryRouter selectedId={selectedId} classification={classification} />
             </div>
           </div>
         </div>
