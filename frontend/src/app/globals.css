@@ -193,50 +193,147 @@ body {
 }
 
 /* corner ticks that grow into locking brackets on hover, snap in on press */
+/* Each corner is an 18px box; its two bars (::before horizontal, ::after
+   vertical) ink out from the vertex on hover, the vertical staggered behind the
+   horizontal so the bracket draws itself on (the verified stroke draw-on, done
+   pure-CSS via scale). At rest the bars sit at 45% = a small tick; on press they
+   snap back to a partial lock. */
 .ib-corner {
   position: absolute;
-  width: 9px;
-  height: 9px;
-  border: 0 solid var(--ib-accent);
-  opacity: 0.85;
-  pointer-events: none;
-  transition:
-    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.3s ease;
-}
-.instrument-box:hover .ib-corner {
   width: 18px;
   height: 18px;
+  opacity: 0.9;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.instrument-box:hover .ib-corner {
   opacity: 1;
 }
-.instrument-box:active .ib-corner {
-  width: 13px;
-  height: 13px;
+.ib-corner::before,
+.ib-corner::after {
+  content: "";
+  position: absolute;
+  background: var(--ib-accent);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ib-corner::before {
+  height: 1.5px;
+  left: 0;
+  right: 0;
+}
+.ib-corner::after {
+  width: 1.5px;
+  top: 0;
+  bottom: 0;
+}
+.instrument-box:hover .ib-corner::before {
+  transform: scaleX(1);
+}
+.instrument-box:hover .ib-corner::after {
+  transform: scaleY(1);
+  transition-delay: 0.06s;
+}
+.instrument-box:active .ib-corner::before {
+  transform: scaleX(0.7);
+}
+.instrument-box:active .ib-corner::after {
+  transform: scaleY(0.7);
 }
 .ib-tl {
   top: -1px;
   left: -1px;
-  border-top-width: 1.5px;
-  border-left-width: 1.5px;
+}
+.ib-tl::before {
+  top: 0;
+  transform: scaleX(0.45);
+  transform-origin: left;
+}
+.ib-tl::after {
+  left: 0;
+  transform: scaleY(0.45);
+  transform-origin: top;
 }
 .ib-tr {
   top: -1px;
   right: -1px;
-  border-top-width: 1.5px;
-  border-right-width: 1.5px;
+}
+.ib-tr::before {
+  top: 0;
+  transform: scaleX(0.45);
+  transform-origin: right;
+}
+.ib-tr::after {
+  right: 0;
+  transform: scaleY(0.45);
+  transform-origin: top;
 }
 .ib-bl {
   bottom: -1px;
   left: -1px;
-  border-bottom-width: 1.5px;
-  border-left-width: 1.5px;
+}
+.ib-bl::before {
+  bottom: 0;
+  transform: scaleX(0.45);
+  transform-origin: left;
+}
+.ib-bl::after {
+  left: 0;
+  transform: scaleY(0.45);
+  transform-origin: bottom;
 }
 .ib-br {
   bottom: -1px;
   right: -1px;
-  border-bottom-width: 1.5px;
-  border-right-width: 1.5px;
+}
+.ib-br::before {
+  bottom: 0;
+  transform: scaleX(0.45);
+  transform-origin: right;
+}
+.ib-br::after {
+  right: 0;
+  transform: scaleY(0.45);
+  transform-origin: bottom;
+}
+
+/* Hero-only: a single accent beam runs the frame perpetually (one box, the
+   enzyme Mol* centerpiece), masked to a 1.5px border ring. The canvas box has no
+   tilt, so the beam is what gives the grand-prize moment its living presence. */
+@property --ib-beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.ib-beam {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--ib-beam-angle),
+    transparent 0 62%,
+    color-mix(in oklch, var(--ib-accent) 35%, transparent) 74%,
+    var(--ib-accent) 90%,
+    color-mix(in oklch, var(--ib-accent) 35%, transparent) 96%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  /* the glow bleed is what makes a 2px ring read as a running current */
+  filter: drop-shadow(0 0 5px var(--ib-accent));
+  animation: ib-beam-run 4.5s linear infinite;
+}
+@keyframes ib-beam-run {
+  to {
+    --ib-beam-angle: 360deg;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

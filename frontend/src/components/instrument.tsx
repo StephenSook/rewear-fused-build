@@ -25,12 +25,15 @@ export function BeveledBox({
   accent = "none",
   tilt = true,
   press = false,
+  beam = false,
 }: {
   children: ReactNode;
   className?: string;
   accent?: "bio" | "fiber" | "none";
   tilt?: boolean;
   press?: boolean;
+  /** Hero-only: a perpetual accent beam runs the frame. Reserve for one box. */
+  beam?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -53,6 +56,7 @@ export function BeveledBox({
         className,
       )}
     >
+      {beam && <span aria-hidden className="ib-beam" />}
       <span aria-hidden className="instrument-box-spot" />
       <span aria-hidden className="ib-scan" />
       <span aria-hidden className="ib-corner ib-tl" />
