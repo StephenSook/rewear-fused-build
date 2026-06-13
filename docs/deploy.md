@@ -10,9 +10,20 @@ D1: build now, but deploy only from the fresh public repo on June 14 (clean even
 
 ## June 14 steps
 
-### 1. Fresh repo
-- `gh repo create StephenSook/rewear-fused-2 --public` (or the agreed name), push `main`.
+### 1. Fresh repo with clean event-window history
+A plain `git push` to a new repo carries the old commit dates (git preserves each commit's author/committer timestamp), so the history would still visibly show pre-event commits. To start history on June 14, re-init git from the working tree:
+```bash
+# in a COPY of the working tree (keep ~/dev/rewear-fused as the private backup)
+cp -R ~/dev/rewear-fused ~/dev/rewear-fused-event && cd ~/dev/rewear-fused-event
+rm -rf .git
+git init && git add -A
+git commit -m "REWEAR-FUSED: initial event build"   # dated June 14
+gh repo create StephenSook/<event-repo-name> --public --source=. --remote=origin --push
+```
+Then keep committing through June 14-16 (the real in-event work). Result: the public submission repo shows history starting June 14, no pre-event commits.
+- Honesty note: this is timestamp-cosmetic. The defensible posture stays "research and planning before (allowed, per rule 5), software built for the event." Do not claim the code was written for the first time during the event if asked directly; lead with the research/planning framing.
 - Confirm CI green on the new repo (frontend + backend + engine-c jobs).
+- HARD: nothing is committed to this repo after the June 16 11:59pm DevPost deadline. June 17 is present-only.
 
 ### 2. Engine C on Render (the live endpoint)
 - Render dashboard: New > Blueprint, pick the repo. It reads `render.yaml` and creates `rewear-engine-c`.
