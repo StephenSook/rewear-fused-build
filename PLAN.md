@@ -38,11 +38,11 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 2.2 | Engine A screening | engine-a/ (RDKit) | Stephen→Pravin | 🟡 | 0.4 | Stephen building real RDKit reference impl 2026-06-12 pre-kickoff (CPU-feasible); → Pravin to own/extend at kickoff |
 | 2.3 | GPU pre-flight smoke | backend/scripts | Pravin | ⬜ | - | before June 14 |
 | 2.4 | Artifact server + manifest | backend/api | Pravin | ⬜ | 2.1,2.2 | SHA-256 signed |
-| 3.1 | Engine C data ETL | engine-c/ingest | Stephen→Vinh | 🟡 | 0.4 | Stephen building real CPSC Recalls API + Safety Gate/PFAS ETL 2026-06-12 (CPSC API verified live, 805+ children's records); → Vinh |
-| 3.2 | Compliance classifier | engine-c/classifier | Stephen→Vinh | 🟡 | 3.1 | Stephen building deterministic rule layer + real CatBoost on CPSC data, honest PR-AUC; replaces placeholder probabilities; → Vinh |
-| 3.3 | Passport (VC + GS1 + QR) | engine-c/passport | Stephen→Vinh | 🟡 | 3.2 | Stephen building real DPP emitter (W3C VC 2.0 + GS1 Digital Link) clear/lab-test/divert; → Vinh |
-| 3.4 | Live endpoint + keepalive | engine-c/api | Stephen→Vinh | 🟡 | 3.2 | endpoint scaffold serves static bundle today; Stephen wiring real classifier + keepalive; → Vinh |
-| 4.1 | Wire frontend to real artifacts | frontend, data | Stephen | ⬜ | 2.4,3.3 | at artifact-freeze gate |
+| 3.1 | Engine C data ETL | engine-c/ingest | Stephen→Vinh | ✅ | 0.4 | 631 real CPSC recalls ingested + labeled (flammability 206, drawstring 142, lead 12); → Vinh to extend (Safety Gate, PFAS) |
+| 3.2 | Compliance classifier | engine-c/classifier | Stephen→Vinh | ✅ | 3.1 | deterministic rules + per-label CatBoost, honest CV PR-AUC (flammability 0.99 product-type signal, lead 0.25 — ROC 0.89 lies on rare positives); 10 tests pass; → Vinh |
+| 3.3 | Passport (VC + GS1 + QR) | engine-c/passport | Stephen→Vinh | ✅ | 3.2 | real DPP emitter: W3C VC 2.0 + real Ed25519 (did:key) + GS1 Digital Link; 3 signed passports; clear/lab-test/divert; → Vinh |
+| 3.4 | Live endpoint + keepalive | engine-c/api | Stephen→Vinh | 🟡 | 3.2 | /classify + /passport serve real model output (TestClient-verified); Render deploy + keepalive cron pending; → Vinh |
+| 4.1 | Wire frontend to real artifacts | frontend, data | Stephen | 🟡 | 3.3 | Engine C compliance wired to real signed bundle (passport router verified, 0 errors); Engine A/B still in-silico until their pipelines run |
 | 4.2 | Deploy (June 14 fresh repo) | infra | all | ⬜ | 1.3 | Vercel + Render + secrets |
 | 4.3 | Playwright golden-path (deployed) | frontend/e2e | Stephen | ⬜ | 4.2 | incognito smoke |
 | 4.4 | Demo video | docs | all | ⬜ | 4.3 | June 16, captioned, <5min |
@@ -51,6 +51,7 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 
 - **2026-06-12 (Stephen):** Frontend fully maximized + verified on the prod webpack build (all 5 views, 0 console errors): Story cursor-3D + close burst, Enzyme Mol* + PLACER, Fiber selective-Bloom + count-up funnel, Passport live classify-to-verdict router + QR scan reticle, Loop instrument stepper + cleavage glow. Global systems: Web Audio engine, route transitions, shared Reveal choreography, skip-link + focus rings, reduced-motion across all 3D.
 - **2026-06-12 (Stephen, directive from owner):** Make the data REAL now, kill all `placeholder:true`. Taking on Engine C (3.1-3.4) + Engine A (2.2) as real reference implementations pre-kickoff so the demo runs on real data, not mocks. CPSC Recalls API verified reachable (live JSON, 805+ children's records). engine-c venv built: rdkit 2026.03.3, catboost 1.2.10, sklearn 1.9.0. → Vinh/Pravin to own/extend at kickoff. Engine B de-novo design still needs RunPod GPU (Pravin, D6); CPU parts (FoldSeek novelty) buildable here.
+- **2026-06-12 (Stephen):** ✅ Engine C is REAL end-to-end (commits 5509c74, 9f5c7d2). 631 live CPSC recalls → labeled → per-label CatBoost (label-keywords stripped so it can't cheat) → honest CV PR-AUC (flammability 0.99, drawstring 0.96, lead 0.25). Deterministic rule layer routes clear/lab-test/divert from real fiber composition; bodysuit clear, legging lab-test (5% elastane ESPR flag), rashguard divert (18% elastane FAIL + PFAS flag). Real W3C VC 2.0 passports, Ed25519-signed, GS1 Digital Link. Live /classify + /passport verified. Frontend wired to the real signed bundle (placeholder numbers GONE); passport router verified in-browser, prod webpack build green. The research PDF's synthetic-SKU population was REJECTED per the no-synthetic-data rule. NEXT: Engine A (RDKit screening, real candidate + funnel), then Render deploy + keepalive (3.4), then Engine B GPU (Pravin).
 
 ## Timeline (UPDATED 2026-06-12 from the Cox "Know Before You Go" email)
 
