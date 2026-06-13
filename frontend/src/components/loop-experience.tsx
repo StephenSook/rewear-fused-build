@@ -6,8 +6,10 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, X, Recycle } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
+import { Reveal } from "./reveal";
 import { loopProgress } from "./loop-progress";
 import { audioEngine } from "@/lib/audio-engine";
+import { cn } from "@/lib/cn";
 
 const ParticleStorm = dynamic(() => import("./particle-storm"), { ssr: false });
 
@@ -18,6 +20,69 @@ const PHASES = [
   "Monomers",
   "Re-spun: a new onesie",
 ];
+
+/** Instrument stepper: the five loop stages, the active one lit, a baseline
+ *  fill tracking the scroll-driven loop progress (ref-written, no re-render). */
+function LoopStepper({ phase }: { phase: number }) {
+  const fillRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let raf = 0;
+    const tick = () => {
+      const el = fillRef.current;
+      if (el) el.style.transform = `scaleX(${loopProgress.value})`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <div className="mt-10 w-full max-w-xl">
+      <div className="relative h-px w-full bg-rule">
+        <div
+          ref={fillRef}
+          className="absolute inset-0 h-px origin-left bg-accent-bio"
+          style={{
+            transform: "scaleX(0)",
+            boxShadow: "0 0 8px color-mix(in oklch, var(--color-accent-bio) 70%, transparent)",
+          }}
+        />
+      </div>
+      <div className="mt-3 flex justify-between gap-1">
+        {PHASES.map((label, i) => {
+          const active = i === phase;
+          const done = i < phase;
+          const cleave = i === 2 && active;
+          return (
+            <div key={label} className="flex flex-1 flex-col items-center gap-2">
+              <span
+                className={cn(
+                  "h-2 w-2 rounded-full transition-colors duration-300",
+                  cleave
+                    ? "bg-fg"
+                    : active
+                      ? "bg-accent-bio"
+                      : done
+                        ? "bg-accent-bio/50"
+                        : "bg-fg-muted/40",
+                )}
+              />
+              <span
+                className={cn(
+                  "text-center font-mono text-[0.55rem] uppercase tracking-wider transition-colors duration-300",
+                  active ? "text-fg" : "text-fg-muted/60",
+                )}
+              >
+                {label}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export function LoopExperience() {
   const spacerRef = useRef<HTMLDivElement>(null);
@@ -63,17 +128,21 @@ export function LoopExperience() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mt-4 font-display text-4xl sm:text-6xl"
+              className={cn(
+                "mt-4 font-display text-4xl sm:text-6xl transition-colors",
+                phase === 2 && "text-fg drop-shadow-[0_0_24px_color-mix(in_oklch,var(--color-accent-bio)_55%,transparent)]",
+              )}
             >
               {PHASES[phase]}
             </motion.h2>
-            <p className="mono-label mt-8">scroll to drive the loop</p>
+            <LoopStepper phase={phase} />
+            <p className="mono-label mt-6">scroll to drive the loop</p>
           </div>
         </section>
 
         {/* solid sections occlude the fixed canvas below */}
         <section className="relative bg-bg px-6 py-24">
-          <div className="mx-auto max-w-5xl">
+          <Reveal className="mx-auto max-w-5xl">
             <MonoLabel>Two end-of-life fates</MonoLabel>
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               <BeveledBox className="p-6">
@@ -101,11 +170,11 @@ export function LoopExperience() {
                 </ol>
               </BeveledBox>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         <section className="relative bg-bg px-6 pb-24">
-          <div className="mx-auto max-w-5xl">
+          <Reveal className="mx-auto max-w-5xl">
             <BeveledBox accent="fiber" className="p-6">
               <MonoLabel>Microplastics, reframed</MonoLabel>
               <p className="mt-3 max-w-3xl text-fg-muted">
@@ -115,11 +184,11 @@ export function LoopExperience() {
                 controlled industrial hydrolysis fate.
               </p>
             </BeveledBox>
-          </div>
+          </Reveal>
         </section>
 
         <footer className="relative bg-bg px-6 pb-32">
-          <div className="mx-auto max-w-5xl">
+          <Reveal className="mx-auto max-w-5xl">
             <p className="max-w-3xl font-display text-2xl leading-snug sm:text-4xl">
               Carter&apos;s, here is the molecule for your next onesie, and here is
               the enzyme that closes its loop.
@@ -174,7 +243,7 @@ export function LoopExperience() {
               </Link>
               <InSilicoBadge />
             </div>
-          </div>
+          </Reveal>
         </footer>
       </div>
     </>

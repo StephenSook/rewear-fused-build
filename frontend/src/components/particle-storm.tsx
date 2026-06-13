@@ -54,7 +54,7 @@ const FRAG = /* glsl */ `
   }
 `;
 
-function Storm() {
+function Storm({ reduced }: { reduced: boolean }) {
   const matRef = useRef<THREE.ShaderMaterial>(null);
   const { start, mono, end, seed } = useMemo(() => buildLoopBuffers(N), []);
   const uniforms = useMemo(
@@ -71,10 +71,12 @@ function Storm() {
   useFrame((state, dt) => {
     const m = matRef.current;
     if (!m) return;
-    m.uniforms.uTime.value += dt;
+    // scroll-driven morph always tracks; idle shimmer + camera sway freeze under
+    // prefers-reduced-motion (the loop still reads, just without ambient motion).
+    if (!reduced) m.uniforms.uTime.value += dt;
     const cur = m.uniforms.uProgress.value;
     m.uniforms.uProgress.value = cur + (loopProgress.value - cur) * Math.min(1, dt * 4);
-    state.camera.position.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.35;
+    state.camera.position.x = reduced ? 0 : Math.sin(state.clock.elapsedTime * 0.1) * 0.35;
     state.camera.lookAt(0, 0, 0);
   });
 
@@ -100,6 +102,9 @@ function Storm() {
 }
 
 export default function ParticleStorm() {
+  const reduced =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   return (
     <Canvas
       camera={{ position: [0, 0, 6.5], fov: 50 }}
@@ -107,7 +112,7 @@ export default function ParticleStorm() {
       gl={{ alpha: true, antialias: false }}
       style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     >
-      <Storm />
+      <Storm reduced={!!reduced} />
     </Canvas>
   );
 }
