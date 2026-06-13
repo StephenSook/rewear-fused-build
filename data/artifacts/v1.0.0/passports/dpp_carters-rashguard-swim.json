@@ -1,20 +1,26 @@
 {
-  "passportId": "urn:dpp:carters-legging-blend",
-  "garmentId": "carters-legging-blend",
-  "gs1DigitalLinkUri": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
-  "qrPayload": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
+  "passportId": "urn:dpp:carters-rashguard-swim",
+  "garmentId": "carters-rashguard-swim",
+  "gs1DigitalLinkUri": "https://id.gs1.org/01/00424966177654/21/carters-rashguard-swim",
+  "qrPayload": "https://id.gs1.org/01/00424966177654/21/carters-rashguard-swim",
   "classification": {
-    "garmentId": "carters-legging-blend",
-    "decision": "lab-test",
-    "probability": 0.91,
+    "garmentId": "carters-rashguard-swim",
+    "decision": "divert",
+    "probability": 0.975,
     "prAuc": 0.732,
     "auc": 0.951,
     "triggeredRegulations": [
       {
         "regulationId": "EU_ESPR_DPP",
+        "status": "FAIL",
+        "measuredOrPredicted": "deterministic",
+        "detail": "18% elastane blocks fiber-to-fiber recycling today; ESPR Regulation 2024/1781 (DPP required)"
+      },
+      {
+        "regulationId": "CA_AB1817_PFAS",
         "status": "FLAG",
         "measuredOrPredicted": "deterministic",
-        "detail": "5% elastane blend not yet fiber-to-fiber recyclable; ESPR Regulation 2024/1781 (DPP required)"
+        "detail": "water-repellent/UPF finish: total-organic-fluorine screen required under California AB 1817 (2022) (100 ppm total organic fluorine (50 ppm from 2027))"
       },
       {
         "regulationId": "REACH_ENTRY43_AMINES",
@@ -26,15 +32,15 @@
     "shapTopFeatures": [
       {
         "feature": "elastane %",
-        "weight": 0.05
+        "weight": 0.18
       },
       {
         "feature": "synthetic %",
-        "weight": 0.0
+        "weight": 0.82
       },
       {
-        "feature": "archetype:legging",
-        "weight": 0.0
+        "feature": "archetype:swim",
+        "weight": 1.0
       }
     ],
     "inSilico": true
@@ -49,7 +55,7 @@
     "proof": {
       "type": "Ed25519Signature2020",
       "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-      "signatureValue": "FPIZ8p6RHFCcc/XKFqh40Whu4OwCDali3R4/cngDe0aZaGgadkXcxbTXU/InnATlsBiU8Xw9AJbn4xtHZAgDAw=="
+      "signatureValue": "kMiWux15vrz5BcmNZhvSSCt0ZSnrkO7THS/Ezq3Z2i0a/7SkYUqqlk/0A3g0kfaLt4D2vxEOBcTrlVY1J3ikDg=="
     }
   },
   "trl": "TRL 2-3",

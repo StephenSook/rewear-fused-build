@@ -1,20 +1,20 @@
 {
-  "passportId": "urn:dpp:carters-legging-blend",
-  "garmentId": "carters-legging-blend",
-  "gs1DigitalLinkUri": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
-  "qrPayload": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
+  "passportId": "urn:dpp:carters-bodysuit-cotton",
+  "garmentId": "carters-bodysuit-cotton",
+  "gs1DigitalLinkUri": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
+  "qrPayload": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
   "classification": {
-    "garmentId": "carters-legging-blend",
-    "decision": "lab-test",
-    "probability": 0.91,
+    "garmentId": "carters-bodysuit-cotton",
+    "decision": "clear",
+    "probability": 0.973,
     "prAuc": 0.732,
     "auc": 0.951,
     "triggeredRegulations": [
       {
         "regulationId": "EU_ESPR_DPP",
-        "status": "FLAG",
+        "status": "PASS",
         "measuredOrPredicted": "deterministic",
-        "detail": "5% elastane blend not yet fiber-to-fiber recyclable; ESPR Regulation 2024/1781 (DPP required)"
+        "detail": "mono/cellulosic composition is fiber-to-fiber recyclable; ESPR Regulation 2024/1781 (DPP required)"
       },
       {
         "regulationId": "REACH_ENTRY43_AMINES",
@@ -26,14 +26,14 @@
     "shapTopFeatures": [
       {
         "feature": "elastane %",
-        "weight": 0.05
+        "weight": 0.0
       },
       {
         "feature": "synthetic %",
         "weight": 0.0
       },
       {
-        "feature": "archetype:legging",
+        "feature": "archetype:bodysuit",
         "weight": 0.0
       }
     ],
@@ -49,7 +49,7 @@
     "proof": {
       "type": "Ed25519Signature2020",
       "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-      "signatureValue": "FPIZ8p6RHFCcc/XKFqh40Whu4OwCDali3R4/cngDe0aZaGgadkXcxbTXU/InnATlsBiU8Xw9AJbn4xtHZAgDAw=="
+      "signatureValue": "RJO8I7WyRmh/h8/63Y4AaBl0/FfdmTU7Y0fd85AqBOZP9EBnK1nOasG0J5ZvF3AxtrmBGPyTZArtaV1/Hg1ZCQ=="
     }
   },
   "trl": "TRL 2-3",
