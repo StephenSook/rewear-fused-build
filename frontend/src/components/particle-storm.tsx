@@ -40,7 +40,7 @@ const VERT = /* glsl */ `
     vec3 base = mix(amber, bio, smoothstep(0.15, 0.45, p));
     base = mix(base, mix(bio, amber, 0.5), smoothstep(0.55, 0.95, p));
     float flash = exp(-pow((p - 0.46) / 0.07, 2.0)); // accents fuse to white at cleavage
-    vColor = mix(base, white, flash);
+    vColor = mix(base, white * 1.5, flash); // brighter HDR-ish fuse: additive blooms the cleavage
   }
 `;
 
@@ -49,8 +49,10 @@ const FRAG = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    float a = smoothstep(0.5, 0.0, d) * 0.85;
-    gl_FragColor = vec4(vColor, a);
+    float core = smoothstep(0.5, 0.0, d);
+    float a = core * 0.85;
+    // brighter tight core: additive accumulation reads as a soft molecular glow
+    gl_FragColor = vec4(vColor * (1.0 + pow(core, 2.2) * 0.6), a);
   }
 `;
 

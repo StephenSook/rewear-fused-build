@@ -97,11 +97,36 @@ export default function MolstarViewer({
           if (comp) {
             await plugin.builders.structure.representation.addRepresentation(comp, {
               type: "ball-and-stick",
+              // emissive flag (ball-and-stick PD.Numeric) so the triad is the
+              // one thing the emissive-mode bloom below energizes
+              typeParams: { emissive: 0.85 },
               color: "uniform",
               colorParams: { value: Color(0x34e0c4) },
             });
           }
         }
+      }
+
+      // Selective emissive bloom: only the emissive-flagged catalytic triad
+      // glows bio-green, pulling the eye to the active site (the grand-prize
+      // moment). Isolated in its own try/catch and grounded in the installed
+      // molstar 5.9 param shapes, so a mismatch or weak GPU degrades to the
+      // plain cartoon, never a dead viewer.
+      try {
+        const pp = plugin.canvas3d!.props.postprocessing;
+        await PluginCommands.Canvas3D.SetSettings(plugin, {
+          settings: {
+            postprocessing: {
+              ...pp,
+              bloom: {
+                name: "on",
+                params: { strength: 1.0, radius: 0.85, threshold: 0, mode: "emissive" },
+              },
+            },
+          },
+        });
+      } catch {
+        // bloom unsupported here; the cartoon still renders fine
       }
 
       // Frame the structure. Auto-spin is intentionally omitted: Mol*'s trackball

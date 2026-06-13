@@ -98,8 +98,11 @@ const FRAG = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    float a = smoothstep(0.5, 0.0, d) * vAlpha;
-    gl_FragColor = vec4(vColor, a);
+    float core = smoothstep(0.5, 0.0, d);
+    float a = core * vAlpha;
+    // brighter tight core so the cloud reads as glowing molecules in depth;
+    // kept subtle + per-particle so it never washes the closing headline
+    gl_FragColor = vec4(vColor * (1.0 + pow(core, 2.2) * 0.5), a);
   }
 `;
 

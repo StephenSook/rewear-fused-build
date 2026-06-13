@@ -2,8 +2,8 @@
 
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { OrbitControls, Sparkles } from "@react-three/drei";
+import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const HARD = "#e0934f"; // fiber amber: crystalline hard segment
@@ -50,11 +50,14 @@ function Chain({ reduced }: { reduced: boolean }) {
       {hardX.map((x) => (
         <mesh key={x} position={[x, 0, 0]}>
           <boxGeometry args={[0.8, 0.8, 0.8]} />
+          {/* richer amber than the old flat 0.7, but kept LDR (toneMapped on,
+              below bloom) so the hard segments read as stable + load-bearing and
+              the cleavable bond stays the one glowing hero the enzyme attacks */}
           <meshStandardMaterial
             color={HARD}
             emissive={HARD}
-            emissiveIntensity={0.7}
-            metalness={0.25}
+            emissiveIntensity={1.0}
+            metalness={0.1}
             roughness={0.4}
           />
         </mesh>
@@ -63,7 +66,12 @@ function Chain({ reduced }: { reduced: boolean }) {
       {[...coilA, ...coilB].map((p, i) => (
         <mesh key={i} position={p}>
           <sphereGeometry args={[0.12, 16, 16]} />
-          <meshStandardMaterial color={SOFT} roughness={0.6} />
+          <meshStandardMaterial
+            color={SOFT}
+            emissive={SOFT}
+            emissiveIntensity={0.25}
+            roughness={0.6}
+          />
         </mesh>
       ))}
 
@@ -85,10 +93,15 @@ export default function FiberArchitecture() {
   const reduced = prefersReduced();
   return (
     <Canvas camera={{ position: [0, 1.2, 7], fov: 42 }} dpr={[1, 2]} gl={{ antialias: true }}>
+      <fog attach="fog" args={["#0a0d12", 9, 24]} />
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 6, 6]} intensity={110} />
       <pointLight position={[-6, -3, 2]} intensity={40} color={BOND} />
       <Chain reduced={reduced} />
+      {/* low-density particulate seats the fiber in depth, split by accent so
+          the two-accent system holds; speed 0 freezes them under reduced-motion */}
+      <Sparkles count={40} scale={[11, 6, 6]} size={2} speed={reduced ? 0 : 0.3} color={BOND} opacity={0.5} />
+      <Sparkles count={30} scale={[11, 6, 6]} size={1.6} speed={reduced ? 0 : 0.25} color={HARD} opacity={0.35} />
       <OrbitControls
         enablePan={false}
         enableZoom={false}
@@ -98,12 +111,15 @@ export default function FiberArchitecture() {
         autoRotateSpeed={0.7}
       />
       <EffectComposer>
+        {/* selective: only the HDR bond (toneMapped:false, pulsing 2.3-3.1)
+            crosses threshold and blooms; the LDR amber stays crisp */}
         <Bloom
           mipmapBlur
           intensity={0.85}
-          luminanceThreshold={0.6}
+          luminanceThreshold={0.65}
           luminanceSmoothing={0.3}
         />
+        <Vignette offset={0.3} darkness={0.8} />
       </EffectComposer>
     </Canvas>
   );
