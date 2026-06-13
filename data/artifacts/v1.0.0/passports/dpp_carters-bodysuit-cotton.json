@@ -1,8 +1,8 @@
 {
   "passportId": "urn:dpp:carters-bodysuit-cotton",
   "garmentId": "carters-bodysuit-cotton",
-  "gs1DigitalLinkUri": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
-  "qrPayload": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
+  "gs1DigitalLinkUri": "https://id.gs1.org/01/79767705865197/21/carters-bodysuit-cotton",
+  "qrPayload": "https://id.gs1.org/01/79767705865197/21/carters-bodysuit-cotton",
   "classification": {
     "garmentId": "carters-bodysuit-cotton",
     "decision": "clear",
@@ -23,7 +23,7 @@
         "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
       }
     ],
-    "shapTopFeatures": [
+    "compositionDrivers": [
       {
         "feature": "elastane %",
         "weight": 0.0
@@ -45,11 +45,11 @@
       "VerifiableCredential",
       "DigitalProductPassport"
     ],
-    "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8",
+    "issuer": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv",
     "proof": {
       "type": "Ed25519Signature2020",
-      "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-      "signatureValue": "RJO8I7WyRmh/h8/63Y4AaBl0/FfdmTU7Y0fd85AqBOZP9EBnK1nOasG0J5ZvF3AxtrmBGPyTZArtaV1/Hg1ZCQ=="
+      "verificationMethod": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv#key-1",
+      "signatureValue": "EOayYC3hD8tTVB1bnePVJQ27vTJ4NDSfkxLSuTyIOHINRGmLhyqF6ZI83b7HEs3JonxOtPGkcZ5ECI9QNkUIAA=="
     }
   },
   "trl": "TRL 2-3",

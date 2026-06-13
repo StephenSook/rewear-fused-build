@@ -2,8 +2,8 @@
   {
     "passportId": "urn:dpp:carters-bodysuit-cotton",
     "garmentId": "carters-bodysuit-cotton",
-    "gs1DigitalLinkUri": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
-    "qrPayload": "https://id.gs1.org/01/00720456534117/21/carters-bodysuit-cotton",
+    "gs1DigitalLinkUri": "https://id.gs1.org/01/79767705865197/21/carters-bodysuit-cotton",
+    "qrPayload": "https://id.gs1.org/01/79767705865197/21/carters-bodysuit-cotton",
     "classification": {
       "garmentId": "carters-bodysuit-cotton",
       "decision": "clear",
@@ -24,7 +24,7 @@
           "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
         }
       ],
-      "shapTopFeatures": [
+      "compositionDrivers": [
         {
           "feature": "elastane %",
           "weight": 0.0
@@ -46,11 +46,11 @@
         "VerifiableCredential",
         "DigitalProductPassport"
       ],
-      "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8",
+      "issuer": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv",
       "proof": {
         "type": "Ed25519Signature2020",
-        "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-        "signatureValue": "RJO8I7WyRmh/h8/63Y4AaBl0/FfdmTU7Y0fd85AqBOZP9EBnK1nOasG0J5ZvF3AxtrmBGPyTZArtaV1/Hg1ZCQ=="
+        "verificationMethod": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv#key-1",
+        "signatureValue": "EOayYC3hD8tTVB1bnePVJQ27vTJ4NDSfkxLSuTyIOHINRGmLhyqF6ZI83b7HEs3JonxOtPGkcZ5ECI9QNkUIAA=="
       }
     },
     "trl": "TRL 2-3",
@@ -59,8 +59,8 @@
   {
     "passportId": "urn:dpp:carters-legging-blend",
     "garmentId": "carters-legging-blend",
-    "gs1DigitalLinkUri": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
-    "qrPayload": "https://id.gs1.org/01/00133201003900/21/carters-legging-blend",
+    "gs1DigitalLinkUri": "https://id.gs1.org/01/31278070569653/21/carters-legging-blend",
+    "qrPayload": "https://id.gs1.org/01/31278070569653/21/carters-legging-blend",
     "classification": {
       "garmentId": "carters-legging-blend",
       "decision": "lab-test",
@@ -81,7 +81,7 @@
           "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
         }
       ],
-      "shapTopFeatures": [
+      "compositionDrivers": [
         {
           "feature": "elastane %",
           "weight": 0.05
@@ -103,11 +103,11 @@
         "VerifiableCredential",
         "DigitalProductPassport"
       ],
-      "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8",
+      "issuer": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv",
       "proof": {
         "type": "Ed25519Signature2020",
-        "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-        "signatureValue": "FPIZ8p6RHFCcc/XKFqh40Whu4OwCDali3R4/cngDe0aZaGgadkXcxbTXU/InnATlsBiU8Xw9AJbn4xtHZAgDAw=="
+        "verificationMethod": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv#key-1",
+        "signatureValue": "ydIIQDu6067Jymz9BfQoWeI03o3vo+a3894zIbEvHB0UzN8kvZM7XXXMJPcXC4Kk9B20GohmyaSv9dnF8x3XCA=="
       }
     },
     "trl": "TRL 2-3",
@@ -116,8 +116,8 @@
   {
     "passportId": "urn:dpp:carters-rashguard-swim",
     "garmentId": "carters-rashguard-swim",
-    "gs1DigitalLinkUri": "https://id.gs1.org/01/00424966177654/21/carters-rashguard-swim",
-    "qrPayload": "https://id.gs1.org/01/00424966177654/21/carters-rashguard-swim",
+    "gs1DigitalLinkUri": "https://id.gs1.org/01/25795578635202/21/carters-rashguard-swim",
+    "qrPayload": "https://id.gs1.org/01/25795578635202/21/carters-rashguard-swim",
     "classification": {
       "garmentId": "carters-rashguard-swim",
       "decision": "divert",
@@ -144,7 +144,7 @@
           "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
         }
       ],
-      "shapTopFeatures": [
+      "compositionDrivers": [
         {
           "feature": "elastane %",
           "weight": 0.18
@@ -166,11 +166,11 @@
         "VerifiableCredential",
         "DigitalProductPassport"
       ],
-      "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8",
+      "issuer": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv",
       "proof": {
         "type": "Ed25519Signature2020",
-        "verificationMethod": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8#key-1",
-        "signatureValue": "kMiWux15vrz5BcmNZhvSSCt0ZSnrkO7THS/Ezq3Z2i0a/7SkYUqqlk/0A3g0kfaLt4D2vxEOBcTrlVY1J3ikDg=="
+        "verificationMethod": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv#key-1",
+        "signatureValue": "aTzL26aGEV8YSudhkoOibfHOw3AKpOrQFt9+1q1DJF0ujBhUaV2L8b6kZHg8QXVkouDIFL7KMOIzmrWpoPRUCw=="
       }
     },
     "trl": "TRL 2-3",

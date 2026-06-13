@@ -3,10 +3,10 @@
   "generatedAt": "2026-06-12T00:00:00Z",
   "files": [
     {
-      "path": "garments.json",
-      "sha256": "4968684574f98811df952507c2793695a80d96f53ccea3bfee3dcc97108fcf5e",
-      "bytes": 1252,
-      "producedBy": "input"
+      "path": "compliance/classifications.json",
+      "sha256": "1bc60947170ea48b540d6476f438f43f14853bc61bb6d27505d0be10758ba0f0",
+      "bytes": 3149,
+      "producedBy": "engine-c"
     },
     {
       "path": "compliance/regulations.json",
@@ -15,32 +15,32 @@
       "producedBy": "input"
     },
     {
-      "path": "compliance/classifications.json",
-      "sha256": "28c6320eadb1c3c9c67a3357b9c5f583f6a6a845ac63c69923fd483a94a5c33d",
-      "bytes": 3140,
-      "producedBy": "engine-c"
+      "path": "garments.json",
+      "sha256": "4968684574f98811df952507c2793695a80d96f53ccea3bfee3dcc97108fcf5e",
+      "bytes": 1252,
+      "producedBy": "input"
     },
     {
       "path": "passports/dpp_carters-bodysuit-cotton.json",
-      "sha256": "e2ab25ffbd6dca0a6d59e1a81a6384c6325077df291916326fb026a6bafecd6f",
-      "bytes": 1747,
+      "sha256": "2cbf9dd121e7969bb351dca496b02bd6d6a44750f8186e151570ee4959c3509f",
+      "bytes": 1758,
       "producedBy": "engine-c"
     },
     {
       "path": "passports/dpp_carters-legging-blend.json",
-      "sha256": "a70773cbe362c99e610a75a114b57110bf8325d07b6ee8c286ea91ac6f37aa2a",
-      "bytes": 1734,
+      "sha256": "2d9f47f75bcc9e359d83b319dd5ffe4f05554d39c8f0ed94047c60249e08dc09",
+      "bytes": 1745,
       "producedBy": "engine-c"
     },
     {
       "path": "passports/dpp_carters-rashguard-swim.json",
-      "sha256": "2d6ae622dd92c65b18d173f359eaa1c5411286399850e4d5ec72ada31d43fc62",
-      "bytes": 2039,
+      "sha256": "9011b5883e5edea8356cf3d3be05d58c7b69082a2f79b1353868f6c2bdfa9bba",
+      "bytes": 2050,
       "producedBy": "engine-c"
     }
   ],
   "modelVersions": {
     "engineC": "catboost-text-v1.0"
   },
-  "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8"
+  "issuer": "did:key:z6MkuBjwGH6xfC5Fh5C4anbn4WcG8S86AAexvnZQLBV966Uv"
 }

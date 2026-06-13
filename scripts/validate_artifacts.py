@@ -139,9 +139,9 @@ def v_classification(c: dict, where: str, reg_ids: set[str], strict: bool) -> No
             err(tw, f"measuredOrPredicted '{t.get('measuredOrPredicted')}' not in {sorted(MEASURED)}")
         if reg_ids and t.get("regulationId") not in reg_ids:
             warn(tw, f"regulationId '{t.get('regulationId')}' not in regulations catalog")
-    for j, s in enumerate(c.get("shapTopFeatures") or []):
+    for j, s in enumerate(c.get("compositionDrivers") or []):
         if not (isinstance(s, dict) and isinstance(s.get("feature"), str) and is_num(s.get("weight"))):
-            err(where, f"shapTopFeatures[{j}] must be {{feature: str, weight: number}}")
+            err(where, f"compositionDrivers[{j}] must be {{feature: str, weight: number}}")
 
 
 def v_classifications(reg_ids: set[str], garment_ids: set[str], strict: bool) -> None:

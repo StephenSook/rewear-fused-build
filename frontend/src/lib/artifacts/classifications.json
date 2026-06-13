@@ -19,7 +19,7 @@
         "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
       }
     ],
-    "shapTopFeatures": [
+    "compositionDrivers": [
       {
         "feature": "elastane %",
         "weight": 0.0
@@ -55,7 +55,7 @@
         "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
       }
     ],
-    "shapTopFeatures": [
+    "compositionDrivers": [
       {
         "feature": "elastane %",
         "weight": 0.05
@@ -97,7 +97,7 @@
         "detail": "aliphatic isocyanate design: no MDA/TDA pathway; REACH Annex XVII Entry 43 (30 mg/kg)"
       }
     ],
-    "shapTopFeatures": [
+    "compositionDrivers": [
       {
         "feature": "elastane %",
         "weight": 0.18

@@ -38,7 +38,29 @@ def _canonical(obj) -> bytes:
 _ISSUER_SEED = hashlib.sha256(b"rewear-fused-engine-c-issuer-v1").digest()
 _ISSUER_KEY = Ed25519PrivateKey.from_private_bytes(_ISSUER_SEED)
 _ISSUER_PUB = _ISSUER_KEY.public_key().public_bytes_raw()
-_DID = "did:key:z" + base64.urlsafe_b64encode(_ISSUER_PUB).decode().rstrip("=")
+
+_B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+
+
+def _base58btc(data: bytes) -> str:
+    n = int.from_bytes(data, "big")
+    out = ""
+    while n > 0:
+        n, r = divmod(n, 58)
+        out = _B58[r] + out
+    return _B58[0] * (len(data) - len(data.lstrip(b"\x00"))) + out
+
+
+# spec-compliant did:key: multibase 'z' (base58btc) of multicodec ed25519-pub (0xed01) + the key
+_DID = "did:key:z" + _base58btc(bytes([0xed, 0x01]) + _ISSUER_PUB)
+
+
+def _gtin14(seed: str) -> str:
+    """Deterministic GTIN-14 with a valid GS1 mod-10 check digit (the prior code used
+    Python's salted hash(), so the GTIN changed every run and failed its check digit)."""
+    base13 = str(int(hashlib.sha256(seed.encode()).hexdigest(), 16) % 10**13).zfill(13)
+    total = sum(int(d) * (3 if i % 2 == 0 else 1) for i, d in enumerate(reversed(base13)))
+    return base13 + str((10 - total % 10) % 10)
 
 
 def _decide(garment: dict, cm: M.ComplianceModel) -> dict:
@@ -90,7 +112,9 @@ def _decide(garment: dict, cm: M.ComplianceModel) -> dict:
         else:
             probability = round(min(0.95, 0.86 + f["elastane_pct"] / 100), 3)
         pr_auc, auc = macro_prauc, macro_auc
-    shap = [
+    # composition drivers behind the decision (honest provenance — these are real
+    # composition ratios, NOT SHAP attributions; named accordingly)
+    composition_drivers = [
         {"feature": "elastane %", "weight": round(f["elastane_pct"] / 100, 3)},
         {"feature": "synthetic %", "weight": round(f["synthetic_pct"] / 100, 3)},
         {"feature": f"archetype:{f['archetype']}", "weight": 1.0 if f["likely_dwr"] else 0.0},
@@ -103,13 +127,13 @@ def _decide(garment: dict, cm: M.ComplianceModel) -> dict:
         "prAuc": pr_auc,
         "auc": auc,
         "triggeredRegulations": triggered,
-        "shapTopFeatures": shap,
+        "compositionDrivers": composition_drivers,
         "inSilico": True,
     }
 
 
 def _passport(garment: dict, classification: dict) -> dict:
-    gtin = "00" + str(abs(hash(garment["id"])) % 10**12).zfill(12)
+    gtin = _gtin14(garment["id"])
     serial = garment["id"]
     uri = f"https://id.gs1.org/01/{gtin}/21/{serial}"
     credential_subject = {
