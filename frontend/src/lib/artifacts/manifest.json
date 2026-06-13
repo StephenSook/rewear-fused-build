@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-06-12T00:00:00Z",
+  "files": [
+    {
+      "path": "compliance/classifications.json",
+      "sha256": "28c6320eadb1c3c9c67a3357b9c5f583f6a6a845ac63c69923fd483a94a5c33d",
+      "bytes": 3140,
+      "producedBy": "engine-c"
+    },
+    {
+      "path": "passports/dpp_carters-bodysuit-cotton.json",
+      "sha256": "e2ab25ffbd6dca0a6d59e1a81a6384c6325077df291916326fb026a6bafecd6f",
+      "bytes": 1747,
+      "producedBy": "engine-c"
+    },
+    {
+      "path": "passports/dpp_carters-legging-blend.json",
+      "sha256": "a70773cbe362c99e610a75a114b57110bf8325d07b6ee8c286ea91ac6f37aa2a",
+      "bytes": 1734,
+      "producedBy": "engine-c"
+    },
+    {
+      "path": "passports/dpp_carters-rashguard-swim.json",
+      "sha256": "2d6ae622dd92c65b18d173f359eaa1c5411286399850e4d5ec72ada31d43fc62",
+      "bytes": 2039,
+      "producedBy": "engine-c"
+    }
+  ],
+  "modelVersions": {
+    "engineC": "catboost-text-v1.0"
+  },
+  "issuer": "did:key:z2uWMHEHCW0KhW2uuQGqJ-pQUegBMJIdxZ3sSF4SFuc8"
+}
