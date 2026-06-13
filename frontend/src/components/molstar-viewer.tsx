@@ -129,6 +129,36 @@ export default function MolstarViewer({
         // bloom unsupported here; the cartoon still renders fine
       }
 
+      // Contact-shadow depth (SSAO) on the cartoon, in its OWN try/catch so a
+      // param mismatch cannot take down the bloom above. Explicit full params
+      // (the molstar 5.9 occlusion shape), not a merge default.
+      try {
+        const pp2 = plugin.canvas3d!.props.postprocessing;
+        await PluginCommands.Canvas3D.SetSettings(plugin, {
+          settings: {
+            postprocessing: {
+              ...pp2,
+              occlusion: {
+                name: "on",
+                params: {
+                  samples: 32,
+                  multiScale: { name: "off", params: {} },
+                  radius: 5,
+                  bias: 0.8,
+                  blurKernelSize: 15,
+                  blurDepthBias: 0.5,
+                  resolutionScale: 1,
+                  color: Color(0x000000),
+                  transparentThreshold: 0.4,
+                },
+              },
+            },
+          },
+        });
+      } catch {
+        // SSAO unsupported here; bloom + cartoon still render
+      }
+
       // Frame the structure. Auto-spin is intentionally omitted: Mol*'s trackball
       // spin tick throws every frame in this build, so drag-to-rotate is the
       // interaction. The camera reset gives a clean initial framing.

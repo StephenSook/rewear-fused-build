@@ -2,6 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { buildStoryBuffers } from "./story-geometry";
 import { storyProgress, storyPointer } from "./story-signals";
@@ -98,11 +99,10 @@ const FRAG = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    float core = smoothstep(0.5, 0.0, d);
-    float a = core * vAlpha;
-    // brighter tight core so the cloud reads as glowing molecules in depth;
-    // kept subtle + per-particle so it never washes the closing headline
-    gl_FragColor = vec4(vColor * (1.0 + pow(core, 2.2) * 0.5), a);
+    // soft round point; the composer bloom owns the glow now, so no in-shader
+    // core boost (that risked washing the headline this cloud sits behind)
+    float a = smoothstep(0.5, 0.0, d) * vAlpha;
+    gl_FragColor = vec4(vColor, a);
   }
 `;
 
@@ -174,6 +174,13 @@ export default function StoryScene() {
       style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     >
       <Cloud reduced={!!reduced} />
+      {!reduced && (
+        <EffectComposer>
+          {/* gentlest of the three: this cloud sits directly behind the headline,
+              so only the brightest fuse pixels halo, never the body copy */}
+          <Bloom mipmapBlur intensity={0.4} luminanceThreshold={1.0} luminanceSmoothing={0.25} />
+        </EffectComposer>
+      )}
     </Canvas>
   );
 }

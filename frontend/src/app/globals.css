@@ -204,10 +204,15 @@ body {
   height: 18px;
   opacity: 0.9;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
 }
 .instrument-box:hover .ib-corner {
   opacity: 1;
+  /* the inked bracket glows in the accent once locked: the DrawSVG look (a
+     glowing drawn stroke), the real upgrade over a flat bar */
+  filter: drop-shadow(0 0 4px var(--ib-accent));
 }
 .ib-corner::before,
 .ib-corner::after {

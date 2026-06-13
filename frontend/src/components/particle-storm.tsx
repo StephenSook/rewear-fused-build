@@ -2,6 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { buildLoopBuffers } from "./loop-geometry";
 import { loopProgress } from "./loop-progress";
@@ -49,10 +50,10 @@ const FRAG = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    float core = smoothstep(0.5, 0.0, d);
-    float a = core * 0.85;
-    // brighter tight core: additive accumulation reads as a soft molecular glow
-    gl_FragColor = vec4(vColor * (1.0 + pow(core, 2.2) * 0.6), a);
+    // soft round point; the EffectComposer bloom owns the glow now, so no
+    // in-shader core boost (that double-bright washed the centered headline)
+    float a = smoothstep(0.5, 0.0, d) * 0.85;
+    gl_FragColor = vec4(vColor, a);
   }
 `;
 
@@ -115,6 +116,13 @@ export default function ParticleStorm() {
       style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     >
       <Storm reduced={!!reduced} />
+      {!reduced && (
+        <EffectComposer>
+          {/* gentle + high threshold so the cleavage flash and brightest cores
+              halo softly without washing the centered headline */}
+          <Bloom mipmapBlur intensity={0.45} luminanceThreshold={1.0} luminanceSmoothing={0.25} />
+        </EffectComposer>
+      )}
     </Canvas>
   );
 }
