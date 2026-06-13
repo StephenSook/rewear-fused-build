@@ -119,7 +119,7 @@ export default function FiberPage() {
               <span className="h-2 w-4 bg-accent-fiber" /> mechanical retention
             </span>
           </div>
-          <BeveledBox className="mt-3 p-4">
+          <BeveledBox tilt={false} className="mt-3 p-4">
             <TradeoffCurve />
           </BeveledBox>
           <p className="mt-3 font-mono text-[0.65rem] text-fg-muted">
@@ -132,7 +132,7 @@ export default function FiberPage() {
       <Reveal delay={0.05}>
         <section className="mt-16">
           <Link href="/enzyme" className="group block">
-            <BeveledBox accent="bio" className="flex items-center justify-between gap-4 p-6">
+            <BeveledBox accent="bio" press className="flex items-center justify-between gap-4 p-6">
               <div>
                 <MonoLabel>Substrate handoff</MonoLabel>
                 <p className="mt-2 text-sm">{pair.narrative}</p>

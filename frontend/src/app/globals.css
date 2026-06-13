@@ -106,6 +106,139 @@ body {
   }
 }
 
+/* ----------------------------------------------------------------------------
+   Instrument box: the live chrome. Corner ticks extend into locking brackets on
+   hover, an accent spotlight tracks the cursor (behind the text, via isolate +
+   negative z, so the fine mono readout stays crisp), a reticle line sweeps the
+   panel, and the frame blooms. Cursor position arrives as --mx / --my from the
+   tilt hook. Two-accent system carried through --ib-accent.
+   ------------------------------------------------------------------------- */
+.instrument-box {
+  isolation: isolate;
+  --ib-accent: var(--color-fg-muted);
+  --ib-spot: color-mix(in oklch, var(--color-fg) 8%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-fg-muted) 28%, transparent);
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+.box-bio {
+  --ib-accent: var(--color-accent-bio);
+  --ib-spot: color-mix(in oklch, var(--color-accent-bio) 18%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-accent-bio) 45%, transparent);
+}
+.box-fiber {
+  --ib-accent: var(--color-accent-fiber);
+  --ib-spot: color-mix(in oklch, var(--color-accent-fiber) 18%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-accent-fiber) 45%, transparent);
+}
+.box-none {
+  --ib-accent: var(--color-fg-muted);
+  --ib-spot: color-mix(in oklch, var(--color-fg) 8%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-fg-muted) 26%, transparent);
+}
+
+.instrument-box:hover {
+  border-color: color-mix(in oklch, var(--ib-accent) 50%, var(--color-rule));
+  box-shadow: 0 0 55px -14px var(--ib-bloom);
+}
+
+/* cursor-tracking spotlight, painted behind the text */
+.instrument-box-spot {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    var(--ib-spot),
+    transparent 60%
+  );
+}
+.instrument-box:hover .instrument-box-spot {
+  opacity: 1;
+}
+
+/* reticle line that sweeps top-to-bottom while hovered */
+.ib-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--ib-accent), transparent);
+}
+.instrument-box:hover .ib-scan {
+  animation: ib-sweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes ib-sweep {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.6;
+  }
+  88% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* corner ticks that grow into locking brackets on hover, snap in on press */
+.ib-corner {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 0 solid var(--ib-accent);
+  opacity: 0.85;
+  pointer-events: none;
+  transition:
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+}
+.instrument-box:hover .ib-corner {
+  width: 18px;
+  height: 18px;
+  opacity: 1;
+}
+.instrument-box:active .ib-corner {
+  width: 13px;
+  height: 13px;
+}
+.ib-tl {
+  top: -1px;
+  left: -1px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.ib-tr {
+  top: -1px;
+  right: -1px;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+}
+.ib-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.ib-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -24,6 +24,7 @@ export function EnzymeStage({
   return (
     <BeveledBox
       accent="bio"
+      tilt={false}
       className="h-[60vh] min-h-[420px] w-full overflow-hidden shadow-[var(--shadow-bloom)]"
     >
       <SceneBoundary label="structure viewer unavailable on this device">

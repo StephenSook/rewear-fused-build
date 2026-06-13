@@ -34,7 +34,7 @@ export function FiberStage() {
   }, []);
 
   return (
-    <BeveledBox accent="fiber" className="h-[48vh] min-h-[360px] w-full overflow-hidden">
+    <BeveledBox accent="fiber" tilt={false} className="h-[48vh] min-h-[360px] w-full overflow-hidden">
       {webgl ? (
         <SceneBoundary label={FALLBACK}>
           <FiberArchitecture />

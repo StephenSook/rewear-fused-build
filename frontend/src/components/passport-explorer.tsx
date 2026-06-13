@@ -260,6 +260,7 @@ export function PassportExplorer() {
                 >
                   <BeveledBox
                     accent={active ? "bio" : "none"}
+                    press
                     className={cn(
                       "p-4 transition-colors",
                       active ? "bg-bg-elevated" : "bg-bg-elevated/30 hover:bg-bg-elevated/60",
