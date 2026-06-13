@@ -54,7 +54,7 @@ export type Decision = "clear" | "lab-test" | "divert";
 export interface Classification {
   garmentId: string;
   decision: Decision;
-  probability: number;              // 0..1, calibrated
+  probability: number;              // 0..1; model-calibrated for ML-driven rows, a rule-confidence value for deterministic-driven rows
   prAuc: number;                    // model PR-AUC for the driving label
   auc: number;                      // reported alongside, secondary
   triggeredRegulations: {
