@@ -14,10 +14,26 @@ const display = Fraunces({
 const body = Sora({ variable: "--font-body-src", subsets: ["latin"] });
 const mono = JetBrains_Mono({ variable: "--font-mono-src", subsets: ["latin"] });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://rewear-fused.vercel.app";
+const DESCRIPTION =
+  "Safe to wear, able to be remade. A co-design loop closing the recycling loop on children's stretch apparel.";
+
 export const metadata: Metadata = {
-  title: "REWEAR-FUSED",
-  description:
-    "Safe to wear, able to be remade. A co-design loop closing the recycling loop on children's stretch apparel.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: "REWEAR-FUSED", template: "%s" },
+  description: DESCRIPTION,
+  openGraph: {
+    title: "REWEAR-FUSED",
+    description: DESCRIPTION,
+    siteName: "REWEAR-FUSED",
+    type: "website",
+    url: SITE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "REWEAR-FUSED",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
