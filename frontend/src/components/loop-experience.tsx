@@ -10,6 +10,7 @@ import { Reveal } from "./reveal";
 import { loopProgress } from "./loop-progress";
 import { audioEngine } from "@/lib/audio-engine";
 import { cn } from "@/lib/cn";
+import { SceneBoundary } from "./scene-boundary";
 
 const ParticleStorm = dynamic(() => import("./particle-storm"), { ssr: false });
 
@@ -109,7 +110,9 @@ export function LoopExperience() {
 
   return (
     <>
-      <ParticleStorm />
+      <SceneBoundary fallback={null}>
+        <ParticleStorm />
+      </SceneBoundary>
 
       <div className="relative z-10">
         <Link

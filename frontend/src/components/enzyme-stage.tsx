@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { BeveledBox } from "./instrument";
+import { SceneBoundary } from "./scene-boundary";
 
 // Mol* loads client-only. ssr:false keeps it off the server entirely.
 const MolstarViewer = dynamic(() => import("./molstar-viewer"), {
@@ -25,7 +26,9 @@ export function EnzymeStage({
       accent="bio"
       className="h-[60vh] min-h-[420px] w-full overflow-hidden shadow-[var(--shadow-bloom)]"
     >
-      <MolstarViewer url={url} className="h-full w-full" activeSite={activeSite} chain={chain} />
+      <SceneBoundary label="structure viewer unavailable on this device">
+        <MolstarViewer url={url} className="h-full w-full" activeSite={activeSite} chain={chain} />
+      </SceneBoundary>
     </BeveledBox>
   );
 }

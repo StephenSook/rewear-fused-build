@@ -9,6 +9,7 @@ import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
 import { BeveledButton } from "./beveled-button";
 import { storyProgress, storyPointer } from "./story-signals";
 import { audioEngine } from "@/lib/audio-engine";
+import { SceneBoundary } from "./scene-boundary";
 
 const StoryScene = dynamic(() => import("./story-scene"), { ssr: false });
 
@@ -135,7 +136,9 @@ export function StoryExperience() {
 
   return (
     <>
-      <StoryScene />
+      <SceneBoundary fallback={null}>
+        <StoryScene />
+      </SceneBoundary>
 
       <div ref={trackRef} className="relative z-10">
         {/* 01 — hero */}
