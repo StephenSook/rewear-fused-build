@@ -35,17 +35,22 @@ Legend: ✅ done · 🟡 in progress · ⬜ not started · ⛔ blocked
 | 1.8 | Scroll shell (Lenis, loader, nav rail, sound) | frontend/src/components | Stephen | ✅ | - | global; loop regression-checked under Lenis |
 | 1.9 | Garment archetype thumbnails (Kie AI) | frontend/public/archetypes | Stephen | ✅ | 1.3 | nano-banana stills wired into the passport |
 | 2.1 | Engine B pipeline | backend/engine_b | Pravin | ⬜ | 0.4 | RFdiffusion->...->FoldSeek |
-| 2.2 | Engine A screening | backend/engine_a | Pravin | ⬜ | 0.4 | RDKit + surrogates |
+| 2.2 | Engine A screening | engine-a/ (RDKit) | Stephen→Pravin | 🟡 | 0.4 | Stephen building real RDKit reference impl 2026-06-12 pre-kickoff (CPU-feasible); → Pravin to own/extend at kickoff |
 | 2.3 | GPU pre-flight smoke | backend/scripts | Pravin | ⬜ | - | before June 14 |
 | 2.4 | Artifact server + manifest | backend/api | Pravin | ⬜ | 2.1,2.2 | SHA-256 signed |
-| 3.1 | Engine C data ETL | engine-c/ingest | Vinh | ⬜ | 0.4 | CPSC/Safety Gate/PFAS/OEKO-TEX |
-| 3.2 | Compliance classifier | engine-c/classifier | Vinh | ⬜ | 3.1 | rules + CatBoost, PR-AUC>=0.85 |
-| 3.3 | Passport (VC + GS1 + QR) | engine-c/passport | Vinh | ⬜ | 3.2 | clear/lab-test/divert |
-| 3.4 | Live endpoint + keepalive | engine-c/api | Vinh | ⬜ | 3.2 | Render, frozen model |
+| 3.1 | Engine C data ETL | engine-c/ingest | Stephen→Vinh | 🟡 | 0.4 | Stephen building real CPSC Recalls API + Safety Gate/PFAS ETL 2026-06-12 (CPSC API verified live, 805+ children's records); → Vinh |
+| 3.2 | Compliance classifier | engine-c/classifier | Stephen→Vinh | 🟡 | 3.1 | Stephen building deterministic rule layer + real CatBoost on CPSC data, honest PR-AUC; replaces placeholder probabilities; → Vinh |
+| 3.3 | Passport (VC + GS1 + QR) | engine-c/passport | Stephen→Vinh | 🟡 | 3.2 | Stephen building real DPP emitter (W3C VC 2.0 + GS1 Digital Link) clear/lab-test/divert; → Vinh |
+| 3.4 | Live endpoint + keepalive | engine-c/api | Stephen→Vinh | 🟡 | 3.2 | endpoint scaffold serves static bundle today; Stephen wiring real classifier + keepalive; → Vinh |
 | 4.1 | Wire frontend to real artifacts | frontend, data | Stephen | ⬜ | 2.4,3.3 | at artifact-freeze gate |
 | 4.2 | Deploy (June 14 fresh repo) | infra | all | ⬜ | 1.3 | Vercel + Render + secrets |
 | 4.3 | Playwright golden-path (deployed) | frontend/e2e | Stephen | ⬜ | 4.2 | incognito smoke |
 | 4.4 | Demo video | docs | all | ⬜ | 4.3 | June 16, captioned, <5min |
+
+## Live build log
+
+- **2026-06-12 (Stephen):** Frontend fully maximized + verified on the prod webpack build (all 5 views, 0 console errors): Story cursor-3D + close burst, Enzyme Mol* + PLACER, Fiber selective-Bloom + count-up funnel, Passport live classify-to-verdict router + QR scan reticle, Loop instrument stepper + cleavage glow. Global systems: Web Audio engine, route transitions, shared Reveal choreography, skip-link + focus rings, reduced-motion across all 3D.
+- **2026-06-12 (Stephen, directive from owner):** Make the data REAL now, kill all `placeholder:true`. Taking on Engine C (3.1-3.4) + Engine A (2.2) as real reference implementations pre-kickoff so the demo runs on real data, not mocks. CPSC Recalls API verified reachable (live JSON, 805+ children's records). engine-c venv built: rdkit 2026.03.3, catboost 1.2.10, sklearn 1.9.0. → Vinh/Pravin to own/extend at kickoff. Engine B de-novo design still needs RunPod GPU (Pravin, D6); CPU parts (FoldSeek novelty) buildable here.
 
 ## Timeline (UPDATED 2026-06-12 from the Cox "Know Before You Go" email)
 
