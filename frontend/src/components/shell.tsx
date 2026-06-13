@@ -5,8 +5,9 @@ import { Loader } from "./loader";
 import { NavRail } from "./nav-rail";
 import { SoundToggle } from "./sound-toggle";
 import { ScrollProgress } from "./scroll-progress";
+import { PageTransition } from "./page-transition";
 
-/** Global scroll shell: smooth scroll, first-load loader, nav rail, sound toggle, progress bar. */
+/** Global scroll shell: smooth scroll, loader, nav rail, sound, progress, route veil. */
 export function Shell() {
   return (
     <>
@@ -15,6 +16,7 @@ export function Shell() {
       <NavRail />
       <SoundToggle />
       <ScrollProgress />
+      <PageTransition />
     </>
   );
 }

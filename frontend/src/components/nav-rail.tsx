@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
+import { audioEngine } from "@/lib/audio-engine";
 
 const CHAPTERS = [
   { href: "/", label: "Story" },
@@ -20,7 +21,12 @@ export function NavRail() {
       {CHAPTERS.map((c) => {
         const active = c.href === "/" ? path === "/" : path.startsWith(c.href);
         return (
-          <Link key={c.href} href={c.href} className="group flex items-center gap-3">
+          <Link
+            key={c.href}
+            href={c.href}
+            onClick={() => audioEngine.tick()}
+            className="group flex items-center gap-3"
+          >
             <span
               className={cn(
                 "h-2 w-2 transition-colors",

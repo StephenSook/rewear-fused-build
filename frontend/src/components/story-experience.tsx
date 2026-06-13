@@ -8,11 +8,25 @@ import { ArrowDown } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
 import { BeveledButton } from "./beveled-button";
 import { storyProgress, storyPointer } from "./story-signals";
+import { audioEngine } from "@/lib/audio-engine";
 
 const StoryScene = dynamic(() => import("./story-scene"), { ssr: false });
 
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
+
 /** A pinned scroll beat: a tall section whose inner panel sticks for half its height. */
-function Beat({ children, className }: { children: ReactNode; className?: string }) {
+function Beat({
+  children,
+  className,
+  bloom,
+}: {
+  children: ReactNode;
+  className?: string;
+  bloom?: ReactNode;
+}) {
   return (
     <section className="relative h-[150vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center px-6 text-center">
@@ -24,6 +38,7 @@ function Beat({ children, className }: { children: ReactNode; className?: string
               "radial-gradient(ellipse 80% 62% at 50% 50%, color-mix(in oklch, var(--color-bg) 86%, transparent), color-mix(in oklch, var(--color-bg) 45%, transparent) 58%, transparent 88%)",
           }}
         />
+        {bloom}
         <div className={`relative z-10 flex w-full flex-col items-center ${className ?? ""}`}>
           {children}
         </div>
@@ -74,6 +89,9 @@ function Stat({
 
 export function StoryExperience() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const bloomRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const fused = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -81,7 +99,26 @@ export function StoryExperience() {
       if (!el) return;
       const total = el.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), Math.max(total, 1));
-      storyProgress.value = total > 0 ? scrolled / total : 0;
+      const p = total > 0 ? scrolled / total : 0;
+      storyProgress.value = p;
+
+      // close burst: a bloom swells and a ring expands as the two accents fuse,
+      // plus a one-shot cleavage cue at the fuse point.
+      const f = smoothstep(0.84, 0.98, p);
+      if (bloomRef.current) {
+        bloomRef.current.style.opacity = String(f);
+        bloomRef.current.style.transform = `translate(-50%, -50%) scale(${0.55 + f * 1.05})`;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.opacity = String(Math.max(0, f * (1 - f) * 4));
+        ringRef.current.style.transform = `translate(-50%, -50%) scale(${0.3 + f * 1.7})`;
+      }
+      if (p > 0.9 && !fused.current) {
+        fused.current = true;
+        audioEngine.cleavage(1.1);
+      } else if (p < 0.85) {
+        fused.current = false;
+      }
     };
     const onPointer = (e: PointerEvent) => {
       storyPointer.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -191,7 +228,29 @@ export function StoryExperience() {
         </Beat>
 
         {/* 06 — closing */}
-        <Beat>
+        <Beat
+          bloom={
+            <>
+              <div
+                ref={bloomRef}
+                aria-hidden
+                className="pointer-events-none absolute left-1/2 top-1/2 h-[55vh] w-[55vh] rounded-full opacity-0 will-change-transform"
+                style={{
+                  transform: "translate(-50%, -50%) scale(0.55)",
+                  background:
+                    "radial-gradient(circle, rgba(255,255,255,0.85), rgba(52,224,196,0.45) 28%, rgba(224,147,79,0.28) 52%, transparent 70%)",
+                  filter: "blur(30px)",
+                }}
+              />
+              <div
+                ref={ringRef}
+                aria-hidden
+                className="pointer-events-none absolute left-1/2 top-1/2 h-[40vh] w-[40vh] rounded-full border border-accent-bio/50 opacity-0 will-change-transform"
+                style={{ transform: "translate(-50%, -50%) scale(0.3)" }}
+              />
+            </>
+          }
+        >
           <p className="max-w-3xl font-display text-4xl leading-tight sm:text-6xl">
             Neither the molecule nor the enzyme existed 72 hours ago.
           </p>

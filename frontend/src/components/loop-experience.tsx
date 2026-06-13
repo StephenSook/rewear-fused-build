@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, X, Recycle } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
 import { loopProgress } from "./loop-progress";
+import { audioEngine } from "@/lib/audio-engine";
 
 const ParticleStorm = dynamic(() => import("./particle-storm"), { ssr: false });
 
@@ -20,6 +21,7 @@ const PHASES = [
 
 export function LoopExperience() {
   const spacerRef = useRef<HTMLDivElement>(null);
+  const lastPhase = useRef(0);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
@@ -31,6 +33,8 @@ export function LoopExperience() {
       const p = total > 0 ? scrolled / total : 0;
       loopProgress.value = p;
       const idx = p < 0.18 ? 0 : p < 0.4 ? 1 : p < 0.52 ? 2 : p < 0.72 ? 3 : 4;
+      if (idx === 2 && lastPhase.current !== 2) audioEngine.cleavage();
+      lastPhase.current = idx;
       setPhase((prev) => (prev === idx ? prev : idx));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
