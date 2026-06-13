@@ -341,6 +341,136 @@ body {
   }
 }
 
+/* ----------------------------------------------------------------------------
+   Instrument CTA button: magnetic (via the tilt hook), a cursor spotlight, a
+   charge stripe that sweeps across on hover, an accent bloom, a sliding arrow,
+   and a downloading data cascade for the .pdb button. Self-contained so it
+   never touches the verified box chrome above.
+   ------------------------------------------------------------------------- */
+.instrument-btn {
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--color-fg-muted);
+  border-color: var(--color-rule);
+  --ib-accent: var(--color-fg-muted);
+  --ib-spot: color-mix(in oklch, var(--color-fg) 8%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-fg-muted) 26%, transparent);
+  transition:
+    color 0.3s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.btn-bio {
+  --ib-accent: var(--color-accent-bio);
+  --ib-spot: color-mix(in oklch, var(--color-accent-bio) 18%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-accent-bio) 45%, transparent);
+}
+.btn-fiber {
+  --ib-accent: var(--color-accent-fiber);
+  --ib-spot: color-mix(in oklch, var(--color-accent-fiber) 18%, transparent);
+  --ib-bloom: color-mix(in oklch, var(--color-accent-fiber) 45%, transparent);
+}
+.btn-primary {
+  color: var(--ib-accent);
+  border-color: color-mix(in oklch, var(--ib-accent) 45%, var(--color-rule));
+}
+.instrument-btn:hover {
+  color: var(--ib-accent);
+  border-color: color-mix(in oklch, var(--ib-accent) 55%, var(--color-rule));
+  box-shadow: 0 0 30px -10px var(--ib-bloom);
+}
+
+/* cursor spotlight, behind the label */
+.ibtn-spot {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    180px circle at var(--mx, 50%) var(--my, 50%),
+    var(--ib-spot),
+    transparent 65%
+  );
+}
+.instrument-btn:hover .ibtn-spot {
+  opacity: 1;
+}
+
+/* charge stripe sweeps across once on hover-in */
+.ibtn-sweep {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ibtn-sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  width: 45%;
+  transform: skewX(-18deg);
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklch, var(--ib-accent) 22%, transparent),
+    transparent
+  );
+}
+.instrument-btn:hover .ibtn-sweep::before {
+  animation: ibtn-charge 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes ibtn-charge {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+}
+
+/* download: thin accent lines cascade downward (data transfer) on hover */
+.ibtn-stream {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 6px,
+    color-mix(in oklch, var(--ib-accent) 16%, transparent) 6px 7px
+  );
+}
+.instrument-btn:hover .ibtn-stream {
+  opacity: 1;
+  animation: ibtn-stream-run 0.9s linear infinite;
+}
+@keyframes ibtn-stream-run {
+  to {
+    background-position: 0 7px;
+  }
+}
+
+/* trailing arrow slides on hover */
+.ibtn-arrow {
+  transition: transform 0.3s ease;
+}
+.instrument-btn:hover .ibtn-arrow {
+  transform: translateX(3px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

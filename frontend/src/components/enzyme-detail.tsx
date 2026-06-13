@@ -2,6 +2,7 @@
 
 import { DownloadSimple, Check } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
+import { InstrumentButton } from "./instrument-button";
 import { RevealGroup, RevealItem } from "./reveal";
 import { engineB, pair } from "@/lib/data";
 
@@ -113,13 +114,9 @@ export function EnzymeDetail() {
 
       <RevealItem>
         <div className="flex flex-wrap items-center gap-3">
-          <a
-            href={REFERENCE_PDB}
-            download
-            className="inline-flex items-center gap-2 border border-rule px-4 py-2 font-mono text-xs tracking-widest uppercase text-fg-muted transition-colors hover:text-fg"
-          >
+          <InstrumentButton href={REFERENCE_PDB} accent="bio" download stream>
             <DownloadSimple className="h-4 w-4" /> Structure .pdb
-          </a>
+          </InstrumentButton>
           <InSilicoBadge />
         </div>
       </RevealItem>

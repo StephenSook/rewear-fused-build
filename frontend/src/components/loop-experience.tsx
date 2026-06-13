@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, X, Recycle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, X, Recycle } from "@phosphor-icons/react/dist/ssr";
 import { BeveledBox, MonoLabel, InSilicoBadge } from "./instrument";
+import { InstrumentButton } from "./instrument-button";
 import { Reveal } from "./reveal";
 import { loopProgress } from "./loop-progress";
 import { audioEngine } from "@/lib/audio-engine";
@@ -229,25 +230,15 @@ export function LoopExperience() {
             </div>
 
             <div className="mt-12 flex flex-wrap items-center gap-4">
-              <Link
-                href="/fiber"
-                className="border border-rule px-5 py-2.5 font-mono text-xs tracking-widest uppercase text-fg-muted transition-colors hover:text-fg"
-              >
+              <InstrumentButton href="/fiber" accent="fiber">
                 The fiber
-              </Link>
-              <Link
-                href="/enzyme"
-                className="border border-rule px-5 py-2.5 font-mono text-xs tracking-widest uppercase text-fg-muted transition-colors hover:text-fg"
-              >
+              </InstrumentButton>
+              <InstrumentButton href="/enzyme" accent="bio">
                 The enzyme
-              </Link>
-              <Link
-                href="/passport"
-                className="group inline-flex items-center gap-3 border border-accent-bio/40 px-5 py-2.5 font-mono text-xs tracking-widest uppercase text-accent-bio transition-colors hover:bg-accent-bio/10"
-              >
+              </InstrumentButton>
+              <InstrumentButton href="/passport" accent="bio" primary arrow>
                 The passport
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </InstrumentButton>
               <InSilicoBadge />
             </div>
           </Reveal>
