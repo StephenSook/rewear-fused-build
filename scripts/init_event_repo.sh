@@ -29,9 +29,14 @@ rsync -a \
   --exclude '.venv' \
   --exclude '__pycache__' \
   --exclude '.DS_Store' \
+  --exclude '.claude' \
+  --exclude '.playwright-mcp' \
+  --exclude '.ruff_cache' \
   --exclude 'research-reports' \
   --exclude 'CLAUDE.md' \
   --exclude 'PLAN.md' \
+  --exclude 'scripts/init_event_repo.sh' \
+  --exclude 'docs/deploy.md' \
   --exclude 'docs/devpost_submission.md' \
   --exclude 'docs/demo_script.md' \
   --exclude 'docs/event_runbook.md' \
@@ -44,7 +49,7 @@ rsync -a \
 # public repo is the README + code + shareable docs (deploy, gallery, contract).
 
 cd "$DEST"
-git init -q
+git init -q -b main
 git add -A
 git commit -q -m "REWEAR-FUSED: initial event build"
 

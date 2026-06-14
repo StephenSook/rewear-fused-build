@@ -1,6 +1,5 @@
-# Render Blueprint for the Engine C live endpoint (Vinh).
-# Create the service from this on June 14 (Render dashboard: New > Blueprint).
-# Do NOT deploy before the event (D1: clean event-window history).
+# Render Blueprint for the Engine C live endpoint.
+# Create the service from the Render dashboard (New > Blueprint).
 services:
   - type: web
     name: rewear-engine-c
