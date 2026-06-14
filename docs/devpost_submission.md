@@ -14,7 +14,7 @@ REWEAR-FUSED
 ### Elevator pitch / tagline (200 chars max)
 Use this (196 chars, under the 200 cap; trim "deployable" if the counter disagrees):
 ```
-Elastane makes kids' stretch apparel non-recyclable. REWEAR-FUSED co-designs a new cleavable elastane and the matched de novo enzyme that closes the loop, plus a deployable recyclability passport.
+Elastane is in 80% of clothing; 1% makes recyclers reject the whole garment. REWEAR-FUSED co-designs a cleavable elastane and the de novo enzyme that closes the loop, plus a live passport.
 ```
 
 ### Thumbnail (JPG/PNG/GIF, 5MB, 3:2)
@@ -39,7 +39,7 @@ REWEAR-FUSED is a single computational co-design loop with three engines.
   constraint-guided screening of polyurethane-urea chemistry: aliphatic
   isocyanates only (so nothing carcinogenic comes off near a baby), the cleavable
   bond in the amorphous soft segment, 25 to 35 percent hard segment.
-- **Engine B** designs a de novo carbamate hydrolase from scratch, an enzyme
+- **Engine B** designs a de novo carbamate hydrolase, an enzyme
   shaped to cleave the exact bond in Engine A's fiber, with an engineered
   near-neutral Ser-His-Asp triad so it does not damage companion cotton.
 - **Engine C** is a Digital Recyclability Passport: a live compliance classifier
