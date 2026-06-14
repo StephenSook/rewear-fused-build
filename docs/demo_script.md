@@ -1,40 +1,41 @@
-# Demo video + pitch script (for the June 16 11:59pm DevPost capture)
+# REWEAR-FUSED · DevPost Demo Video Script (final)
 
-Target length ~4 minutes (DevPost allows 1 to 5). Real screen captures of the deployed app are the PRIMARY evidence; generated media is garnish only. Honest TRL 2-3 framing throughout; the in-silico badge stays visible. No fictional persona, no synthetic data.
+Target run time **3:25**, hard cap 5:00. No em-dashes, straight quotes. Every on-screen element is a REAL capture from the live app (`/`, `/passport`, `/fiber`, `/enzyme`, `/loop`, `/judges`) or the live Engine C API. No fictional persona, no synthetic data. The "in-silico, wet-lab validation required" badge stays on screen in every Fiber and Enzyme frame.
 
-## The spine (every beat serves this)
-"Carter's, here is the molecule for your next onesie, and here is the enzyme that closes its loop. Neither existed 72 hours ago." Safe to wear, able to be remade.
+**BANNED PHRASE:** never say or render "72 hours" / "built this weekend" / any build-duration. Novelty is **"no prior art / first publicly disclosed."** Check the closing title-card render does not auto-restore an old tagline.
 
-## 4-minute beat sheet
+Sequencing (Sookra): cold-open on number #1 (80% / 1%), close on the business numbers (spandex TAM + the Nexus analog), then the tagline.
 
-| t | View (real capture) | On screen | Narration (verbatim) |
-|---|---------------------|-----------|----------------------|
-| 0:00-0:25 | VIEW 1 `/` | Loader resolves, scroll the hero into the two walls and the stats counting up | "Carter's collects worn baby clothes, then shreds them into insulation and pet bedding. Two walls stop a onesie from becoming a onesie again: they can't prove the fabric is chemically safe, and they can't break down the elastane. Elastane is in 80% of clothing, and 1% of it makes a recycler reject the whole garment." |
-| 0:25-1:10 | VIEW 2 `/passport` | Select the legging, show the clear/lab-test/divert router with the real citations, scan the GS1 QR live | "Engine C is the part Carter's can deploy in Year 1. It routes each garment against real US and EU regulation, CPSIA, California PFAS law, REACH, OEKO-TEX, and emits a scannable EU Digital Product Passport. Under SB 707 it is a fee-reducing compliance asset, not a nice-to-have." |
-| 1:10-1:55 | VIEW 3 `/fiber` | The screening funnel, the candidate card with every constraint checked, the trade-off curve, the handoff card | "We don't invent a polymer. We screen published monomers, aliphatic only so nothing carcinogenic comes off near a baby, and put the cleavable bond in the soft segment so the stretch survives. The trade-off curve is the honesty: there is a real 25 to 35 percent design window. The winning fiber emits its carbamate as the enzyme's target." |
-| 1:55-2:45 | VIEW 4 `/enzyme` | The Mol* enzyme rotating (drag), the Ser-His-Asp triad highlighted, the PLACER metric and FoldSeek badge | "Engine B is an enzyme designed from scratch to cleave that exact bond, with an engineered near-neutral Ser-His-Asp triad so it does not destroy the companion cotton. PLACER preorganization 0.67 on the Lauko thresholds; FoldSeek says no close match in the PDB. This is in-silico, TRL 2-3, and we say so." |
-| 2:45-3:30 | VIEW 5 `/loop` | Scroll-drive the storm: onesie, cleavage flash, monomers, new onesie; then the Today-vs-REWEAR comparison | "Watch the loop close. Today's onesie, the carbamate cleaves, it depolymerizes to recoverable monomers, and re-spins into a new onesie. We replace the ocean-microplastic-shedding fate with a controlled industrial hydrolysis fate." |
-| 3:30-4:00 | VIEW 5 footer | The closing cards | "We're the Nexus Circular of textiles, the exact shape Cox bet 150 million dollars on. License to an incumbent, 2030 to 2032. The ask: 10 thousand dollars and 6 weeks to wet-lab-validate, file a provisional, and pilot one Carter's SKU. Carter's, here is the molecule for your next onesie, and here is the enzyme that closes its loop. Neither existed 72 hours ago." |
+| TIMECODE | ON-SCREEN (real captures) | VOICEOVER (verbatim) |
+|---|---|---|
+| 0:00 - 0:10 | Full-bleed black. One line, JetBrains Mono: **"1% of a garment can get the whole thing rejected."** No logo, no team card. | "One percent. That is all it takes for a textile recycler to throw out an entire garment. The culprit is elastane, and it is in about eighty percent of what you own." |
+| 0:10 - 0:22 | Story view (`/`) scroll. Lower-third source: *Fashion for Good, "Stretching Circularity," 2026.* Scale number scales in: **~92 million tonnes textile waste / year (UNEP).** | "Ninety-two million tonnes of textiles are wasted every year, and only about one percent of garments are ever recycled fiber to fiber." |
+| 0:22 - 0:40 | Story scrolls to "The Two Walls." Worn onesie, downcycle arrow to pet bedding. Two panels: **Wall 1: can't prove infant-skin chemical safety. Wall 2: can't break down the elastane.** | "Carter's collects worn baby clothes through KIDCYCLE, then downcycles them into pet bedding. Two walls stop a onesie becoming a onesie again. They cannot prove the fabric is chemically safe for a baby's skin, and they cannot break down the elastane in every stretch garment." |
+| 0:40 - 0:44 | **FLASH-FORWARD (plant):** one frame of the rotating Mol* enzyme, text: **"A de novo enzyme with no prior art. Designed later in this video."** | "Remember this enzyme." |
+| 0:44 - 0:58 | Thesis reveal. Bio-green + amber enter from opposite sides: **"Co-design a new cleavable fiber AND the matched enzyme that cleaves it."** | "Everyone designs an enzyme to attack existing elastane, a crystalline fiber that defeats every natural enzyme. We inverted it. We co-designed a new cleavable fiber, and the matched enzyme that uniquely cleaves it. One inverse-design problem, two coupled molecules." |
+| 0:58 - 1:26 | LIVE DEMO. Passport (`/passport`). Garment selected, classifier returns **clear / lab-test / divert** + probability. Reg panel: **CPSIA · CA PFAS · REACH · OEKO-TEX Class I · SB 707 · EU ESPR.** Green check **"aromatic amine release: NONE."** Real phone enters frame, scans the **GS1 QR**, passport opens on the phone (give the scan 3-4s of silence). | "This is the working product, live. Engine C is a compliance classifier trained on six hundred thirty-one real CPSC recalls. It routes each garment clear, lab-test, or divert against real US and EU regulation, then emits a scannable passport. [pause for the scan] The green check is real chemistry: aliphatic-only design, so no aromatic amine ever releases near a baby." |
+| 1:26 - 1:50 | Fiber (`/fiber`). Funnel: **enumerated to scored to filtered to top candidate.** visx trade-off curve, **25-35 wt% window shaded**, annotation **"<17 wt% degrades too fast · >40 wt% won't degrade."** Card: aliphatic isocyanate, cleavable carbamate in the soft segment, **elongation >400%.** | "Engine A screens fiber chemistries and filters them. This trade-off curve is the honesty centerpiece: too little hard segment and it degrades too fast, too much and it never degrades. The shaded window, twenty-five to thirty-five percent, keeps over four hundred percent stretch and still cleaves. The cleavable bond sits in the soft segment, so the stretch survives." |
+| 1:50 - 2:20 | Enzyme (`/enzyme`). LEAD with the world-first. Pipeline trace lights: **RFdiffusion2 to LigandMPNN to Boltz-2 to PLACER to FoldSeek.** Live Mol* rotates: cartoon, surface, **Ser-His-Asp active site in licorice** with the substrate docked. Badge **"FoldSeek TM < 0.5 to closest PDB · de novo fold."** Persistent **"in-silico · wet-lab validation required."** | "No de novo carbamate hydrolase has ever been publicly disclosed. Here is one, rendering live in Mol*, the same viewer the RCSB and PDBe use. The Ser-His-Asp active site is engineered for near-neutral pH, so it does not damage companion cotton. FoldSeek finds no close match in the entire Protein Data Bank, a de novo fold. You can download this PDB and inspect it yourself. And it is honestly labeled in-silico." |
+| 2:20 - 2:48 | Loop (`/loop`). 3D journey scrubs to the **bond-cleavage climax**: carbamate snaps, GPU storm depolymerizes to monomers, **bio-green + amber fuse**, re-spin to a new onesie. On-screen stamp: **"~2 t CO2e avoided per tonne diverted (estimate)."** Side-by-side **"Today: shred to pet bedding"** vs **"REWEAR-FUSED: depolymerize, re-spin, new onesie."** | "Here is the closed loop. The bond cleaves, the polymer depolymerizes into recoverable monomers, re-spun into a new garment. Today it becomes pet bedding, a dead end. We make it a onesie again. By our estimate that avoids on the order of two tonnes of CO2-equivalent per tonne diverted, and it replaces an ocean-microplastic-shedding fate with controlled industrial hydrolysis." |
+| 2:48 - 3:12 | Loop footer. THREE stamps only (no TRL flash): **"Same line item, better outcome." · Spandex $9B to ~$20B by ~2033 · Cox: $150M, Nexus Circular.** | "Carter's already pays to downcycle worn onesies into pet bedding. Same line item, better outcome: a fiber-to-fiber loop and a compliance asset that lowers their textile-EPR fees under California SB 707. Spandex is a nine-billion-dollar market headed to twenty billion by the early 2030s. Cox led a hundred-fifty-million-dollar round to own Nexus Circular, virgin-equivalent feedstock from hard-to-recycle plastic. We are the Nexus Circular of textiles." |
+| 3:12 - 3:25 | Black. Fused bio-green + amber draw the tagline (Editorial New): **"Here's the molecule for your next onesie, and the enzyme that closes its loop."** Below, mono: **"$10K + 6 weeks: validate the top pair, file a provisional, pilot one Carter's SKU."** | "The molecule for your next onesie, and the enzyme that closes its loop. Neither had any prior art. Ten thousand dollars and six weeks to validate it and pilot one Carter's SKU." |
 
-## Shot list (capture order, all from the DEPLOYED url in a clean browser profile)
-1. `/` full scroll-through (loader to closing), slow, ~25s. Capture the stat count-up.
-2. `/passport` select each garment; lab-test on the legging; phone scans the QR on camera (the strongest single moment).
-3. `/fiber` scroll: funnel animates, candidate card, the 3D fiber drag, the trade-off curve in view.
-4. `/enzyme` drag the molecule a half-turn, hover the triad, the metric panel.
-5. `/loop` slow scroll start to finish so the storm morphs through all phases; then the comparison + footer.
-- Record 4K/60 in OBS. Keep one continuous take per view; trim later.
+## Production notes
+- Real screen capture is primary evidence everywhere; the only garnish is the lower-third source captions and title typography.
+- Capture the QR scan with a real phone in frame; do not fake it. Give it 3-4s of VO silence so the realness lands.
+- Record the canonical pass as 4K/60 OBS. This same file is the live-demo fallback.
+- Captions for every spoken number (judges watch muted in line).
+- Verify the final cut plays in incognito before linking on DevPost. Time it: must read 1-5 minutes on the counter.
 
-## Recording + asset discipline
-- Real screen captures are the evidence. Do not "enhance" them through a generative video model (that regenerates frames = synthetic evidence). A deterministic 4K upscale before upload is fine.
-- Narration: ElevenLabs via Kie AI, two-pass loudnorm to -16 LUFS, captions ON. Place audio cues on measured pauses.
-- Optional garnish only: a Kie AI / Kling B-roll opener of fabric or molecules, clearly not presented as product footage. Keep under ~5 seconds total.
-- Verify the final link plays in incognito before submitting.
-
-## Q&A defense (have these reflexive for Demo Day, June 17)
-- "Did you make a real enzyme/fiber?" In-silico designs with benchmark-referenced metrics; we label predicted vs validated. Honesty is the shield.
-- "Toxic byproducts?" Aliphatic isocyanate design, aromatic amine release NONE (the green check on the passport).
-- "pH 10 destroys the cotton?" We engineer a near-neutral Ser-His-Asp triad, not the wild-type lysine triad.
-- "Does cleavability kill the stretch?" The bond is in the amorphous soft segment; the trade-off curve shows the 25-35 window holds >=400% elongation.
-- "Is AI really generating a copolymer?" Constraint-guided screening, not generative invention; the funnel shows enumerate to score to filter.
-- "Isn't this two projects?" One inverse-design loop; the substrate-handoff arrow from the fiber to the enzyme is the proof.
-- "Will Carter's pay?" They already pay TerraCycle to downcycle into pet bedding. We replace that line item with a fiber-to-fiber loop plus an SB 707 / EU DPP compliance asset.
+## Spoken-numbers provenance (cut any row you cannot defend cold)
+| Number | Source | Status |
+|---|---|---|
+| 80% elastane / 1% rejects garment | Fashion for Good 2026 | verified, LEAD with it |
+| 92 Mt textile waste/yr | UNEP | verified |
+| 1% recycled fiber-to-fiber | spec; fall back to McKinsey 18-26% by 2030 if pressed | soft, OK as context |
+| 631 CPSC recalls | the frozen artifact manifest | VERIFY it still equals the manifest count |
+| ~2 t CO2e / tonne diverted | secondary LCA benchmark | ESTIMATE - say "by our estimate"; never as fact |
+| Spandex $9B to $20B by 2033 | SkyQuest / Market.us | verified |
+| Cox $150M / Nexus Circular | public | verified |
+| Carter's: 1,000+ stores, ~$3B revenue | Carter's official hackathon background doc | verified (Carter's own figures) |
+| Residency ask $10K + 6 weeks | our ask | ours |
