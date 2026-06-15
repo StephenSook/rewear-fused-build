@@ -40,6 +40,7 @@ rsync -a \
   --exclude 'docs/devpost_submission.md' \
   --exclude 'docs/demo_script.md' \
   --exclude 'docs/pitch_inperson.md' \
+  --exclude 'docs/vinh_video_handoff.md' \
   --exclude 'docs/event_runbook.md' \
   --exclude 'docs/pravin_handoff.md' \
   --exclude 'docs/vinh_handoff.md' \
