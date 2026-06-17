@@ -49,12 +49,12 @@ Carter's already collects worn baby clothes through KIDCYCLE. The problem is whe
 REWEAR-FUSED is one computational co-design loop with three engines.
 - **Engine A** designs a new cleavable elastane fiber. It screens polyurethane-urea chemistry under hard constraints: aliphatic isocyanates only, so nothing carcinogenic comes off near a baby; the cleavable bond in the soft, amorphous segment, so the stretch survives; 25 to 35 percent hard segment.
 - **Engine B** designs the matched enzyme, a carbamate hydrolase shaped to cut the exact bond Engine A built, with a near-neutral Ser-His-Asp triad so it leaves the companion cotton alone.
-- **Engine C** is the Digital Recyclability Passport: a live classifier that routes each garment clear, lab-test, or divert against real US and EU regulation, then emits a scannable GS1 Digital Link passport.
+- **Engine C** is the Digital Recyclability Passport: a live classifier that routes each garment clear, lab-test, or divert against real US and EU regulation, then emits a scannable GS1 Digital Link passport. Scan its QR and the live single-product passport opens on any phone; it carries a real W3C Verifiable Credential you can cryptographically verify in your own browser.
 
 Put together, the app makes the loop visible. A garment goes in, the system proposes a redesigned cleavable fiber, designs an enzyme against it, renders both structures in 3D, and animates the close: today's shred-to-pet-bedding on one side, depolymerize and re-spin into a new onesie on the other. By design it is a regenerative loop, not a one-time recycle: the same material is engineered to become a new garment again and again, a closed loop instead of a one-way downcycle.
 
 ## How we built it
-The frontend is Next.js 16, React 19, and Tailwind v4. Mol* 5.9 renders the enzyme at publication grade, React Three Fiber drives a custom GPU particle storm for the closed loop, visx draws the trade-off curve, and GSAP and Lenis carry the scroll. It deploys on Vercel.
+The frontend is Next.js 16, React 19, and Tailwind v4. Mol* 5.9 renders the enzyme at publication grade, React Three Fiber drives a custom GPU particle storm for the closed loop, visx draws the trade-off curve, and GSAP and Lenis carry the scroll. Each passport carries a real Ed25519-signed W3C Verifiable Credential that the browser re-verifies with WebCrypto, no server, plus a tamper toggle that breaks the signature on cue. It deploys on Vercel.
 
 Engine C runs for real. It is a FastAPI service on Render serving a signed, pre-computed artifact bundle, with a deterministic rule layer over real regulatory thresholds and a classifier trained on real public data (CPSC Recalls, EU Safety Gate, Toxic-Free Future / Peaslee PFAS, OEKO-TEX). Engines A and B use the open-source protein-design toolchain (LigandMPNN, Boltz-2, PLACER, FoldSeek) plus RDKit polymer screening, anchored on the published UMG-SP2 urethanase geometry; Engine B specifies three LigandMPNN redesigns at in-silico TM about 0.8 to template, with the redesign and de-novo RFdiffusion runs deferred to a longer GPU pass. The frontend reads pre-computed, SHA-256-signed artifacts, so the demo never waits on a GPU. Engine C also runs live, so the link works for anyone.
 
@@ -62,7 +62,7 @@ Engine C runs for real. It is a FastAPI service on Render serving a signed, pre-
 Existing elastane fights back. Its crystalline hard segments physically block enzymes, which is why every native enzyme fails on the intact fiber. So we inverted the problem: instead of attacking today's fiber, we redesigned the fiber to be breakable and built the enzyme to match. The engineering had its own potholes. Mol* crashed the Next.js Turbopack production build and we moved to webpack, and a full-screen WebGL background sat hidden behind the page until we fixed the z-index. The hardest discipline was honesty: everything molecular is in-silico, TRL 2 to 3, trained on real public data, with no synthetic data and no invented persona.
 
 ## Accomplishments that we're proud of
-A real, deployed product, not a mockup: the passport endpoint and the five-view app, CI passing. The novelty we can stand behind: no one has co-designed a cleavable elastane and its matched enzyme, together, for textiles. Engine B specifies three LigandMPNN redesigns on real serine-hydrolase scaffolds with in-silico target metrics on the Lauko thresholds; the redesign and de-novo GPU runs are the compute we scoped and deferred, and we say so. And the honesty moat: Engine C numbers are live pipeline outputs, the science numbers are verified DOIs or clearly-labeled in-silico targets, and a /judges page tiers each engine real versus in-silico, so anyone can check our work instead of taking our word.
+A real, deployed product, not a mockup: the passport endpoint and the five-view app, CI passing. The novelty we can stand behind: no one has co-designed a cleavable elastane and its matched enzyme, together, for textiles. Engine B specifies three LigandMPNN redesigns on real serine-hydrolase scaffolds with in-silico target metrics on the Lauko thresholds; the redesign and de-novo GPU runs are the compute we scoped and deferred, and we say so. And the honesty moat: Engine C numbers are live pipeline outputs, the science numbers are verified DOIs or clearly-labeled in-silico targets, and a /judges page tiers each engine real versus in-silico, so anyone can check our work instead of taking our word. We made the moat literal: click Verify and the browser cryptographically confirms the passport's Ed25519 signature, then flip one field and watch it go red.
 
 ## What we learned
 The crystallinity-versus-stretch trade-off is real, and it has a published design window: 25 to 35 percent hard segment. We made it the centerpiece instead of hiding it. Calibrated honesty wins deep-tech rooms; over-claiming loses them. And a green build is not a working app, so we opened every view in a real browser before we believed it.
@@ -73,17 +73,20 @@ Wet lab. Express the top enzyme designs, spin a fiber sample, prove activity on 
 
 ### Built with (comma list)
 ```
-next.js, react, typescript, tailwind-css, mol-star, three.js, react-three-fiber, gsap, lenis, visx, fastapi, python, render, vercel, rdkit, ligandmpnn, boltz-2, placer, foldseek, catboost, gs1-digital-link, w3c-verifiable-credentials
+next.js, react, typescript, tailwind-css, mol-star, three.js, react-three-fiber, gsap, lenis, visx, webcrypto, ed25519, fastapi, python, render, vercel, rdkit, ligandmpnn, boltz-2, placer, foldseek, catboost, gs1-digital-link, w3c-verifiable-credentials, gource, graphify
 ```
 
 ### "Try it out" links
-- Live app (Vercel): `<fill June 14 after deploy>`
-- Engine C API (Render): `<render url>/healthz`
-- Code (fresh repo): `<fill June 14>`
+- Live app (Vercel): https://rewear-fused.vercel.app
+- Engine C API (Render): https://rewear-engine-c-vbqj.onrender.com/healthz
+- Code (GitHub): https://github.com/StephenSook/rewear-fused
+- Interactive 3D knowledge graph: https://rewear-fused.vercel.app/visualizations/knowledge-graph.html
+- Codebase graph (graphify): https://rewear-fused.vercel.app/visualizations/codebase-graph.html
 
 ### Project Media
 - Image gallery (3:2): screenshots of the five views (story, fiber, enzyme, loop, passport) and the /judges page. Real captures from the deployed app.
 - **Video demo link (required)**: the YouTube/Vimeo URL. Record June 16 per `docs/demo_script.md`, under 5 minutes, captioned, verified in incognito.
+- Visualizations (in the repo, linked from the README): a Gource git-history time-lapse (`docs/visualizations/rewear-fused-gource.mp4`), a graphify codebase graph (287 nodes / 401 edges), and the live interactive 3D knowledge graph.
 
 ---
 
