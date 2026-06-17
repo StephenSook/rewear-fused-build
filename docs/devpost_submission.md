@@ -85,7 +85,7 @@ next.js, react, typescript, tailwind-css, mol-star, three.js, react-three-fiber,
 
 ### Project Media
 - Image gallery (3:2): screenshots of the five views (story, fiber, enzyme, loop, passport) and the /judges page. Real captures from the deployed app.
-- **Video demo link (required)**: the YouTube/Vimeo URL. Record June 16 per `docs/demo_script.md`, under 5 minutes, captioned, verified in incognito.
+- **Video demo link (required)**: https://www.youtube.com/watch?v=TPO5nhIIWrI (Vinh's cut, verified public via oembed June 16). Recorded per `docs/demo_script.md`, captioned, verify it plays in incognito.
 - Visualizations (in the repo, linked from the README): a Gource git-history time-lapse (`docs/visualizations/rewear-fused-gource.mp4`), a graphify codebase graph (287 nodes / 401 edges), and the live interactive 3D knowledge graph.
 
 ---
