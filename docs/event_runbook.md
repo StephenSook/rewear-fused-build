@@ -78,7 +78,7 @@ Event: 9am breakfast, 10am welcome + judges, 10:30-3 judging, 1:30-3 recruiters,
 
 - [ ] At least one of us present in person (all three if possible; required to win).
 - [ ] Warm the deployed app + endpoint before judging.
-- [ ] Run the deterministic demo (the 5 views) + the live QR scan. 4K OBS recording as fallback. Two laptops + hotspot.
+- [ ] Run the deterministic demo (the 5 views) + the live QR scan (opens the single-product passport) + the **click-Verify / Tamper credential check**. **Pre-warm Engine C** (hit `/healthz` + a `/classify` ~60s before each judge so the live badge fires, not the signed-bundle fallback). 4K OBS recording as fallback. Two laptops + hotspot.
 - [ ] Q&A reflexes (from `docs/demo_script.md`): in-silico/TRL, aromatic-amine NONE, near-neutral triad, soft-segment cleavage, constraint-guided not generative, one-loop-not-two, Carter's-already-pays-TerraCycle.
 - [ ] Point judges to the `/judges` page (the honesty tiering).
 - [ ] No new commits today.

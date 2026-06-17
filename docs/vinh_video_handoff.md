@@ -24,11 +24,11 @@ VO clearly on top, music low and ducked underneath. Target loudness **-14 LUFS, 
 ## What to capture (real screen, in pitch order)
 From `demo_script.md`, off the DEPLOYED app (use the deterministic demo mode, Shift+D / ?demo=1, so each view is pre-positioned and clean):
 1. **Story** cold open (the number on screen).
-2. **Passport** (Engine C): a real Carter's-archetype garment classified clear/lab-test/divert with a real regulation citation, the green "aromatic amine release: NONE" check, and a **real phone scanning the GS1 QR** (do not fake the scan; give it 3-4 seconds of silence).
+2. **Passport** (Engine C): a real Carter's-archetype garment classified clear/lab-test/divert with a real regulation citation, the green "aromatic amine release: NONE" check, and a **real phone scanning the GS1 QR** (do not fake the scan; the live single-product passport opens on the phone; give it 3-4 seconds of silence). Then on the laptop: click **Verify signature** (the green AUTHENTIC shield), toggle **Tamper** (it flips to red INVALID) - the passport's Ed25519 credential verified live in the browser, no server.
 3. **Fiber** (Engine A): the screening funnel + the 25-35 wt% trade-off curve.
 4. **Enzyme** (Engine B): the live Mol* rotation of the active site. See the honesty note below.
 5. **Loop**: the scroll-scrubbed particle storm to the bond-cleavage climax with the color fusion.
-Punch-in (zoom) on: the classifier verdict, the QR scan, the Ser-His-Asp pocket, the cleavage moment.
+Punch-in (zoom) on: the classifier verdict, the QR scan, the **Verify / Tamper shield flip**, the Ser-His-Asp pocket, the cleavage moment.
 
 ## Hard constraints (do not break these)
 - **Honesty on the enzyme view.** The Mol* viewer currently renders a REFERENCE scaffold (CALB, PDB 1TCA), labeled "illustrative," because the designed enzyme PDB lands at the artifact-freeze gate. Narrate it as the script now says: "reference scaffold we designed against; FoldSeek TM under 0.5 is the design threshold; the designed structure drops in at the freeze gate." Do NOT say or caption "this is the de novo enzyme" or "no PDB match" over the 1TCA scaffold. If Pravin's real `enzyme-001.bcif` lands before you render, swap the one clause to "this is the designed fold."
