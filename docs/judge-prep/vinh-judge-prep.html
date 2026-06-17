@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>REWEAR-FUSED Judge Prep - Vinh</title>
+<link rel="stylesheet" href="judge-prep.css">
+</head><body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div>
+    <div class="cover-top">
+      <span class="eyebrow">REWEAR-FUSED &middot; Cox Play With Purpose &middot; Carter's Making &amp; Remaking</span>
+      <span class="eyebrow">Judge Prep &middot; 2026-06-17</span>
+    </div>
+    <img class="cover-banner" src="../gallery/banner.png" alt="REWEAR-FUSED">
+    <h1>Judge Prep</h1>
+    <div class="who">Vinh Le</div>
+    <div class="role">Engine C &middot; Digital Product Passport &middot; Data ETL &middot; Live Endpoint &middot; Demo Video</div>
+    <p class="blurb">You own the most real thing in the room: a deployed compliance service on real public data, with a cryptographically verifiable passport. Lean into that. Everything here is traceable to the code or a live curl. Where the shipped scope is narrower than the spec, this doc tells you exactly how to say so, because the honesty is what wins.</p>
+  </div>
+  <div class="status">
+    <span>ENGINE C <b>LIVE</b> &middot; output_sha_ok true</span>
+    <span>DATA <b>631 real CPSC recalls</b></span>
+    <span>CI main <b>5/5 green</b></span>
+  </div>
+</section>
+
+<!-- ============ SHARED CANON ============ -->
+<section class="page">
+  <h2 class="sec"><span class="n">01</span> The thirty-second version</h2>
+  <p class="lead">REWEAR-FUSED is <strong>one computational co-design loop</strong> that designs two matched molecules at once to close the textile-to-textile recycling loop on children's stretch apparel, which is non-recyclable today because of its elastane.</p>
+  <p>Instead of attacking existing elastane (crystalline, hostile, it defeats every native enzyme on the intact fiber), we invert the problem. <em class="fiber">Engine A</em> screens a new, enzymatically-<strong>cleavable</strong> elastane fiber. <em class="bio">Engine B</em> designs the <strong>matched</strong> carbamate hydrolase built to cut that exact bond. <em class="bio">Engine C</em>, your lane, is the live Digital Recyclability Passport that proves a garment is safe and routes it.</p>
+  <div class="pull">"Carter's, here's the molecule for your next onesie, and the matched enzyme that closes its loop. No one has co-designed the pair, together, for textiles."</div>
+  <div class="box"><pre class="mono small" style="color:var(--fg-muted); line-height:1.45">
+ GARMENT ──▶ ENGINE C  passport: clear / lab-test / divert      ◀── your lane
+            └─▶ ENGINE A  cleavable elastane  (constraint-guided screening)
+                  └─[carbamate substrate target]─▶ ENGINE B  matched hydrolase
+                        └─ cleaves bond ─▶ recoverable monomers ─▶ NEW onesie</pre></div>
+
+  <h2 class="sec"><span class="n">02</span> The two walls (why this exists)</h2>
+  <p>Carter's collects worn baby clothes through <strong>KIDCYCLE / TerraCycle</strong>, then shreds them into pet bedding. Two walls stop a onesie becoming a onesie again:</p>
+  <ul class="tick">
+    <li><strong>Wall 1, chemical safety.</strong> Nobody can prove the recovered fabric is chemically safe for infant skin. <em class="bio">This is the wall Engine C knocks down.</em></li>
+    <li><strong>Wall 2, elastane.</strong> Nobody can break down the elastane in every stretch garment. (Engines A + B.)</li>
+  </ul>
+  <div class="cols">
+    <div class="box tight"><span class="eyebrow">Lead with this</span><p class="small" style="margin-top:4pt">Elastane is in <span class="num">~80%</span> of all clothing, and as little as <span class="num">~1%</span> of it makes a recycler reject the <strong>whole</strong> garment. <span class="muted">(Fashion for Good, 2026.)</span></p></div>
+    <div class="box tight"><span class="eyebrow">Scale</span><p class="small" style="margin-top:4pt"><span class="num">~92M</span> tonnes of textile waste a year (UNEP); only <span class="num">~1%</span> recycled fiber-to-fiber today.</p></div>
+  </div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C</span></div>
+</section>
+
+<section class="page">
+  <h2 class="sec"><span class="n">03</span> What is real, what is in-silico (the honesty ledger)</h2>
+  <p>Memorize the tiers. <strong>Your engine is the top of this table</strong>, the one component nobody can call a concept.</p>
+  <table>
+    <tr><th>Component</th><th>Tier</th><th>TRL</th><th>What it is</th></tr>
+    <tr><td><strong>Engine C, the Passport</strong></td><td><span class="chip live">Wired Live</span></td><td class="num">6</td><td>real FastAPI endpoint + deployed UI; the Year-1 deployable product</td></tr>
+    <tr><td><strong>The app (5 views)</strong></td><td><span class="chip live">Wired Live</span></td><td class="muted">-</td><td>on Vercel, reading the signed artifact bundle through real code</td></tr>
+    <tr><td><strong>Credential verify + QR</strong></td><td><span class="chip real">Real</span></td><td class="muted">-</td><td>real WebCrypto Ed25519 in-browser; the QR is a working GS1 resolver</td></tr>
+    <tr><td><strong>Training data</strong></td><td><span class="chip real">Real Data</span></td><td class="muted">-</td><td><span class="num">631</span> real CPSC recalls, wired today; EU/PFAS/OEKO-TEX roadmap</td></tr>
+    <tr><td><strong>Engine A, the fiber</strong></td><td><span class="chip silico">In-Silico</span></td><td class="num">3</td><td>constraint-guided screening; benchmark-referenced predictions</td></tr>
+    <tr><td><strong>Engine B, the enzyme</strong></td><td><span class="chip silico">In-Silico</span></td><td class="num">2</td><td>LigandMPNN redesign (TM ~0.8); de-novo fold is the deferred swing</td></tr>
+    <tr><td><strong>Wet-lab validation</strong></td><td><span class="chip fwd">Forward</span></td><td class="muted">-</td><td>the Cox Cleantech Residency ask</td></tr>
+  </table>
+
+  <h2 class="sec"><span class="n">04</span> The de-novo question (the one trap to never fall in)</h2>
+  <div class="box danger"><span class="eyebrow">Honesty guardrail &middot; everyone says this the same way</span>
+  <p class="small" style="margin-top:5pt">The shipped enzymes are <strong>LigandMPNN redesigns</strong> of real serine-hydrolase scaffolds (TM 0.79 to 0.85), <strong>not de-novo folds</strong>. The de-novo fold (TM &lt; 0.5, no prior art) is the GPU run we <strong>deferred</strong>. The "shouldn't be possible" novelty is the <em class="bio">co-design loop itself</em>, which is true and runs live. (This is Pravin's lane; you just need to never call the enzyme de-novo.)</p></div>
+
+  <h2 class="sec"><span class="n">05</span> The five scientific constraints (quick reference)</h2>
+  <table>
+    <tr><th>#</th><th>Constraint</th></tr>
+    <tr><td class="num">1</td><td><strong>Aliphatic isocyanates only</strong> (HDI/IPDI/H12MDI). Your passport surfaces this as "aromatic amine release: NONE".</td></tr>
+    <tr><td class="num">2</td><td><strong>Ser-His-Asp triad, near-neutral pH 7.0-8.5</strong> (cotton-compatible; not the wild-type pH ~10).</td></tr>
+    <tr><td class="num">3</td><td><strong>Cleavable bond in the soft segment; hard segment 25-35 wt%</strong> (keeps &gt;400% stretch).</td></tr>
+    <tr><td class="num">4</td><td><strong>Constraint-guided screening, not generative</strong> (Engine A enumerates, scores, filters).</td></tr>
+    <tr><td class="num">5</td><td><strong>In-silico, benchmark-referenced</strong> (the molecular side; Engine C is the live exception at TRL 6).</td></tr>
+  </table>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C</span></div>
+</section>
+
+<section class="page">
+  <h2 class="sec"><span class="n">06</span> The eight judge-defense answers (universal)</h2>
+  <div class="qa"><div class="q">What toxic products come off when you cleave it?</div><div class="a">None of concern. Aliphatic isocyanates only, so cleavage gives aliphatic diamines, not aromatic MDA/TDA carcinogens. The passport shows a green "aromatic amine release: NONE".</div></div>
+  <div class="qa"><div class="q">Doesn't your enzyme need pH 10, which destroys the cotton?</div><div class="a">That's the wild-type trap. We design a Ser-His-Asp triad that works near-neutral, pH 7.0-8.5, cotton-compatible.</div></div>
+  <div class="qa"><div class="q">Won't making it cleavable destroy the stretch?</div><div class="a">No. The cleavable bond lives in the soft amorphous segment, not the load-bearing crystalline domains. 25-35 wt% window, 440-620% elongation.</div></div>
+  <div class="qa"><div class="q">Can AI really invent a new block copolymer?</div><div class="a">We never claim that. Engine A is constraint-guided screening: enumerate 612, score 487, filter 23, surface 10.</div></div>
+  <div class="qa"><div class="q">Did you actually make any of this in a lab?</div><div class="a">No, entirely in-silico for the molecules (Engine A TRL 3, Engine B TRL 2). Engine C, my lane, is TRL 6 and runs live.</div></div>
+  <div class="qa"><div class="q">What's the business model?</div><div class="a">We replace the TerraCycle downcycle line item with a fiber-to-fiber loop plus an SB 707 / EU-DPP compliance asset. We're the Nexus Circular of textiles.</div></div>
+  <div class="qa"><div class="q">Isn't this two projects?</div><div class="a">One inverse-design loop. The carbamate bond in the fiber is the exact bond the enzyme cuts; topPairs.json cross-references each enzyme to its matched fiber.</div></div>
+  <div class="qa"><div class="q">Will Carter's pay for this?</div><div class="a">They already pay TerraCycle to downcycle. Engine C lowers their SB 707 eco-modulated EPR fees and pre-positions EU DPP. Same spend, better outcome, deployable in Year 1.</div></div>
+
+  <h2 class="sec"><span class="n">07</span> Do not say (universal)</h2>
+  <div class="box danger"><ul class="tick x small">
+    <li>Not "de-novo enzyme" for the shipped designs (redesigns, TM ~0.8). Not "72 hours" / build-duration (DQ risk).</li>
+    <li>Not "we spun a fiber" / "expressed the protein". Not "generative polymer design". No invented kinetics.</li>
+    <li>Not FIFA tickets "won". No DOI outside the verified section-9 list.</li>
+  </ul></div>
+
+  <h2 class="sec"><span class="n">08</span> Commercialization (one line)</h2>
+  <div class="box"><p class="small"><strong>"We're the Nexus Circular of textiles."</strong> Cox Cleantech led a <span class="num">$150M</span> round to majority-own Nexus Circular. The ask: <span class="num">$10K</span> + 6 weeks to validate the top pair, file a provisional, pilot one Carter's SKU. <strong>Engine C is the part Carter's deploys first.</strong></p></div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C</span></div>
+</section>
+
+<!-- ============ VINH ROLE ============ -->
+<section class="page">
+  <h2 class="sec" style="color:var(--bio)"><span class="n">09</span> Your lane &middot; Engine C, the Digital Recyclability Passport</h2>
+  <p class="lead">A hybrid neuro-symbolic compliance system. A <strong>deterministic regulatory rule layer runs first</strong>; a <strong>CatBoost text classifier</strong> colors the residual rare-hazard categories. It routes each garment clear / lab-test / divert and emits a cryptographically signed Digital Product Passport. It is deployed, live, and trained on real public data.</p>
+  <div class="box"><pre class="mono small" style="color:var(--fg-muted); line-height:1.45">
+ GARMENT ─▶ [1] deterministic rules (cite the statute)
+              FAIL → divert    FLAG → lab-test    else → clear
+         ─▶ [2] CatBoost text model colors rare residual hazards (>0.5 → lab-test)
+         ─▶ [3] sign W3C VC 2.0 passport (Ed25519) + GS1 Digital Link QR
+ served by FastAPI on Render; frozen-parity self-check refuses to boot on drift</pre></div>
+
+  <h3>The real data (say the number with confidence)</h3>
+  <ul class="tick small">
+    <li><strong><span class="num">631</span> unique real CPSC SaferProducts recalls</strong>, pulled live from <span class="mono">saferproducts.gov/RestWebServices/Recall</span> across 15 apparel/children-textile query terms, deduped by RecallID, saved to <span class="mono">cpsc_recalls.parquet</span>. Corpus spans 1974 to 2026-06-11. <strong>No synthetic rows</strong> (we explicitly rejected the spec's synthetic-SKU suggestion, the APEX lesson).</li>
+    <li><strong>3 trainable labels</strong> with real positive counts: flammability/sleepwear <span class="num">n=206</span>, drawstring <span class="num">n=142</span>, lead substrate <span class="num">n=12</span>.</li>
+  </ul>
+
+  <h3>The model + the metric honesty</h3>
+  <ul class="tick small">
+    <li><strong>CatBoost</strong> text classifier, version <span class="mono">catboost-text-v1.0</span> (iterations 350, depth 4, lr 0.08, Logloss), out-of-fold 5-fold StratifiedKFold.</li>
+    <li><strong>We report PR-AUC, not ROC-AUC,</strong> because positives are a minority (&lt;5% per label; lead has only 12). ROC is misleadingly high on rare positives. Frozen macro: <strong>PR-AUC <span class="num">0.732</span></strong>, ROC-AUC <span class="num">0.951</span>.</li>
+    <li><strong>Anti-leakage:</strong> we strip the label-defining keywords (lead, phthalate, flammable, sleepwear, drawstring, pfas) from the feature text before training, so the model must predict from genuine correlates, not relearn the labeling keyword and report a meaningless ~1.0.</li>
+  </ul>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C</span></div>
+</section>
+
+<section class="page">
+  <h2 class="sec" style="color:var(--bio)"><span class="n">10</span> Routing + the three garments</h2>
+  <p class="small">Rules run first: any <strong>FAIL</strong> routes to divert; else any <strong>FLAG</strong> routes to lab-test; else clear. The 3 demo decisions are <strong>rule-driven</strong> (the ML metric is the hazard classifier's credibility number, not what decides these three).</p>
+  <table>
+    <tr><th>Garment</th><th>Composition</th><th>Decision</th><th>Why</th></tr>
+    <tr><td>Cotton Bodysuit 0-3M</td><td>100% cotton</td><td><span class="chip clear">clear</span> <span class="num">0.974</span></td><td>ESPR pass, amines pass</td></tr>
+    <tr><td>Cotton-Blend Legging 12M</td><td>95% cotton / 5% elastane</td><td><span class="chip labtest">lab-test</span> <span class="num">0.910</span></td><td>ESPR FLAG (blend, not fiber-to-fiber)</td></tr>
+    <tr><td>UPF Rashguard 24M</td><td>82% rec. poly / 18% elastane</td><td><span class="chip divert">divert</span> <span class="num">0.975</span></td><td>ESPR FAIL (&ge;15% elastane) + PFAS FLAG (DWR)</td></tr>
+  </table>
+
+  <h2 class="sec" style="color:var(--bio)"><span class="n">11</span> The passport (real cryptography)</h2>
+  <ul class="tick small">
+    <li><strong>W3C VC 2.0</strong> JSON-LD, UNTP DPP context, type [VerifiableCredential, DigitalProductPassport].</li>
+    <li><strong>Real Ed25519 signature</strong> (proof type Ed25519Signature2020) from issuer <span class="mono">did:key:z6MkuBjwGH...V966Uv</span> (a spec-compliant did:key, seed-derived so the demo reproduces). Stephen's frontend re-verifies it in-browser with a tamper toggle.</li>
+    <li><strong>GS1 Digital Link.</strong> The credential carries the canonical <span class="mono">id.gs1.org/01/{GTIN-14}/21/{serial}</span> (valid GS1 mod-10 check digit); the scannable QR points at our deployed origin, where our resolver 307-redirects to the live passport on a phone. (Have judges scan, not type the canonical string.)</li>
+  </ul>
+
+  <h2 class="sec" style="color:var(--bio)"><span class="n">12</span> Live endpoint + frozen-model parity</h2>
+  <div class="box call"><span class="eyebrow">Verified live today</span>
+  <p class="small" style="margin-top:4pt"><span class="mono">rewear-engine-c.onrender.com/healthz</span> &rarr; <span class="mono">status ok, version 1.0.0, parity_kind output, output_sha_ok TRUE, frozen_parity_sha bb95f4e8...</span>. 5 routes: <span class="mono">/healthz /garments /regulations /classify/{id} /passport/{id}</span>. Live <span class="mono">/classify/carters-rashguard-swim</span> returns divert 0.975, byte-matching the frozen artifact.</p></div>
+  <ul class="tick small">
+    <li><strong>Frozen-parity gate:</strong> <span class="mono">_verify_frozen_parity()</span> runs at import, hashes every file in the manifest, and <strong>refuses to boot</strong> (uvicorn never binds) on any SHA mismatch. Proven by refuse-to-boot tests.</li>
+    <li><strong>It is OUTPUT parity, not model-binary parity</strong> (be precise here, see do-not-say). The served classifications/passports are byte-identical to the frozen bundle; the field is <span class="mono">output_sha_ok</span>. We do not hash the .cbm binary because CatBoost bytes are not reproducible across Python 3.12.10 (build) vs 3.12.5 (Render), which would brick the boot on a benign diff.</li>
+    <li><strong>Slim runtime:</strong> the Render service installs only fastapi + uvicorn; the heavy ML/chem stack is build-only, so the free plan can't OOM on wheels it never loads.</li>
+    <li><strong>Keepalive cron</strong> (<span class="mono">*/10 * * * *</span>) curls <span class="mono">/healthz</span> to keep the free-tier service warm. <strong>Still pre-warm before judging: cold-start is ~21s, warm is 0.16s.</strong></li>
+  </ul>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C</span></div>
+</section>
+
+<section class="page">
+  <h2 class="sec" style="color:var(--bio)"><span class="n">13</span> Your honesty guardrails (Engine C specifics)</h2>
+  <div class="box danger"><ul class="tick x small">
+    <li><strong>Not "85+ thresholds enforced".</strong> Three deterministic rules are wired today (ESPR elastane, AB 1817 PFAS, REACH Entry 43 amines) over a 7-regulation catalog. The README says "~20% of the spec / reference implementation". 85+ is the roadmap target.</li>
+    <li><strong>Not "trained on CPSC + EU Safety Gate + PFAS + OEKO-TEX".</strong> Only CPSC (631 recalls) is wired. DevPost lists the others; reconcile to <em>"CPSC is the wired source today; EU Safety Gate, the Peaslee PFAS set, and OEKO-TEX negatives are named in our roadmap."</em></li>
+    <li><strong>Not "PR-AUC 0.85".</strong> That is the handoff target. The real frozen macro is <span class="num">0.732</span>. Report the achieved number.</li>
+    <li><strong><span class="mono">compositionDrivers</span> is NOT SHAP.</strong> They are real composition ratios (elastane %, synthetic %, archetype flag), deliberately not dressed as model explanations. SHAP is roadmap.</li>
+    <li><strong>The Render API's <span class="mono">/judges</span> route 404s</strong> on the live deploy (it predates that commit). Don't promise "hit /judges on the API". recallCount=631 is verifiable via the manifest + <span class="mono">/healthz</span>. (The frontend /judges page on Vercel is fine.)</li>
+    <li><strong>Parity is OUTPUT, not model-binary.</strong> Say "output parity, byte-identical served outputs", not "the model binary is hash-locked".</li>
+  </ul></div>
+
+  <h2 class="sec" style="color:var(--bio)"><span class="n">14</span> Your Q&amp;A</h2>
+  <div class="qa"><div class="q">Is this trained on real data or did you fake the dataset?</div><div class="a">Real. 631 unique CPSC SaferProducts recalls pulled live from saferproducts.gov, saved to a parquet, count verified. No synthetic rows. The spec suggested a synthetic 10,000-SKU population; we explicitly rejected it to avoid the synthetic-data failure mode.</div></div>
+  <div class="qa"><div class="q">Why PR-AUC instead of accuracy or ROC-AUC?</div><div class="a">Positives are a minority (&lt;5% per label; lead has 12 in 631). ROC is misleadingly high there, so we report PR-AUC (average precision) out-of-fold via 5-fold CV. Macro 0.732 / ROC 0.951. The slow test asserts flammability PR-AUC &gt; 0.7 and lead PR-AUC &lt; 0.8, since lead is rare and honestly hard from text.</div></div>
+  <div class="qa"><div class="q">How do I know the model didn't memorize the labeling keyword?</div><div class="a">model.py strips the label-defining terms from the feature text before training. With them gone the model must predict the hazard from product type, brand, and co-occurring language. Without the strip it would relearn the keyword and report a meaningless ~1.0.</div></div>
+  <div class="qa"><div class="q">Is the live endpoint serving the same model that made your artifacts?</div><div class="a">Yes, enforced by hash. _verify_frozen_parity() hashes every manifest file at import and refuses to boot on mismatch. /healthz returns frozen_parity_sha bb95f4e8 and output_sha_ok true; /classify byte-matches the artifact. It is output parity by design, not a model-binary hash.</div></div>
+  <div class="qa"><div class="q">Is the passport signature real or a placeholder?</div><div class="a">Real Ed25519. build.py signs the canonical JSON of the credential with an Ed25519 private key, producing the base64 signatureValue. The issuer is a spec-compliant did:key. The frontend verifies it in-browser, no server, with a live tamper toggle.</div></div>
+  <div class="qa"><div class="q">How many regulations does it really enforce?</div><div class="a">Three deterministic rules wired today over a 7-regulation catalog, each citing its real statute. The full target is 85+ thresholds; the README labels the shipped state ~20% of the spec. What is wired is real and cited; the rest is roadmap.</div></div>
+  <div class="qa"><div class="q">Will the demo break if Render is down?</div><div class="a">No. The frontend renders the passport view entirely off the static signed artifacts. The live endpoint proves it is a real deployed service; the static bundle guarantees the demo runs offline. A keepalive cron keeps the free-tier service warm.</div></div>
+
+  <h2 class="sec" style="color:var(--bio)"><span class="n">15</span> The demo video</h2>
+  <p class="small">You own the DevPost cut: a ~2:30-3:00 hand-edited video, real screen capture of the deployed app off the verbatim <span class="mono">demo_script.md</span>. Live link verified public: <span class="mono">youtube.com/watch?v=TPO5nhIIWrI</span>. Before the deadline locks: confirm it plays in incognito, captions on, Public + "Not for Kids".</p>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Vinh &middot; Engine C &middot; hand to Stephen (frontend) or Pravin (molecules) outside your lane</span></div>
+</section>
+
+</body></html>

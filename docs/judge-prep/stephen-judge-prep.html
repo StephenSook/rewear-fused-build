@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>REWEAR-FUSED Judge Prep - Stephen</title>
+<link rel="stylesheet" href="judge-prep.css">
+</head><body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div>
+    <div class="cover-top">
+      <span class="eyebrow">REWEAR-FUSED &middot; Cox Play With Purpose &middot; Carter's Making &amp; Remaking</span>
+      <span class="eyebrow">Judge Prep &middot; 2026-06-17</span>
+    </div>
+    <img class="cover-banner" src="../gallery/banner.png" alt="REWEAR-FUSED">
+    <h1>Judge Prep</h1>
+    <div class="who">Stephen Sookra</div>
+    <div class="role">Project Architect &middot; Frontend &middot; Data Contract &middot; The 3D &amp; the Verify</div>
+    <p class="blurb">Everything you should be able to answer cold, plus the whole-system architecture you own as the person who designed how the three engines fit together. Every number here is traceable to the code or a live endpoint. If it is in-silico, it says so. That honesty is the moat, do not trade it away for a bigger-sounding claim.</p>
+  </div>
+  <div class="status">
+    <span>FRONTEND <b>rewear-fused.vercel.app</b> &middot; 200</span>
+    <span>ENGINE C <b>LIVE</b> on Render</span>
+    <span>CI main <b>5/5 green</b></span>
+    <span class="muted">aa58d11</span>
+  </div>
+</section>
+
+<!-- ============ SHARED CANON ============ -->
+<section class="page">
+  <h2 class="sec"><span class="n">01</span> The thirty-second version</h2>
+  <p class="lead">REWEAR-FUSED is <strong>one computational co-design loop</strong> that designs two matched molecules at once to close the textile-to-textile recycling loop on children's stretch apparel, which is non-recyclable today because of its elastane.</p>
+  <p>Instead of attacking existing elastane (crystalline, hostile, it defeats every native enzyme on the intact fiber), we invert the problem. <em class="fiber">Engine A</em> screens a new, enzymatically-<strong>cleavable</strong> elastane fiber. <em class="bio">Engine B</em> designs the <strong>matched</strong> carbamate hydrolase built to cut that exact bond. <em class="bio">Engine C</em> is the live Digital Recyclability Passport that proves a garment is safe and routes it. The pitch line:</p>
+  <div class="pull">"Carter's, here's the molecule for your next onesie, and the matched enzyme that closes its loop. No one has co-designed the pair, together, for textiles."</div>
+
+  <div class="box"><pre class="mono small" style="color:var(--fg-muted); line-height:1.45">
+ GARMENT ──▶ ENGINE C  passport: clear / lab-test / divert
+            └─▶ ENGINE A  cleavable elastane  (constraint-guided screening)
+                  └─[carbamate substrate target]─▶ ENGINE B  matched hydrolase
+                        └─ cleaves bond ─▶ recoverable monomers ─▶ NEW onesie</pre></div>
+
+  <h2 class="sec"><span class="n">02</span> The two walls (why this exists)</h2>
+  <p>Carter's already collects worn baby clothes through <strong>KIDCYCLE / TerraCycle</strong>, then shreds them into insulation and pet bedding. Two walls stop a onesie becoming a onesie again:</p>
+  <ul class="tick">
+    <li><strong>Wall 1, chemical safety.</strong> Nobody can prove the recovered fabric is chemically safe for infant skin.</li>
+    <li><strong>Wall 2, elastane.</strong> Nobody can break down the elastane woven into every stretch garment.</li>
+  </ul>
+  <div class="cols">
+    <div class="box tight"><span class="eyebrow">Lead with this</span><p class="small" style="margin-top:4pt">Elastane is in <span class="num">~80%</span> of all clothing, and as little as <span class="num">~1%</span> of it makes a recycler reject the <strong>whole</strong> garment. <span class="muted">(Fashion for Good, "Stretching Circularity", 2026.)</span></p></div>
+    <div class="box tight"><span class="eyebrow">Scale</span><p class="small" style="margin-top:4pt"><span class="num">~92M</span> tonnes of textile waste a year (UNEP). Only <span class="num">~1%</span> of garments are recycled fiber-to-fiber today. <span class="muted">(1% is soft / spec; McKinsey 18-26% by 2030 is the harder fallback.)</span></p></div>
+  </div>
+
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- WHAT IS REAL -->
+<section class="page">
+  <h2 class="sec"><span class="n">03</span> What is real, what is in-silico (the honesty ledger)</h2>
+  <p>This is the single most important thing to get right. We have a <a>/judges</a> page that tiers every component. Memorize the tiers:</p>
+  <table>
+    <tr><th>Component</th><th>Tier</th><th>TRL</th><th>What it is</th></tr>
+    <tr><td><strong>Engine C, the Passport</strong></td><td><span class="chip live">Wired Live</span></td><td class="num">6</td><td>real FastAPI endpoint + deployed UI; the Year-1 deployable product</td></tr>
+    <tr><td><strong>The app (5 views)</strong></td><td><span class="chip live">Wired Live</span></td><td class="muted">-</td><td>on Vercel, reading the signed artifact bundle through real code</td></tr>
+    <tr><td><strong>Credential verify + QR</strong></td><td><span class="chip real">Real</span></td><td class="muted">-</td><td>real WebCrypto Ed25519 in-browser; the QR is a working GS1 resolver</td></tr>
+    <tr><td><strong>Training data</strong></td><td><span class="chip real">Real Data</span></td><td class="muted">-</td><td><span class="num">631</span> real CPSC recalls, wired today; EU/PFAS/OEKO-TEX are roadmap</td></tr>
+    <tr><td><strong>Engine A, the fiber</strong></td><td><span class="chip silico">In-Silico</span></td><td class="num">3</td><td>constraint-guided screening; predicted properties, benchmark-referenced</td></tr>
+    <tr><td><strong>Engine B, the enzyme</strong></td><td><span class="chip silico">In-Silico</span></td><td class="num">2</td><td>LigandMPNN redesign (TM ~0.8 to template); de-novo fold is the deferred swing</td></tr>
+    <tr><td><strong>Wet-lab validation</strong></td><td><span class="chip fwd">Forward</span></td><td class="muted">-</td><td>not done in a lab; the Cox Cleantech Residency ask</td></tr>
+  </table>
+  <div class="box call"><span class="eyebrow">The line that wins the room</span>
+  <p class="small" style="margin-top:4pt">"Engine C is wired live on real data, deployed, signed, with a passport you can scan and cryptographically verify. Engines A and B are in-silico designs on real public chemistry, clearly labeled. We would rather you check than take our word."</p></div>
+
+  <h2 class="sec"><span class="n">04</span> The de-novo question (the one trap to never fall in)</h2>
+  <div class="box danger"><span class="eyebrow">Honesty guardrail &middot; everyone must say this the same way</span>
+  <p class="small" style="margin-top:5pt">The shipped enzymes are <strong>LigandMPNN redesigns</strong> of real serine-hydrolase scaffolds (TM 0.79 to 0.85 to template), <strong>not de-novo folds</strong>. The de-novo fold (FoldSeek TM &lt; 0.5, no prior art) is the GPU run we <strong>scoped and deferred</strong>. The "shouldn't be possible" novelty is the <em class="bio">co-design loop itself</em> (matched fiber + enzyme for textiles, verified open), which is true: Engine C, its compliance half, runs live, and the molecular halves are in-silico designs. Claim de-novo only for the loop, never for the enzyme.</p></div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- CONSTRAINTS -->
+<section class="page">
+  <h2 class="sec"><span class="n">05</span> The five scientific constraints (any judge, any engine)</h2>
+  <table>
+    <tr><th>#</th><th>Constraint</th><th>Why it matters</th></tr>
+    <tr><td class="num">1</td><td><strong>Aliphatic isocyanates only</strong> (HDI / IPDI / H12MDI), never aromatic (MDI / TDI)</td><td>aromatic ones cleave to MDA, an IARC 2B possible carcinogen. Passport shows "aromatic amine release: NONE". Infant-safety case rests on this.</td></tr>
+    <tr><td class="num">2</td><td><strong>Ser-His-Asp triad, near-neutral pH 7.0-8.5</strong></td><td>not the wild-type UMG-SP2 Ser-Ser-cis-Lys triad that needs pH ~10, which would damage the companion cotton. Cotton-compatible.</td></tr>
+    <tr><td class="num">3</td><td><strong>Cleavable bond in the soft segment; hard segment 25-35 wt%</strong></td><td>the crystalline hard domains carry the load; put the cleavable bond in the amorphous phase and you keep &gt;400% stretch. &lt;17 wt% degrades too fast, &gt;40 wt% won't degrade.</td></tr>
+    <tr><td class="num">4</td><td><strong>Constraint-guided screening, not generative</strong></td><td>polymer language models only handle homopolymers and random copolymers, not segmented block PU-ureas. We enumerate, score, filter. Honest and more credible.</td></tr>
+    <tr><td class="num">5</td><td><strong>In-silico, benchmark-referenced</strong></td><td>nothing was spun or expressed. The "in-silico, wet-lab validation required" badge stays visible. Honesty signals scientific maturity.</td></tr>
+  </table>
+
+  <h2 class="sec"><span class="n">06</span> The eight judge-defense answers (universal)</h2>
+  <div class="qa"><div class="q">What toxic products come off when you cleave it?</div><div class="a">None of concern. Aliphatic isocyanates only, so cleavage gives aliphatic diamines, not aromatic MDA/TDA carcinogens. The validator rejects any non-aliphatic isocyanate; the passport shows a green "aromatic amine release: NONE".</div></div>
+  <div class="qa"><div class="q">Doesn't your enzyme need pH 10, which destroys the cotton?</div><div class="a">That's the wild-type UMG-SP2 trap. We anchor on its transition-state geometry, not its protein, and design a Ser-His-Asp triad that works near-neutral. All three designs are Ser-His-Asp, pH 7.0-8.5, cotton-compatible.</div></div>
+  <div class="qa"><div class="q">Won't making it cleavable destroy the stretch?</div><div class="a">No. The cleavable bond lives in the soft amorphous segment, not the load-bearing crystalline domains. All 10 candidates sit in the 25-35 wt% window with 440-620% elongation. The trade-off curve makes it explicit.</div></div>
+  <div class="qa"><div class="q">Can AI really invent a new block copolymer?</div><div class="a">We never claim that. Engine A is constraint-guided screening: enumerate 612, score 487, filter 23, surface 10. Polymer LMs can't represent segmented block copolymers, so generative would be a flaw a judge could expose.</div></div>
+  <div class="qa"><div class="q">Did you actually make any of this in a lab?</div><div class="a">No. Entirely in-silico with benchmark-referenced metrics. Engine A TRL 3, Engine B TRL 2. Engine C, the passport, is TRL 6 and runs live. The badge stays visible.</div></div>
+  <div class="qa"><div class="q">What about microplastics / what's the business model?</div><div class="a">Enzymatic end-of-life replaces the ocean-microplastic-shedding fate with controlled industrial hydrolysis. Business: we're the Nexus Circular of textiles (see section 08).</div></div>
+  <div class="qa"><div class="q">Isn't this two projects, a fiber and an enzyme?</div><div class="a">One inverse-design loop. The carbamate bond we build into the fiber is the exact bond the enzyme is designed to cut; the fiber's microenvironment is emitted as the enzyme's substrate target. topPairs.json cross-references each enzyme to its real matched fiber. The matched pair is the defensible IP.</div></div>
+  <div class="qa"><div class="q">Will Carter's actually pay for this?</div><div class="a">They already pay TerraCycle to downcycle worn onesies into pet bedding. We replace that line item with a fiber-to-fiber loop plus an SB 707 / EU-DPP compliance asset. Same spend, better outcome. Engine C is the Year-1 deployable.</div></div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- DO NOT SAY + COMMERCIAL -->
+<section class="page">
+  <h2 class="sec"><span class="n">07</span> Do not say (the over-claims that lose the room)</h2>
+  <div class="box danger">
+  <ul class="tick x">
+    <li>Not "de-novo enzyme" or "novel fold" for the shipped designs. They are LigandMPNN redesigns, TM ~0.8. De-novo is deferred. Claim de-novo only for the co-design loop.</li>
+    <li>Not "72 hours" / "built this weekend" / any build-duration. Banned (build-from-scratch DQ risk). Say "no prior art / first publicly disclosed".</li>
+    <li>Not "we spun a fiber" or "expressed the protein". Everything molecular is in-silico, TRL 2-3.</li>
+    <li>Not "generative design of a polymer". Engine A is constraint-guided screening.</li>
+    <li>Not any invented kinetics (kcat, KM). The PLACER numbers are in-silico structural targets, not measured catalysis.</li>
+    <li>Not "PR-AUC 0.85+". The real shipped macro PR-AUC is <span class="num">0.732</span>. Report the achieved number.</li>
+    <li>Not FIFA tickets / grand prize "won". Those are the targets, not results.</li>
+    <li>No DOI outside the verified section-9 list. A fact-check found fabricated red-team citations once; they never return.</li>
+  </ul></div>
+
+  <h2 class="sec"><span class="n">08</span> Commercialization (the Cox residency judge)</h2>
+  <div class="box">
+  <p class="small"><strong>"We're the Nexus Circular of textiles."</strong> Cox Cleantech led a <span class="num">$150M</span> round to majority-own Nexus Circular (virgin-equivalent feedstock from hard-to-recycle plastic). We are that thesis for textiles.</p>
+  <ul class="tick">
+    <li><strong>The ask:</strong> $10K + 6 weeks to wet-lab-validate the top matched pair, file a provisional, pilot one Carter's SKU.</li>
+    <li><strong>Path:</strong> license to an incumbent (Hyosung Creora bio-based ~1yr, LYCRA x QIRA ~3yr, Asahi Kasei ROICA V550). Drop-in to existing solution dry-spinning, so one license scales without new factories.</li>
+    <li><strong>Market:</strong> spandex ~$9B today to ~$20B by ~2033 (SkyQuest / Market.us). Horizon 2030-2032.</li>
+  </ul>
+  <p class="small muted">The ~2 t CO2e/tonne and per-SKU testing figures are labeled estimates on screen. Drop them if pressed; never present as a measured LCA.</p>
+  </div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- ============ STEPHEN ROLE ============ -->
+<section class="page">
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">09</span> Your lane &middot; the architecture you own</h2>
+  <p class="lead">You own the frontend (the 5 views), the project architecture, the data contract, the design system, the galaxy-tier 3D, the in-browser credential verify, the GS1 resolver, demo-safety, and the visualization stack. You are the person who can answer "how does the whole thing fit together".</p>
+
+  <h3>The architecture in one breath</h3>
+  <div class="box"><pre class="mono small" style="color:var(--fg-muted); line-height:1.5">
+ Engines A+B (Pravin, GPU offline) ─┐
+                                    ├─▶  SIGNED ARTIFACT BUNDLE
+ Engine C build (Vinh) ─────────────┘    data/artifacts/v1.0.0
+                                          manifest.json, SHA-256 / file, 14 files
+                                              │ synced byte-identical
+                                              ▼
+                                    frontend/src/lib/artifacts
+                                              │
+                                     lib/data.ts  (one data layer, the only
+                                              │    place the source is chosen)
+                                              ▼
+                                     the 5 views render (read-only truth)
+
+ Engine C live (Render) ──[2500ms timeout + runtime shape guard]──▶ falls back
+   to the byte-identical bundle. Live when warm, demo-safe when not.</pre></div>
+  <p class="small"><strong>The one-sentence defense:</strong> "The live demo never depends on a real-time GPU job. Pipelines pre-compute signed artifacts; the app renders them through real code; only Engine C is live, and it has a bundle fallback, so nothing on stage can hang."</p>
+
+  <h3>The data contract</h3>
+  <p class="small"><span class="mono">data/contract.md</span> is the single anti-drift surface: the exact TS shapes for garments, regulations, classifications, fibers, enzymes, pairs, passports, manifest. The frontend mocks and the backend outputs both conform to it. A CI job (<span class="mono">validate_artifacts.py</span>) fails the build if any artifact drifts from the contract or the locked scientific constraints. Contract changes carry a <span class="mono">CONTRACT</span> commit prefix.</p>
+
+  <div class="thumbs">
+    <figure><img src="../gallery/01-story.png"><figcaption>Story</figcaption></figure>
+    <figure><img src="../gallery/03-enzyme.png"><figcaption>Enzyme</figcaption></figure>
+    <figure><img src="../gallery/05-passport.png"><figcaption>Passport</figcaption></figure>
+  </div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- THE 5 VIEWS + STACK -->
+<section class="page">
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">10</span> The five views (what each one is)</h2>
+  <table>
+    <tr><th>Route</th><th>View</th><th>What it renders</th></tr>
+    <tr><td class="mono">/</td><td><strong>Story</strong></td><td>scroll-driven cold-open; a fixed full-screen ~46k-point GPU cloud morphing hero to shred to walls to field to core in the vertex shader</td></tr>
+    <tr><td class="mono">/passport</td><td><strong>Passport</strong> (Engine C)</td><td>the demo floor; garment intake, the clear/lab-test/divert router with citations, the scannable QR, the credential verify</td></tr>
+    <tr><td class="mono">/fiber</td><td><strong>Fiber</strong> (Engine A)</td><td>the screening funnel 612 to 487 to 23 to 10, candidate cards, the mechanics-vs-cleavability trade-off curve</td></tr>
+    <tr><td class="mono">/enzyme</td><td><strong>Enzyme</strong> (Engine B)</td><td>the Mol* structure with the Ser-His-Asp triad, the PLACER panel, the FoldSeek badge, the matched-pair morph</td></tr>
+    <tr><td class="mono">/loop</td><td><strong>Loop</strong></td><td>the closed-loop particle storm, onesie to cleavage to monomers to new onesie, scrubbed by scroll</td></tr>
+  </table>
+
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">11</span> The stack, and why each call was made</h2>
+  <table>
+    <tr><th>Layer</th><th>Pick</th><th>Version</th></tr>
+    <tr><td>Framework</td><td>Next.js (App Router)</td><td class="mono">16.2.9</td></tr>
+    <tr><td>Runtime</td><td>React</td><td class="mono">19.2.4</td></tr>
+    <tr><td>Molecular 3D</td><td>Mol*</td><td class="mono">5.9</td></tr>
+    <tr><td>Custom 3D</td><td>three.js / R3F / drei</td><td class="mono">0.184 / 9.6 / 10.7</td></tr>
+    <tr><td>Motion</td><td>GSAP / Lenis / Motion</td><td class="mono">3.15 / 1.3 / 12.40</td></tr>
+    <tr><td>Charts / QR / state</td><td>visx / qrcode.react / zustand</td><td class="mono">4.0 / 4.2 / 5.0</td></tr>
+    <tr><td>Styling</td><td>Tailwind v4 (OKLCH @theme)</td><td class="mono">4</td></tr>
+  </table>
+  <div class="box"><span class="eyebrow">The decision a judge will probe: webpack, not Turbopack</span>
+  <p class="small" style="margin-top:4pt">Mol* ships a large, deeply-nested module graph that triggers a Turbopack "module factory not available" runtime chunk error, which crashes any page importing the viewer. <span class="mono">next.config.ts</span> sets <span class="mono">transpilePackages:['molstar']</span> and the scripts pass <span class="mono">--webpack</span>. The golden-path Playwright CI job specifically checks Mol* renders under webpack with zero console errors.</p></div>
+  <ul class="tick fiber small">
+    <li><strong>Mol* is imperative + headless.</strong> We own a PluginContext ref (not the UI plugin), set the dark background, dispose on unmount. Auto-spin is deliberately off: the trackball tick throws every frame in this build, so interaction is drag-to-rotate.</li>
+    <li><strong>OKLCH tokens.</strong> Opacity-mixing stays perceptually uniform; reskin by changing tokens, never component code. Two-accent rule: bio-green for enzyme, amber for fiber, fusing only at the loop close.</li>
+    <li><strong>Fixed-canvas z-index.</strong> The story canvas is <span class="mono">fixed inset-0 z-0 pointer-events-none</span>, content at <span class="mono">z-10</span>. Background at z-0, not z-(-1) (which would vanish behind the page).</li>
+  </ul>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- VERIFY + RESOLVER (the showcase) -->
+<section class="page">
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">12</span> Your showcase &middot; the in-browser credential verify</h2>
+  <p class="lead">This is your wow moment. Own it. A judge cryptographically verifies a Digital Product Passport on their own phone, no server, then tampers with it and watches the proof break.</p>
+  <div class="box"><span class="eyebrow">How it actually works (say this if asked)</span>
+  <p class="small" style="margin-top:4pt"><span class="mono">lib/passport-verify.ts</span> reconstructs the exact bytes Engine C signed (Python <span class="mono">json.dumps(sort_keys=True, separators=(',',':'))</span>, reimplemented as <span class="mono">pyCanonical</span> with integer floats serialized as N.0), decodes the issuer's <span class="mono">did:key:z6Mk...</span> public key from base58 multibase (checking the 0xed 0x01 ed25519 prefix), and calls <span class="mono">crypto.subtle.verify</span> with Ed25519 in the browser. <strong>No network call in the verify path.</strong> The tamper toggle flips <span class="mono">aromaticAmineRelease</span> from NONE to DETECTED, so the same key fails and the proof goes red.</p></div>
+
+  <h3>The GS1 resolver (the scannable QR)</h3>
+  <div class="box fiber"><span class="eyebrow">Verified live today</span>
+  <p class="small" style="margin-top:4pt">The QR encodes a GS1 Digital Link on our deployed origin. Scanning <span class="mono">/01/[gtin]/21/[serial]</span> hits <span class="mono">app/01/[gtin]/21/[serial]/route.ts</span>, which <strong>307-redirects</strong> to <span class="mono">/passport/[garmentId]</span>, the live single-product passport, on any phone. Verified: <span class="mono">.../01/31278070569653/21/carters-legging-blend</span> returns 307 to <span class="mono">/passport/carters-legging-blend</span>.</p>
+  <p class="small muted" style="margin-top:4pt"><strong>The displayed text says <span class="mono">id.gs1.org</span>:</strong> that is the canonical GS1 identifier (display-only). The QR points at our resolver. If a judge asks: "that's the official GS1 canonical ID; our app is the brand's Digital Link resolver, which is what the QR points to." Have them scan, do not type the visible link.</p></div>
+  <p class="small">The 3 real GTINs: <span class="mono">79767705865197</span> bodysuit, <span class="mono">31278070569653</span> legging, <span class="mono">25795578635202</span> rashguard.</p>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- DEMO DRIVING + SAFETY -->
+<section class="page">
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">13</span> Driving the demo (you run the laptop)</h2>
+  <div class="box"><span class="eyebrow">Pitch order</span>
+  <p class="small" style="margin-top:4pt"><strong>1 Story</strong> (the two walls + the 80%/1% stat) &rarr; <strong>2 Passport</strong> (intake, route a garment, the QR + the verify moment) &rarr; <strong>3 Fiber</strong> (the funnel + the trade-off curve, the honesty centerpiece) &rarr; <strong>4 Enzyme</strong> (Mol* triad + the matched-pair morph) &rarr; <strong>5 Loop</strong> (the cleavage + color fusion, the close).</p></div>
+  <div class="box call"><span class="eyebrow">The 10-second money sequence (on the passport)</span>
+  <p class="small" style="margin-top:4pt">Scroll to the credential card &rarr; tap <strong>Verify signature</strong> (green, AUTHENTIC) &rarr; tap <strong>Tamper + re-verify</strong> (flips one field, goes <span style="color:var(--fail)">red, INVALID</span>) &rarr; re-verify back to green. That sequence is the whole thesis: checkable, not trust-me.</p></div>
+  <h3>Demo-safety (your discipline)</h3>
+  <ul class="tick fiber small">
+    <li><strong>Deterministic demo mode:</strong> <span class="kbd">Shift+D</span> toggles, <span class="kbd">?demo=1</span> auto-starts, <span class="kbd">Esc</span> exits. Auto-walks the 5 views at a known pace; it is the source for the 4K OBS fallback recording.</li>
+    <li><strong>Pre-warm Engine C</strong> a minute before judging: hit <span class="mono">rewear-engine-c.onrender.com/healthz</span>. Free Render plan cold-starts ~21s; warm is 0.16s. The keepalive cron pings every 10 min, but pre-warm anyway.</li>
+    <li><strong>Offline-safe:</strong> every view renders off the static signed bundle. If wifi dies, the passport still routes and the verify still runs (no network in the verify path).</li>
+    <li><strong>Two laptops, hotspot backup, clean browser profile, the 4K recording.</strong> Non-negotiable.</li>
+  </ul>
+
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">14</span> The visualization stack (a bonus flex)</h2>
+  <ul class="tick fiber small">
+    <li><strong>Gource</strong> git-history time-lapse MP4 of the build.</li>
+    <li><strong>graphify</strong> codebase graph, <span class="num">287</span> nodes / <span class="num">401</span> edges, auto-generated from the AST.</li>
+    <li><strong>Hand-curated 3D knowledge graph</strong> (three.js + bloom), the co-design loop and the two coupled molecules glowing on black, served from <span class="mono">frontend/public/visualizations</span>.</li>
+  </ul>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect</span></div>
+</section>
+
+<!-- ARCHITECT CAVEATS + QA -->
+<section class="page">
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">15</span> Honest caveats you own (do not get caught out)</h2>
+  <div class="box danger">
+  <ul class="tick x small">
+    <li><strong>Fonts.</strong> The live app uses Google interim stand-ins (Fraunces / Sora / JetBrains Mono), not the locked Editorial New / General Sans / Sohne self-hosted faces. If asked about type: name the interim truth.</li>
+    <li><strong>SSGI / WebGPU not shipped.</strong> The story and loop scenes are WebGL2 (~46k points), not the 1M-particle WebGPU/TSL path. SSGI (Mol* path-tracing) was deliberately not shipped because it is GPU-heavy and unverifiable on an unknown demo laptop.</li>
+    <li><strong>The Render API's <span class="mono">/judges</span> route 404s</strong> (the deploy predates that commit). The <em>frontend</em> /judges page on Vercel is fine. recallCount=631 is verifiable via the manifest + <span class="mono">/healthz</span>, not the Render /judges route. (This is Vinh's lane, but you should know it.)</li>
+    <li><strong>DevPost lists EU Safety Gate / PFAS / OEKO-TEX as the training corpus,</strong> but only CPSC (631 recalls) is wired live; the others are roadmap. Reconcile to "CPSC is the wired source today; the others are named in our roadmap."</li>
+  </ul></div>
+
+  <h2 class="sec" style="color:var(--fiber)"><span class="n">16</span> Architect-level Q&amp;A</h2>
+  <div class="qa"><div class="q">Does your demo depend on a real-time GPU job?</div><div class="a">No. lib/data.ts reads pre-computed signed artifacts (manifest with SHA-256 per file) as read-only truth. Engines A and B run on a rented GPU offline; outputs are frozen into the bundle. Only Engine C is live, and it has the bundle fallback. Plus a deterministic demo mode and a 4K fallback recording.</div></div>
+  <div class="qa"><div class="q">If the live Engine C endpoint is down on stage, what happens?</div><div class="a">lib/engine-c-client.ts has a 2500ms AbortController timeout and runtime shape guards. If the endpoint is down, slow, or returns an unexpected shape, the call falls back to the signed static bundle, which is byte-identical under frozen-model parity. A malformed live response is rejected, not rendered under a "live" badge. The demo never hangs.</div></div>
+  <div class="qa"><div class="q">How do I know the on-screen science matches the data?</div><div class="a">Everything renders off the artifact JSON, asserted to the contract interfaces. A CI "contract" job runs validate_artifacts.py to fail the build if any artifact drifts from the contract or the locked constraints (aliphatic isocyanate, Ser-His-Asp, 25-35 wt%, pair cross-refs, manifest SHA parity). The frontend-bundled artifacts are byte-identical to the canonical bundle.</div></div>
+  <div class="qa"><div class="q">Is CI actually green on main?</div><div class="a">Yes. Main HEAD aa58d11, all 5 check-runs success: Backend, Engine C, Frontend, Golden-path (5 views, prod build, 0 console errors), Artifact contract conformance. Verified per-job via the check-runs API, not just the aggregate.</div></div>
+  <div class="qa"><div class="q">Why React 19 + R3F 9 pinned together?</div><div class="a">R3F 9 is the reconciler built for React 19; mismatching them causes a reconciler error. We pin the matched pair. React Compiler is on, which removes hand-written memoization in the heavy animation tree.</div></div>
+  <div class="foot"><span>REWEAR-FUSED Judge Prep</span><span>Stephen &middot; Architect &middot; hand to Vinh (Engine C) or Pravin (molecules) outside your lane</span></div>
+</section>
+
+</body></html>
